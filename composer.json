@@ -1,8 +1,8 @@
 {
     "name": "yiisoft/yii2-app-basic",
-    "description": "Yii 2 Basic Project Template",
-    "keywords": ["yii2", "framework", "basic", "project template"],
-    "homepage": "http://www.yiiframework.com/",
+    "description": "Hummingbird",
+    "keywords": ["yii2 app"],
+    "homepage": "https://sexywp.com/",
     "type": "project",
     "license": "BSD-3-Clause",
     "support": {
@@ -20,7 +20,7 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0",
         "dmstr/yii2-adminlte-asset": "2.*",
         "mdmsoft/yii2-admin": "~2.0",
-        "bower-asset/codemirror": "5.*"
+        "bower-asset/codemirror": "~5.20"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

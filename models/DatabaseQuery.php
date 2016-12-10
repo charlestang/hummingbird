@@ -9,10 +9,10 @@ namespace app\models;
  */
 class DatabaseQuery extends \yii\db\ActiveQuery
 {
-    /*public function active()
-    {
-        return $this->andWhere('[[status]]=1');
-    }*/
+    /* public function active()
+      {
+      return $this->andWhere('[[status]]=1');
+      } */
 
     /**
      * @inheritdoc
@@ -30,5 +30,15 @@ class DatabaseQuery extends \yii\db\ActiveQuery
     public function one($db = null)
     {
         return parent::one($db);
+    }
+
+    /**
+     * @return DatabaseQuery
+     */
+    public function dropdownOptions()
+    {
+        return $this->indexBy('id')->select([
+                'alias'
+        ]);
     }
 }

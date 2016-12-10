@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "c72567df4a211a583b8cda173a43a8d0",
-    "content-hash": "567c94f4c4b8344dcf5b07792bcc3e6d",
+    "hash": "5b864d60440c2a86748efeb0bc7f4aa3",
+    "content-hash": "050249d55810e3711971b3201f1ec3f7",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -675,12 +675,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "729ec3c7c1563b4e28556c0299a62b2fa91f19d4"
+                "reference": "cca289537b8b9be01687f92b156650a706b5320b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/729ec3c7c1563b4e28556c0299a62b2fa91f19d4",
-                "reference": "729ec3c7c1563b4e28556c0299a62b2fa91f19d4",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/cca289537b8b9be01687f92b156650a706b5320b",
+                "reference": "cca289537b8b9be01687f92b156650a706b5320b",
                 "shasum": ""
             },
             "require": {
@@ -761,7 +761,7 @@
                 "framework",
                 "yii2"
             ],
-            "time": "2016-12-08 22:29:53"
+            "time": "2016-12-10 12:42:28"
         },
         {
             "name": "yiisoft/yii2-bootstrap",
@@ -2093,12 +2093,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/comparator.git",
-                "reference": "9f49fe530008e73d496c5b9c52d50a0eac7184ee"
+                "reference": "2f09d5a251c4a92d1a80518c2166b5d0d742bc63"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/9f49fe530008e73d496c5b9c52d50a0eac7184ee",
-                "reference": "9f49fe530008e73d496c5b9c52d50a0eac7184ee",
+                "url": "https://api.github.com/repos/sebastianbergmann/comparator/zipball/2f09d5a251c4a92d1a80518c2166b5d0d742bc63",
+                "reference": "2f09d5a251c4a92d1a80518c2166b5d0d742bc63",
                 "shasum": ""
             },
             "require": {
@@ -2149,7 +2149,7 @@
                 "compare",
                 "equality"
             ],
-            "time": "2016-12-09 10:59:16"
+            "time": "2016-12-10 08:07:52"
         },
         {
             "name": "sebastian/diff",

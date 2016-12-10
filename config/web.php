@@ -1,6 +1,7 @@
 <?php
 
 $params = require(__DIR__ . '/params.php');
+$commonComponents = require(__DIR__ . '/components.php');
 
 $config = [
     'id' => 'basic',
@@ -9,11 +10,9 @@ $config = [
     'bootstrap' => ['log'],
     'components' => [
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
+            // !!! insert a secret key in the following (if it is empty) - 
+            // this is required by cookie validation
             'cookieValidationKey' => 'xNMSvlVtnsv5nSripgdIjbE1Uu3GkRGe',
-        ],
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
         ],
         'user' => [
             'identityClass' => 'app\models\User',
@@ -29,16 +28,6 @@ $config = [
             // for the mailer to send real emails.
             'useFileTransport' => true,
         ],
-        'log' => [
-            'traceLevel' => YII_DEBUG ? 3 : 0,
-            'targets' => [
-                [
-                    'class' => 'yii\log\FileTarget',
-                    'levels' => ['error', 'warning'],
-                ],
-            ],
-        ],
-        'db' => require(__DIR__ . '/db.php'),
         'urlManager' => [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
@@ -46,6 +35,14 @@ $config = [
             ],
         ],
     ],
+    'as access' => [
+        'class' => 'mdm\admin\components\AccessControl',
+        'allowActions' => [
+            'site/*',
+            'admin/*',
+        ],
+    ],
+    'modules' => require(__DIR__ . '/modules.php'),
     'params' => $params,
 ];
 

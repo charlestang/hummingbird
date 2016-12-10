@@ -190,3 +190,17 @@ composer exec codecept run functional,unit -- --coverage-html --coverage-xml
 ```
 
 You can see code coverage output under the `tests/_output` directory.
+
+
+### 下载代码的依赖
+
+clone 代码后，首先在目录下执行 composer install 
+
+### 创建数据库
+
+创建名为 hummingbird 的数据库，将数据库的用户名密码加入到配置文件里面
+
+### 安装用户表
+
+1. 在根目录下执行 ./yii migrate --migrationPath=@yii/rbac/migrations 设置权限管理的相关数据表
+2. 执行 ./yii migrate --migration=@mdm/admin/migrations 设置用户管理和菜单管理的相关表

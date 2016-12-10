@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "4beedb29d1229fd35220f29cf4809d1d",
-    "content-hash": "31f6eaa55fd9eab9839d78db79bc5cc6",
+    "hash": "c72567df4a211a583b8cda173a43a8d0",
+    "content-hash": "567c94f4c4b8344dcf5b07792bcc3e6d",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -95,6 +95,22 @@
                 "responsive",
                 "web"
             ]
+        },
+        {
+            "name": "bower-asset/codemirror",
+            "version": "5.21.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/components/codemirror.git",
+                "reference": "e2f8466a372b7295432c92a11316768fdf9c4d40"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/components/codemirror/zipball/e2f8466a372b7295432c92a11316768fdf9c4d40",
+                "reference": "e2f8466a372b7295432c92a11316768fdf9c4d40",
+                "shasum": ""
+            },
+            "type": "bower-asset-library"
         },
         {
             "name": "bower-asset/jquery",

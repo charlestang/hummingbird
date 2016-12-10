@@ -10,7 +10,7 @@ $config = [
     'bootstrap' => ['log'],
     'components' => [
         'request' => [
-            // !!! insert a secret key in the following (if it is empty) - 
+            // !!! insert a secret key in the following (if it is empty) -
             // this is required by cookie validation
             'cookieValidationKey' => 'xNMSvlVtnsv5nSripgdIjbE1Uu3GkRGe',
         ],
@@ -54,6 +54,7 @@ if (YII_ENV_DEV) {
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
+    $config['as access']['allowActions'][] = 'debug/*';
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
@@ -61,6 +62,8 @@ if (YII_ENV_DEV) {
         // uncomment the following to add your IP if you are not connecting from localhost.
         //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
+
+    $config['as access']['allowActions'][] = 'gii/*';
 }
 
 return $config;

@@ -64,6 +64,7 @@ if (YII_ENV_DEV) {
     ];
 
     $config['as access']['allowActions'][] = 'gii/*';
+    $config['as access']['allowActions'][] = '*';
 }
 
 return $config;

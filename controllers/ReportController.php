@@ -5,6 +5,7 @@ namespace app\controllers;
 use app\models\Database;
 use app\models\SqlForm;
 use Yii;
+use yii\db\Exception;
 use yii\web\Controller;
 
 /**
@@ -24,20 +25,30 @@ class ReportController extends Controller
         $dbDropdownOptions = Database::find()->dropdownOptions()->asArray()->column();
 
         //查询
-        $sqlForm = new SqlForm();
+        $sqlForm   = new SqlForm();
+        $results   = [];
+        $exception = null;
         if (Yii::$app->request->getIsPost()) {
             $sqlForm->attributes = Yii::$app->request->post();
+            try {
+                $results = $sqlForm->execute();
+            } catch (Exception $ex) {
+                $exception = $ex;
+            }
         }
         if (!isset($sqlForm->database_id)) {
             $sqlForm->database_id = key($dbDropdownOptions);
         }
 
+
         return $this->render(
             'create',
             [
-                'sqlForm'           => $sqlForm,
-                'dbDropdownOptions' => $dbDropdownOptions,
-                ]
+              'sqlForm'           => $sqlForm,
+              'dbDropdownOptions' => $dbDropdownOptions,
+              'results'           => $results,
+              'exception'         => $exception,
+            ]
         );
     }
 

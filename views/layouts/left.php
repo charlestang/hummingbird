@@ -1,3 +1,8 @@
+<?php
+
+use dmstr\widgets\Menu;
+use mdm\admin\components\MenuHelper;
+?>
 <aside class="main-sidebar">
 
     <section class="sidebar">
@@ -13,9 +18,15 @@
             </div>
         </form>
         <!-- /.search form -->
+        <?=
+        Menu::widget([
+            'options' => ['class' => 'sidebar-menu'],
+            'items' => MenuHelper::getAssignedMenu(Yii::$app->user->id),
+        ])
+        ?>
 
         <?=
-        dmstr\widgets\Menu::widget(
+        Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu'],
                 'items'   => [

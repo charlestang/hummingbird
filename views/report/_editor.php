@@ -1,7 +1,9 @@
 <?php
 
 use app\widgets\codemirror\CodeMirror;
+use yii\bootstrap\Button;
 use yii\bootstrap\ButtonDropdown;
+use yii\bootstrap\ButtonGroup;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -31,8 +33,7 @@ use yii\widgets\ActiveForm;
                 <div class="input-group">
                     <?php
                     $options = [
-                        'label'            => '查询',
-                        'split'            => true,
+                        'split'            => false,
                         'options'          => [
                             'class' => 'btn-success',
                         ],
@@ -58,14 +59,22 @@ use yii\widgets\ActiveForm;
                                 'class' => $sqlForm->database_id == $dbId ? 'active' : '',
                             ],
                         ];
+                        if ($sqlForm->database_id == $dbId) {
+                            $options['label'] = $dbAlias;
+                        }
                     }
-                    echo ButtonDropdown::widget($options);
+                    echo ButtonGroup::widget([
+                        'buttons' => [
+                            Button::widget([
+                                'label'   => '查询',
+                                'options' => [
+                                    'class' => 'btn-success'
+                                ]
+                            ]),
+                            ButtonDropdown::widget($options),
+                        ]
+                    ]);
                     ?>
-                    <span class="input-group-addon">收藏标题: </span>
-                    <input type="text" class="form-control" value="" name="name">
-                    <div class="input-group-btn">
-                      <button id="btn_update" type="submit" class="btn btn-primary">保存新结果</button>
-                    </div>
                 </div>
             </div>
         </div>

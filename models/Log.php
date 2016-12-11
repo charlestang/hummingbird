@@ -42,7 +42,13 @@ class Log extends ActiveRecord
             [['user_id', 'database_id'], 'integer'],
             [['sql'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
-            [['database_id'], 'exist', 'skipOnError' => true, 'targetClass' => Database::className(), 'targetAttribute' => ['database_id' => 'id']],
+            [
+                ['database_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Database::className(),
+                'targetAttribute' => ['database_id' => 'id']
+            ],
         ];
     }
 

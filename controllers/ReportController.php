@@ -24,15 +24,17 @@ class ReportController extends Controller
         $dbDropdownOptions = Database::find()->dropdownOptions()->asArray()->column();
 
         //查询
-        $sqlForm           = new SqlForm();
-        if (Yii::$app->request->isPost) {
+        $sqlForm = new SqlForm();
+        if (Yii::$app->request->getIsPost()) {
             $sqlForm->attributes = Yii::$app->request->post();
         }
+        if (!isset($sqlForm->database_id)) {
+            $sqlForm->database_id = key($dbDropdownOptions);
+        }
 
-        //
         return $this->render(
-                'create',
-                [
+            'create',
+            [
                 'sqlForm'           => $sqlForm,
                 'dbDropdownOptions' => $dbDropdownOptions,
                 ]
@@ -41,6 +43,5 @@ class ReportController extends Controller
 
     public function actionEdit()
     {
-        
     }
 }

@@ -42,7 +42,13 @@ class Report extends ActiveRecord
             [['sql', 'description'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 32],
-            [['database_id'], 'exist', 'skipOnError' => true, 'targetClass' => Database::className(), 'targetAttribute' => ['database_id' => 'id']],
+            [
+                ['database_id'],
+                'exist',
+                'skipOnError' => true,
+                'targetClass' => Database::className(),
+                'targetAttribute' => ['database_id' => 'id']
+            ],
         ];
     }
 

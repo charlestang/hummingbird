@@ -15,19 +15,32 @@ use yii\web\Controller;
 class ReportController extends Controller
 {
 
-    public function actionEdit()
+    /**
+     * 新创建报表
+     */
+    public function actionCreate()
     {
+        //可供选择的数据库连接配置
         $dbDropdownOptions = Database::find()->dropdownOptions()->asArray()->column();
+
+        //查询
         $sqlForm           = new SqlForm();
         if (Yii::$app->request->isPost) {
             $sqlForm->attributes = Yii::$app->request->post();
         }
+
+        //
         return $this->render(
-            'edit',
-            [
+                'create',
+                [
                 'sqlForm'           => $sqlForm,
                 'dbDropdownOptions' => $dbDropdownOptions,
                 ]
         );
+    }
+
+    public function actionEdit()
+    {
+        
     }
 }

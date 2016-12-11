@@ -59,10 +59,24 @@ class m161210_114704_hummingbird_v1 extends Migration
             (' ON DELETE NO ACTION ON UPDATE NO ACTION'),
             ], $tableOptions
         );
+
+        $this->insert('{{%user}}',
+            [
+            'id'                   => 1,
+            'username'             => 'admin',
+            'auth_key'             => 'Ijzc9POowAtBKcLv-EynDfTwiiFFK2ol',
+            'password_hash'        => '$2y$13$y37fpqs292nJmyKp4sreA.rlImubnmK2I2t77SmGOol480LA2HbhS', //123456
+            'password_reset_token' => 'IBjV_0m-Mq7OFOicyYOjhJoEYPBOrBQZ_' . time(),
+            'email'                => 'admin@example.com',
+            'status'               => 10,
+            'created_at'           => time(),
+            'updated_at'           => time(),
+        ]);
     }
 
     public function down()
     {
+        $this->delete('{{%user}}', 'id=1');
         $this->dropTable('{{%report}}');
         $this->dropTable('{{%database}}');
     }

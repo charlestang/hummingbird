@@ -6,6 +6,7 @@ $commonComponents = require(__DIR__ . '/components.php');
 $config = [
     'id' => 'basic',
     'name' => 'Hummingbird',
+    'language'            => 'zh-CN',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
@@ -64,7 +65,6 @@ if (YII_ENV_DEV) {
     ];
 
     $config['as access']['allowActions'][] = 'gii/*';
-    $config['as access']['allowActions'][] = '*';
 }
 
 return $config;

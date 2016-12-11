@@ -202,8 +202,8 @@ clone 代码后，首先在目录下执行 composer install
 
 ### 安装用户表
 
-1. 在根目录下执行 ./yii migrate --migrationPath=@yii/rbac/migrations 设置权限管理的相关数据表
+1. 在根目录下执行 ./yii migrate --migrationPath=@yii/rbac/migrations 设置权限管理的相关数据表, 注入 auth_rule, auth_item, auth_item_child, auth_assignment 四个表
 
-2. 执行 ./yii migrate --migration=@mdm/admin/migrations 设置用户管理和菜单管理的相关表
+2. 执行 ./yii migrate --migration=@mdm/admin/migrations 设置用户管理和菜单管理的相关表, 注入 menu 表, 和 user 表
 
 3. 执行 ./yii migrate/up 创建本App需要使用的数据库表

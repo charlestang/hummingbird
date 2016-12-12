@@ -107,7 +107,7 @@ class Log extends ActiveRecord
         $log->sql         = $sql;
         $log->time_spent  = $time_spent;
         $log->error_code  = $error_code;
-        $ret              = $log->insert();
+        $log->insert();
 
         return $log;
     }

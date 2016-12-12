@@ -1,4 +1,6 @@
 <?php
+
+use yii\helpers\Html;
 $this->title = "创建报表";
 ?>
 <div class="row">
@@ -57,7 +59,7 @@ $this->title = "创建报表";
     </div>
 </div>
 <?php
-$csrf              = Yii::$app->request->getCsrfToken();
+$csrf              = \Yii::$app->request->getCsrfToken();
 $nonAjaxRequestFav = <<<JS
 var submit = function (action, method, values) {
     var form = $('<form/>', {

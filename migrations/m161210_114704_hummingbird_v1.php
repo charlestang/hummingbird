@@ -15,8 +15,8 @@ class m161210_114704_hummingbird_v1 extends Migration
         }
 
         $this->createTable(
-            '{{%database}}',
-            [
+          '{{%database}}',
+          [
             'id'         => $this->primaryKey()->unsigned()->comment('ID'),
             'alias'      => $this->string(32)->notNull()->unique()->comment('alias of this database'),
             'host'       => $this->string(64)->notNull()->comment('database host'),
@@ -24,14 +24,15 @@ class m161210_114704_hummingbird_v1 extends Migration
             'username'   => $this->string(64)->comment('user name'),
             'password'   => $this->string(64)->comment('password'),
             'charset'    => $this->string(32)->comment('charset of database'),
+            'deleted'    => $this->boolean()->notNull()->defaultValue(0)->comment('logically delete'),
             'created_at' => $this->dateTime()->defaultValue('1000-01-01 00:00:00'),
             'updated_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
-            ], $tableOptions
+          ], $tableOptions
         );
 
         $this->createTable(
-            '{{%report}}',
-            [
+          '{{%report}}',
+          [
             'id'          => $this->primaryKey()->unsigned()->comment('ID'),
             'user_id'     => $this->integer()->notNull()->comment('user who created the report'),
             'database_id' => $this->integer()->unsigned()->notNull()->comment('database config id'),
@@ -42,26 +43,28 @@ class m161210_114704_hummingbird_v1 extends Migration
             'updated_at'  => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
             'FOREIGN KEY (database_id) REFERENCES {{%database}} (id)' .
             (' ON DELETE NO ACTION ON UPDATE NO ACTION'),
-            ], $tableOptions
+          ], $tableOptions
         );
         $this->createIndex('key_name', '{{%report}}', 'name');
 
         $this->createTable(
-            '{{%log}}',
-            [
+          '{{%log}}',
+          [
             'id'          => $this->primaryKey()->unsigned()->commend('ID'),
             'user_id'     => $this->integer()->unsigned()->notNull()->comment('user who executed this sql'),
             'database_id' => $this->integer()->unsigned()->notNull()->comment('database config id'),
-            'sql'         => $this->text()->notNull(),
+            'sql'         => $this->text()->notNull()->comment('sql statement'),
+            'time_spent'  => $this->double()->notNull()->defaultValue(0.0)->comment('time used'),
+            'error_code'  => $this->string(32)->comment('error code of the exception'),
             'created_at'  => $this->dateTime()->defaultValue('1000-01-01 00:00:00'),
             'updated_at'  => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
             'FOREIGN KEY (database_id) REFERENCES {{%database}} (id)' .
             (' ON DELETE NO ACTION ON UPDATE NO ACTION'),
-            ], $tableOptions
+          ], $tableOptions
         );
 
         $this->insert('{{%user}}',
-            [
+                      [
             'id'                   => 1,
             'username'             => 'admin',
             'auth_key'             => 'Ijzc9POowAtBKcLv-EynDfTwiiFFK2ol',

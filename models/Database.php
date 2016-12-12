@@ -17,6 +17,7 @@ use yii\db\Expression;
  * @property string  $username
  * @property string  $password
  * @property string  $charset
+ * @property string  $deleted
  * @property string  $created_at
  * @property string  $updated_at
  *
@@ -40,7 +41,7 @@ class Database extends ActiveRecord
     {
         return [
             [['alias', 'host', 'database'], 'required'],
-            [['id', 'created_at', 'updated_at'], 'safe'],
+            [['id', 'deleted', 'created_at', 'updated_at'], 'safe'],
             [['host', 'database', 'username', 'password'], 'string', 'max' => 64],
             [['alias', 'charset'], 'string', 'max' => 32],
         ];
@@ -50,8 +51,8 @@ class Database extends ActiveRecord
     {
         return [
             [
-                'class'              => TimestampBehavior::className(),
-                'value'              => new Expression('NOW()'),
+                'class' => TimestampBehavior::className(),
+                'value' => new Expression('NOW()'),
             ],
         ];
     }
@@ -89,5 +90,15 @@ class Database extends ActiveRecord
     public static function find()
     {
         return new DatabaseQuery(get_called_class());
+    }
+
+    /**
+     * @inheritdoc
+     * @return false|int
+     */
+    public function delete()
+    {
+        $this->deleted = 1;
+        return $this->update(false, ['deleted']);
     }
 }

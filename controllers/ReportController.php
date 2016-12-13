@@ -8,6 +8,7 @@ use app\models\SqlForm;
 use Yii;
 use yii\data\ActiveDataProvider;
 use yii\db\Exception;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 
 /**
@@ -17,6 +18,22 @@ use yii\web\Controller;
  */
 class ReportController extends Controller
 {
+
+    /**
+     * @inheritdoc
+     */
+    public function behaviors()
+    {
+        return [
+            'verbs' => [
+                'class'   => VerbFilter::className(),
+                'actions' => [
+                    'save' => ['post'],
+                    'create' => ['get', 'post'],
+                ],
+            ],
+        ];
+    }
 
     /**
      * 新创建报表
@@ -56,17 +73,26 @@ class ReportController extends Controller
 
     public function actionSave()
     {
+        $report = new Report();
+        $report->loadDefaultValues();
+        $request = Yii::$app->request;
+        $report->name = $request->post('name');
+        $report->description= $request->post('description');
+        $report->sql = $request->post('sql');
+        $report->database_id = $request->post('database_id');
+        $report->user_id = Yii::$app->user->id;
+        $report->save();
+        return $this->redirect(['list']);
     }
 
     public function actionList()
     {
-
         $dataProvider = new ActiveDataProvider([
             'query' => Report::find(),
         ]);
 
         return $this->render('list', [
-                'dataProvider' => $dataProvider,
+              'dataProvider' => $dataProvider,
         ]);
     }
 }

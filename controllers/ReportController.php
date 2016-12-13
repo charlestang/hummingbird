@@ -52,7 +52,7 @@ class ReportController extends Controller
         );
     }
 
-    public function actionEdit()
+    public function actionSave()
     {
     }
 }

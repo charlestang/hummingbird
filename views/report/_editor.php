@@ -13,12 +13,12 @@ use yii\widgets\ActiveForm;
     <div class="box-body">
         <?php
         $form    = ActiveForm::begin([
-                'action'  => '',
-                'method'  => 'post',
-                'options' => [
-                    'id' => 'editorpanel'
-                ]
-            ])
+              'action'  => '',
+              'method'  => 'post',
+              'options' => [
+                  'id' => 'editorpanel'
+              ]
+          ])
         ?>
         <?=
         CodeMirror::widget([
@@ -30,52 +30,47 @@ use yii\widgets\ActiveForm;
         <input type="hidden" name="database_id" value="<?= Html::encode($sqlForm->database_id) ?>"/>
         <div class="row no-padding m-b-0 m-t-1">
             <div class="col-lg-12 col-sm-12">
-                <div class="input-group">
-                    <?php
-                    $options = [
-                        'split'            => false,
-                        'options'          => [
-                            'class' => 'btn-success',
+                <?php
+                $options = [
+                    'split'    => false,
+                    'options'  => [
+                        'class' => 'btn-success',
+                    ],
+                    'dropdown' => [
+                        'options' => [
+                            'id'    => 'connector_list',
+                            'class' => 'connector-dropdown',
                         ],
-                        'containerOptions' => [
-                            'class' => ['widget' => 'input-group-btn'],
+                        'items'   => [],
+                    ],
+                ];
+                foreach ($dbDropdownOptions as $dbId => $dbAlias) {
+                    $options['dropdown']['items'][] = [
+                        'label'       => $dbAlias,
+                        'url'         => '#',
+                        'linkOptions' => [
+                            'data-value' => $dbId,
                         ],
-                        'dropdown'         => [
-                            'options' => [
-                                'id'    => 'connector_list',
-                                'class' => 'connector-dropdown',
-                            ],
-                            'items'   => [],
+                        'options'     => [
+                            'class' => $sqlForm->database_id == $dbId ? 'active' : '',
                         ],
                     ];
-                    foreach ($dbDropdownOptions as $dbId => $dbAlias) {
-                        $options['dropdown']['items'][] = [
-                            'label'       => $dbAlias,
-                            'url'         => '#',
-                            'linkOptions' => [
-                                'data-value' => $dbId,
-                            ],
-                            'options'     => [
-                                'class' => $sqlForm->database_id == $dbId ? 'active' : '',
-                            ],
-                        ];
-                        if ($sqlForm->database_id == $dbId) {
-                            $options['label'] = $dbAlias;
-                        }
+                    if ($sqlForm->database_id == $dbId) {
+                        $options['label'] = $dbAlias;
                     }
-                    echo ButtonGroup::widget([
-                        'buttons' => [
-                            Button::widget([
-                                'label'   => '查询',
-                                'options' => [
-                                    'class' => 'btn-success'
-                                ]
-                            ]),
-                            ButtonDropdown::widget($options),
-                        ]
-                    ]);
-                    ?>
-                </div>
+                }
+                echo ButtonGroup::widget([
+                    'buttons' => [
+                        Button::widget([
+                            'label'   => '查询',
+                            'options' => [
+                                'class' => 'btn-success'
+                            ]
+                        ]),
+                        ButtonDropdown::widget($options),
+                    ]
+                ]);
+                ?>
             </div>
         </div>
         <?php $form->end() ?>

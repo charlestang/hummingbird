@@ -1,6 +1,5 @@
-
-<section class="table-responsive" style="overflow-x: scroll">
-    <table class="table table-hover table-striped">
+<section class="table-responsive" style="overflow-x: auto">
+    <table class="table table-hover table-striped m-b-0">
         <thead>
             <tr>
                 <?php foreach (reset($results) as $key => $val): ?>
@@ -23,4 +22,3 @@
         </tbody>
     </table>
 </section>
-

@@ -32,7 +32,6 @@ $this->title = '报表一览';
                         ['class' => 'yii\grid\SerialColumn'],
                         'id',
                         'user_id',
-                        'database_id',
                         'name',
                         'description',
                         'sql',

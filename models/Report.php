@@ -69,8 +69,8 @@ class Report extends ActiveRecord
     {
         return [
             'id' => 'id',
-            'user_id' => 'user who created the report',
-            'database_id' => 'database config id',
+            'user_id' => 'Creator',
+            'database_id' => 'Database',
             'name' => 'Name',
             'sql' => 'Sql',
             'description' => 'Description',

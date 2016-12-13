@@ -3,8 +3,10 @@
 namespace app\controllers;
 
 use app\models\Database;
+use app\models\Report;
 use app\models\SqlForm;
 use Yii;
+use yii\data\ActiveDataProvider;
 use yii\db\Exception;
 use yii\web\Controller;
 
@@ -54,5 +56,17 @@ class ReportController extends Controller
 
     public function actionSave()
     {
+    }
+
+    public function actionList()
+    {
+
+        $dataProvider = new ActiveDataProvider([
+            'query' => Report::find(),
+        ]);
+
+        return $this->render('list', [
+                'dataProvider' => $dataProvider,
+        ]);
     }
 }

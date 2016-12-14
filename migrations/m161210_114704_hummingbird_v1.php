@@ -17,7 +17,7 @@ class m161210_114704_hummingbird_v1 extends Migration
         $this->createTable(
           '{{%database}}',
           [
-            'id'         => $this->primaryKey()->unsigned()->comment('ID'),
+            'id'         => $this->primaryKey()->comment('ID'),
             'alias'      => $this->string(32)->notNull()->unique()->comment('alias of this database'),
             'host'       => $this->string(64)->notNull()->comment('database host'),
             'database'   => $this->string(64)->notNull()->comment('database name'),
@@ -49,9 +49,9 @@ class m161210_114704_hummingbird_v1 extends Migration
         $this->createTable(
           '{{%report}}',
           [
-            'id'          => $this->primaryKey()->unsigned()->comment('ID'),
+            'id'          => $this->primaryKey()->comment('ID'),
             'user_id'     => $this->integer()->notNull()->comment('user who created the report'),
-            'database_id' => $this->integer()->unsigned()->notNull()->comment('database config id'),
+            'database_id' => $this->integer()->notNull()->comment('database config id'),
             'name'        => $this->string(32)->notNull()->comment('report name'),
             'sql'         => $this->text()->notNull()->comment('report sql statement'),
             'description' => $this->text()->comment('short description'),
@@ -66,15 +66,29 @@ class m161210_114704_hummingbird_v1 extends Migration
         $this->createTable(
           '{{%log}}',
           [
-            'id'          => $this->primaryKey()->unsigned()->comment('ID'),
-            'user_id'     => $this->integer()->unsigned()->notNull()->comment('user who executed this sql'),
-            'database_id' => $this->integer()->unsigned()->notNull()->comment('database config id'),
+            'id'          => $this->primaryKey()->comment('ID'),
+            'user_id'     => $this->integer()->notNull()->comment('user who executed this sql'),
+            'database_id' => $this->integer()->notNull()->comment('database config id'),
             'sql'         => $this->text()->notNull()->comment('sql statement'),
             'time_spent'  => $this->double()->notNull()->defaultValue(0.0)->comment('time used'),
             'error_code'  => $this->string(32)->comment('error code of the exception'),
             'created_at'  => $this->dateTime()->defaultValue('1000-01-01 00:00:00'),
             'updated_at'  => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
             'FOREIGN KEY (database_id) REFERENCES {{%database}} (id)' .
+            (' ON DELETE NO ACTION ON UPDATE NO ACTION'),
+          ], $tableOptions
+        );
+
+        $this->createTable(
+          '{{%subscription}}',
+          [
+            'id'         => $this->primaryKey()->comment('ID'),
+            'user_id'    => $this->integer()->notNull()->comment('user id'),
+            'report_id'  => $this->integer()->notNull()->comment('report id'),
+            'deleted'    => $this->boolean()->notNull()->defaultValue(0)->comment('logically delete'),
+            'created_at' => $this->dateTime()->defaultValue('1000-01-01 00:00:00'),
+            'updated_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
+            'FOREIGH KEY (fk_report_id) REFERENCES {{%report}} (id)' .
             (' ON DELETE NO ACTION ON UPDATE NO ACTION'),
           ], $tableOptions
         );

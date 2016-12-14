@@ -30,16 +30,32 @@ class m161210_114704_hummingbird_v1 extends Migration
           ], $tableOptions
         );
 
+        if (YII_DEBUG) {
+            $this->insert('{{%database}}',
+                          [
+                'id'         => 1,
+                'alias'      => 'self',
+                'host'       => 'localhost',
+                'database'   => 'hummingbird',
+                'username'   => 'hummingbird',
+                'password'   => '123456',
+                'charset'    => 'utf8',
+                'deleted'    => 0,
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
+            ]);
+        }
+
         $this->createTable(
           '{{%report}}',
           [
             'id'          => $this->primaryKey()->unsigned()->comment('ID'),
             'user_id'     => $this->integer()->notNull()->comment('user who created the report'),
             'database_id' => $this->integer()->unsigned()->notNull()->comment('database config id'),
-            'name'        => $this->string(32)->notNull(),
-            'sql'         => $this->text()->notNull(),
-            'description' => $this->text(),
-            'created_at'  => $this->dateTime()->defaultValue('1000-01-01 00:00:00'),
+            'name'        => $this->string(32)->notNull()->comment('report name'),
+            'sql'         => $this->text()->notNull()->comment('report sql statement'),
+            'description' => $this->text()->comment('short description'),
+            'created_at'  => $this->dateTime()->defaultValue('1000-01-01 00:00:00')->comment('create time'),
             'updated_at'  => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
             'FOREIGN KEY (database_id) REFERENCES {{%database}} (id)' .
             (' ON DELETE NO ACTION ON UPDATE NO ACTION'),
@@ -50,7 +66,7 @@ class m161210_114704_hummingbird_v1 extends Migration
         $this->createTable(
           '{{%log}}',
           [
-            'id'          => $this->primaryKey()->unsigned()->commend('ID'),
+            'id'          => $this->primaryKey()->unsigned()->comment('ID'),
             'user_id'     => $this->integer()->unsigned()->notNull()->comment('user who executed this sql'),
             'database_id' => $this->integer()->unsigned()->notNull()->comment('database config id'),
             'sql'         => $this->text()->notNull()->comment('sql statement'),

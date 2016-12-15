@@ -11,11 +11,6 @@ use yii\db\ActiveQuery;
  */
 class SubscriptionQuery extends ActiveQuery
 {
-    /*public function active()
-    {
-        return $this->andWhere('[[status]]=1');
-    }*/
-
     /**
      * @inheritdoc
      * @return Subscription[]|array

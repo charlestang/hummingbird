@@ -14,8 +14,8 @@ use yii\db\Expression;
  * @property integer $user_id
  * @property integer $report_id
  * @property integer $deleted
- * @property string $created_at
- * @property string $updated_at
+ * @property string  $created_at
+ * @property string  $updated_at
  *
  * @property Report $report
  */
@@ -71,6 +71,28 @@ class Subscription extends ActiveRecord
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
         ];
+    }
+
+    public static function subscribe($user_id, $report_id)
+    {
+        $subscription = new self();
+        $subscription->loadDefaultValues();
+        $subscription->user_id = $user_id;
+        $subscription->report_id = $report_id;
+        $subscription->save();
+        return $subscription;
+    }
+
+    public static function unsubscribe($user_id, $report_id)
+    {
+        $subscription = self::findOne([
+            'user_id'   => $user_id,
+            'report_id' => $report_id,
+        ]);
+        if ($subscription) {
+            $subscription->delete();
+        }
+        return true;
     }
 
     /**

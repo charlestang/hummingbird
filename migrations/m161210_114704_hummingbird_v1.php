@@ -88,7 +88,7 @@ class m161210_114704_hummingbird_v1 extends Migration
             'deleted'    => $this->boolean()->notNull()->defaultValue(0)->comment('logically delete'),
             'created_at' => $this->dateTime()->defaultValue('1000-01-01 00:00:00'),
             'updated_at' => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
-            'FOREIGH KEY (fk_report_id) REFERENCES {{%report}} (id)' .
+            'FOREIGN KEY (report_id) REFERENCES {{%report}} (id)' .
             (' ON DELETE NO ACTION ON UPDATE NO ACTION'),
           ], $tableOptions
         );

@@ -6,12 +6,10 @@ use yii\grid\GridView;
 /* @var $this yii\web\View */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Databases';
+$this->title = '数据库连接管理';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="database-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
         <?= Html::a('Create Database', ['create'], ['class' => 'btn btn-success']) ?>

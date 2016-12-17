@@ -1,6 +1,8 @@
 <?php
 
 use yii\grid\GridView;
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this->title = '报表一览';
 ?>
@@ -36,7 +38,21 @@ $this->title = '报表一览';
                         'description',
                         'sql',
                         'created_at',
-                        ['class' => 'yii\grid\ActionColumn'],
+                        [
+                            'class' => 'yii\grid\ActionColumn',
+                            'template'=> '{view} {update} {delete} {favorite}',
+                            'buttons' => [
+                                'favorite' => function ($url, $model, $key) {
+                                    $options = [
+                                        'title' => \Yii::t('yii', 'Favorite'),
+                                        'aria-label' => \Yii::t('yii', 'Favorite'),
+                                        'data-pjax' => '0',
+                                    ];
+                                    $url = Url::toRoute(['/subscription/add', 'report_id' => (string) $key]);
+                                    return Html::a('<span class="glyphicon glyphicon-star-empty"></span>', $url, $options); 
+                                }
+                            ],
+                        ],
                     ],
                 ]);
                 ?>

@@ -13,16 +13,17 @@ use yii\db\Expression;
  * @property integer $id
  * @property integer $user_id
  * @property integer $database_id
- * @property string $name
- * @property string $sql
- * @property string $description
- * @property string $created_at
- * @property string $updated_at
+ * @property string  $name
+ * @property string  $sql
+ * @property string  $description
+ * @property string  $created_at
+ * @property string  $updated_at
  *
  * @property Database $database
  */
 class Report extends ActiveRecord
 {
+
     /**
      * @inheritdoc
      */
@@ -45,37 +46,37 @@ class Report extends ActiveRecord
             [
                 ['database_id'],
                 'exist',
-                'skipOnError' => true,
-                'targetClass' => Database::className(),
+                'skipOnError'     => true,
+                'targetClass'     => Database::className(),
                 'targetAttribute' => ['database_id' => 'id']
             ],
         ];
     }
 
-
     public function behaviors()
     {
         return [
             [
-                'class'              => TimestampBehavior::className(),
-                'value'              => new Expression('NOW()'),
+                'class' => TimestampBehavior::className(),
+                'value' => new Expression('NOW()'),
             ],
         ];
     }
+
     /**
      * @inheritdoc
      */
     public function attributeLabels()
     {
         return [
-            'id' => 'id',
-            'user_id' => 'Creator',
+            'id'          => 'id',
+            'user_id'     => 'Creator',
             'database_id' => 'Database',
-            'name' => 'Name',
-            'sql' => 'Sql',
+            'name'        => 'Name',
+            'sql'         => 'Sql',
             'description' => 'Description',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'created_at'  => 'Created At',
+            'updated_at'  => 'Updated At',
         ];
     }
 
@@ -95,4 +96,26 @@ class Report extends ActiveRecord
     {
         return new ReportQuery(get_called_class());
     }
+
+    /**
+     * Create a report model object and set values to fields according to
+     * $attributes, and load default values to others if $loadDefaultValues is
+     * true. 
+     * 
+     * @param array   $attributes
+     * @param boolean $loadDefaultValues
+     * @return \self
+     */
+    public static function initEmptyRecord($attributes = [], $loadDefaultValues = true)
+    {
+        $report = new self();
+        foreach ($attributes as $name => $value) {
+            $report->setAttribute($name , $value);
+        }
+        if ($loadDefaultValues) {
+            $report->loadDefaultValues();
+        }
+        return $report;
+    }
+
 }

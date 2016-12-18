@@ -1,5 +1,6 @@
 <?php
 
+use app\models\SqlForm;
 use app\widgets\codemirror\CodeMirror;
 use yii\bootstrap\Button;
 use yii\bootstrap\ButtonDropdown;
@@ -7,9 +8,9 @@ use yii\bootstrap\ButtonGroup;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
-/* @var $queryObj Queries */
+/* @var $sqlForm SqlForm */
 ?>
-<div class="box box-primary">
+<div class="box <?=$scenario == 'create' ? 'box-primary' : 'box-info'?>">
     <div class="box-body">
         <?php
         $form    = ActiveForm::begin([

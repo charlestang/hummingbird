@@ -10,10 +10,10 @@ $this->title = "创建报表";
     <div class="col-xs-12 col-sm-12 col-md-12">
 
         <?=
-        $this->render('_editor',
-                      [
+        $this->render('_editor', [
             'sqlForm'           => $sqlForm,
             'dbDropdownOptions' => $dbDropdownOptions,
+            'scenario'          => 'create',
         ])
         ?>
 
@@ -23,11 +23,7 @@ $this->title = "创建报表";
                     <!-- .box-header -->
                     <div class="box-header">
                         <h3 class="box-title">
-                            <?php /* if ($queryObj->bookmarked) : ?>
-                              <i class="fa fa-star text-danger"></i><?= Html::encode($queryObj->name) ?>
-                              <?php else: */ ?>
-                            查询结果
-                            <?php // endif; ?>
+                            <i class="fa fa-list-alt text-primary"></i> 查询结果
                         </h3>
                         <?php if (!$exception): ?>
                             <div class="box-tools pull-right">
@@ -109,10 +105,10 @@ $("#reportSave button.report-save").click(function() {
     var description = $("#reportDescription").val();
     if (name && name.replace(/^\s*/, "").replace(/\s*$/, "").length > 0) {
         var data = [
-            {name: 'name',        value: name},
-            {name: 'description', value: description},
-            {name: 'sql',         value: editor_sqleditor.getDoc().getValue()},
-            {name: 'database_id', value: $("ul.connector-dropdown > li.active > a").data('value')},
+            {name: 'Report[name]',        value: name},
+            {name: 'Report[description]', value: description},
+            {name: 'Report[sql]',         value: editor_sqleditor.getDoc().getValue()},
+            {name: 'Report[database_id]', value: $("ul.connector-dropdown > li.active > a").data('value')},
             {name: '_csrf', value: "$csrf"}
         ];
         submit($("#reportSave form").attr("action"), 'POST', data);

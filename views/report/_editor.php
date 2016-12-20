@@ -10,7 +10,7 @@ use yii\widgets\ActiveForm;
 
 /* @var $sqlForm SqlForm */
 ?>
-<div class="box <?=$scenario == 'create' ? 'box-primary' : 'box-info'?>">
+<div class="box">
     <div class="box-body">
         <?php
         $form    = ActiveForm::begin([

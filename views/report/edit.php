@@ -12,7 +12,6 @@ $this->title      = "报表编辑";
         $this->render('_editor', [
             'sqlForm'           => $sqlForm,
             'dbDropdownOptions' => $dbDropdownOptions,
-            'scenario'          => 'edit',
         ])
         ?>
         <div class="box box-info">

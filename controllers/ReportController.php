@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\components\CsvHelper;
 use app\models\Database;
 use app\models\Report;
 use app\models\SqlForm;
@@ -11,6 +12,7 @@ use yii\data\ActiveDataProvider;
 use yii\db\Exception;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
+use yii\web\NotFoundHttpException;
 
 /**
  * Description of ReportController
@@ -29,9 +31,11 @@ class ReportController extends Controller
             'verbs' => [
                 'class'   => VerbFilter::className(),
                 'actions' => [
-                    'save'   => ['post'],
-                    'create' => ['get', 'post'],
-                    'edit'   => ['get', 'post'],
+                    'save'                => ['post'],
+                    'create'              => ['get', 'post'],
+                    'edit'                => ['get', 'post'],
+                    'export-query'        => ['post'],
+                    'export-by-report-id' => ['post'],
                 ],
             ],
         ];
@@ -63,13 +67,13 @@ class ReportController extends Controller
 
 
         return $this->render(
-                'create',
-                [
-                'sqlForm'           => $sqlForm,
-                'dbDropdownOptions' => $dbDropdownOptions,
-                'results'           => $results,
-                'exception'         => $exception,
-                ]
+            'create',
+            [
+              'sqlForm'           => $sqlForm,
+              'dbDropdownOptions' => $dbDropdownOptions,
+              'results'           => $results,
+              'exception'         => $exception,
+            ]
         );
     }
 
@@ -93,18 +97,18 @@ class ReportController extends Controller
     private static function loadModel($id, $user_id)
     {
         $report = Report::findOne([
-                'id'      => $id,
-                'user_id' => $user_id,
+              'id'      => $id,
+              'user_id' => $user_id,
         ]);
         if (null === $report) {
-            throw new \yii\web\NotFoundHttpException('Report not found.');
+            throw new NotFoundHttpException('Report not found.');
         }
 
         return $report;
     }
 
     /**
-     * 列出所有的报表 
+     * 列出所有的报表
      */
     public function actionList()
     {
@@ -113,10 +117,10 @@ class ReportController extends Controller
         ]);
 
         return $this->render(
-                'list',
-                [
-                'dataProvider' => $dataProvider,
-                ]
+            'list',
+            [
+              'dataProvider' => $dataProvider,
+            ]
         );
     }
 
@@ -145,15 +149,42 @@ class ReportController extends Controller
 
 
         return $this->render(
-                'edit',
-                [
-                'report'            => $report,
-                'sqlForm'           => $sqlForm,
-                'dbDropdownOptions' => $dbDropdownOptions,
-                'results'           => $results,
-                'exception'         => $exception,
-                ]
+            'edit',
+            [
+              'report'            => $report,
+              'sqlForm'           => $sqlForm,
+              'dbDropdownOptions' => $dbDropdownOptions,
+              'results'           => $results,
+              'exception'         => $exception,
+            ]
         );
     }
 
+    /**
+     * 数据导出
+     */
+    public function actionExportQuery()
+    {
+        $sqlForm             = new SqlForm();
+        $sqlForm->attributes = Yii::$app->request->post();
+        CsvHelper::exportDataAsCsv($sqlForm->execute(), 'Query-' . date('YmdHis') . '.csv');
+        return;
+    }
+
+    /**
+     * 导出保存完毕的报表
+     */
+    public function actionExportByReportId()
+    {
+        $id     = Yii::$app->request->post('report_id');
+        $report = Report::findOne(['id' => $id]);
+        if (!empty($report)) {
+            $sqlForm              = new SqlForm();
+            $sqlForm->sql         = $report->sql;
+            $sqlForm->database_id = $report->database_id;
+        }
+        $reportName = $report->name;
+        CsvHelper::exportDataAsCsv($sqlForm->execute(), $reportName . '-' . date('YmdHis') . '.csv');
+        return;
+    }
 }

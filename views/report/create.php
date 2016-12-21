@@ -27,7 +27,7 @@ $this->title = "创建报表";
                         </h3>
                         <?php if (!$exception): ?>
                             <div class="box-tools pull-right">
-                                <a href="" target="_blank" class="btn btn-default">
+                                <a class="btn btn-default btn-export" href="<?=Url::toRoute(['/report/export-query'])?>">
                                     <i class="fa fa-download text-danger"></i>
                                     导出
                                 </a>
@@ -99,6 +99,20 @@ var submit = function (action, method, values) {
     });
     form.appendTo('body').submit();
 };
+
+/**
+ * 报表导出
+ */
+$('.box-tools a.btn-export').click(function() {
+    var href = $(this).attr('href');
+    var data = [
+        {name: 'sql',         value: editor_sqleditor.getDoc().getValue()}, 
+        {name: 'database_id', value: $("ul.connector-dropdown > li.active > a").data('value')},
+        {name: '_csrf', value: "$csrf"}
+    ];
+    submit(href, 'POST', data);
+    return false;
+});
 
 $("#reportSave button.report-save").click(function() {
     var name = $("#reportName").val();

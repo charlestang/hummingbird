@@ -19,7 +19,8 @@
         "yiisoft/yii2-swiftmailer": "~2.0.6",
         "dmstr/yii2-adminlte-asset": "~2.3.4",
         "mdmsoft/yii2-admin": "~2.7",
-        "bower-asset/codemirror": "~5.21"
+        "bower-asset/codemirror": "~5.21",
+        "league/csv": "~8.1.2"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.7",

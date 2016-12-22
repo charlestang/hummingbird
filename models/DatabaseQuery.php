@@ -38,7 +38,7 @@ class DatabaseQuery extends \yii\db\ActiveQuery
     public function dropdownOptions()
     {
         return $this->indexBy('id')->select([
-                'alias'
-        ]);
+              'alias'
+          ])->orderBy(['id' => SORT_ASC]);
     }
 }

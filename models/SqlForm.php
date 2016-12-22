@@ -21,13 +21,47 @@ class SqlForm extends Model
     {
         return [
             [['sql', 'database_id'], 'required'],
+            ['sql', 'trim'],
+            ['database_id', 'integer'],
         ];
+    }
+
+    /**
+     * 净化SQL语句 
+     * @param  string $sql
+     * @return string sanitized sql statement
+     */
+    public static function sanitize($sql)
+    {
+        return str_replace(["\r", "\n"], " ", trim(trim($sql), ';'));
     }
 
     public function execute()
     {
+        if (!$this->validate()) {
+            throw new \yii\base\UserException('错误:' . var_export($this->getErrors(), true), 400);
+        }
         $start_time = microtime(true);
-        $database   = Database::findOne($this->database_id);
+        $connection = static::createDbConnection($this->database_id);
+
+        $errno = 0;
+        $sql   = static::sanitize($this->sql);
+        try {
+            $results = $connection->createCommand($sql)->queryAll();
+        } catch (\Exception $ex) {
+            $errno = $ex->getCode();
+            throw $ex;
+        } finally {
+            $time_spent = microtime(true) - $start_time;
+            Log::log(Yii::$app->user->id, $this->database_id, $sql, $time_spent, $errno);
+        }
+
+        return $results;
+    }
+
+    public static function createDbConnection($database_id)
+    {
+        $database   = Database::findOne($database_id);
         /* @var $connection Connection */
         $connection = Yii::createObject([
               'class'    => 'yii\db\Connection',
@@ -37,17 +71,6 @@ class SqlForm extends Model
               'charset'  => $database->charset,
         ]);
 
-        $errno = 0;
-        try {
-            $results = $connection->createCommand($this->sql)->queryAll();
-        } catch (\Exception $ex) {
-            $errno = $ex->getCode();
-            throw $ex;
-        } finally {
-            $time_spent = microtime(true) - $start_time;
-            Log::log(Yii::$app->user->id, $this->database_id, $this->sql, $time_spent, $errno);
-        }
-
-        return $results;
+        return $connection;
     }
 }

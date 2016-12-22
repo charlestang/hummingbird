@@ -81,16 +81,15 @@ use yii\widgets\ActiveForm;
 $editorBehaviour = <<<JS
     CodeMirror.commands.save = function(){
         $('#editorpanel').submit();
-    }
-    $('#btn_update').click(function() {
-        $('#editorpanel').append('<input type="hidden" name="update" value="1"/>').submit();
-        return false;
-    });
+    };
     $('#connector_list a').click(function() {
-        var \$form =$('#editorpanel');
+        var form =$('#editorpanel');
         var connector = $(this).data('value');
-        $('input[name=connector]', \$form).val(connector);
-        \$form.submit();
+        $('input[name=database_id]', form).val(connector);
+        //todo: I add this tricky code because I used Yii ActiveForm
+        //      but in an improper why, which cause the form cannot be submitted. 
+        form.unbind("submit").submit();
+        return false;
     });
 JS;
 $this->registerJS($editorBehaviour);

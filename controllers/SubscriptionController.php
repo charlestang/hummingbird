@@ -3,7 +3,7 @@
 namespace app\controllers;
 
 use app\models\Subscription;
-use Yii;
+use yii\base\UserException;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 
@@ -19,7 +19,7 @@ class SubscriptionController extends Controller
     {
         $dataProvider = new ActiveDataProvider([
             'query' => Subscription::find([
-                'user_id' => Yii::$app->user->id,
+                'user_id' => \Yii::$app->user->id,
             ]),
         ]);
 
@@ -32,13 +32,13 @@ class SubscriptionController extends Controller
     {
         $subscription            = new Subscription();
         $subscription->loadDefaultValues();
-        $subscription->user_id   = Yii::$app->user->id;
+        $subscription->user_id   = \Yii::$app->user->id;
         $subscription->report_id = $report_id;
         $ret                     = $subscription->save();
         if ($ret) {
             return $this->redirect(['list']);
         } else {
-            throw new \yii\base\UserException('Unkonwn exception!');
+            throw new UserException('Unkonwn exception!');
         }
     }
 }

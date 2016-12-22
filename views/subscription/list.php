@@ -35,7 +35,7 @@ $this->title = '我的收藏';
                         'report_id',
                         'deleted',
                         'created_at',
-                        ['class' => 'yii\grid\ActionColumn'],
+                        ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {delete}'],
                     ],
                 ]);
                 ?>

@@ -55,6 +55,17 @@ $this->title = "创建报表";
                 </div>
                 <!-- /.box-footer -->
             </div>
+            <div class="box box-info">
+                <div class="box-header">
+                    <h3 class="box-title">
+                        <i class="fa fa-list-alt text-primary"></i> 查询格式化
+                    </h3>
+                </div>
+                <div class="box-body">
+                    <pre><?=$sqlForm->getBeautifiedVersion()?></pre>
+                </div>
+                <div class="box-footer"></div>
+            </div>
         <?php endif; ?>
     </div>
 </div>

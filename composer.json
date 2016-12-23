@@ -20,7 +20,8 @@
         "dmstr/yii2-adminlte-asset": "~2.3.4",
         "mdmsoft/yii2-admin": "~2.7",
         "bower-asset/codemirror": "~5.21",
-        "league/csv": "~8.1.2"
+        "league/csv": "~8.1.2",
+        "phpmyadmin/sql-parser": "~3.4.14"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.7",

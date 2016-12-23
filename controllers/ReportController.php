@@ -56,7 +56,7 @@ class ReportController extends Controller
         if (Yii::$app->request->getIsPost()) {
             $sqlForm->attributes = Yii::$app->request->post();
             try {
-                $results = $sqlForm->execute();
+                $results = $sqlForm->execute(30);
             } catch (Exception $ex) {
                 $exception = $ex;
             }
@@ -186,5 +186,32 @@ class ReportController extends Controller
         $reportName = $report->name;
         CsvHelper::exportDataAsCsv($sqlForm->execute(), $reportName . '-' . date('YmdHis') . '.csv');
         return;
+    }
+
+    public function actionView($id)
+    {
+        $report = Report::findOne(['id' => $id]);
+        if (!empty($report)) {
+            $sqlForm              = new SqlForm();
+            $sqlForm->sql         = $report->sql;
+            $sqlForm->database_id = $report->database_id;
+        }
+
+        $exception = null;
+        try {
+            $results = $sqlForm->execute();
+        } catch (Exception $ex) {
+            $exception = $ex;
+        }
+
+        return $this->render(
+            'report',
+            [
+              'sqlForm' => $sqlForm,
+              'results' => $results,
+              'exception' => $exception,
+              'report'  => $report,
+                             ]
+        );
     }
 }

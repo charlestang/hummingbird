@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "2d061a89ff8050850132d09ab2d65b6d",
-    "content-hash": "eb0a0af7934bd20dac2193770c9ed261",
+    "hash": "35a3ebd39dc79bbdc3e1876ab7e94a9b",
+    "content-hash": "191d2b4945ad5fc4aa00409dfe5982d1",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -620,6 +620,59 @@
                 "yii"
             ],
             "time": "2016-05-20 23:38:13"
+        },
+        {
+            "name": "phpmyadmin/sql-parser",
+            "version": "v3.4.14",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/phpmyadmin/sql-parser.git",
+                "reference": "7078697d6dde394cdfec16e0e7e8c4194f50149a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/phpmyadmin/sql-parser/zipball/7078697d6dde394cdfec16e0e7e8c4194f50149a",
+                "reference": "7078697d6dde394cdfec16e0e7e8c4194f50149a",
+                "shasum": ""
+            },
+            "require": {
+                "ext-mbstring": "*",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "phpunit/php-code-coverage": "~2.0 || ~3.0",
+                "phpunit/phpunit": "~4.8 || ~5.1"
+            },
+            "bin": [
+                "bin/highlight-query",
+                "bin/lint-query"
+            ],
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SqlParser\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0+"
+            ],
+            "authors": [
+                {
+                    "name": "The phpMyAdmin Team",
+                    "email": "developers@phpmyadmin.net",
+                    "homepage": "https://www.phpmyadmin.net/team/"
+                }
+            ],
+            "description": "A validating SQL lexer and parser with a focus on MySQL dialect.",
+            "homepage": "https://github.com/phpmyadmin/sql-parser",
+            "keywords": [
+                "analysis",
+                "lexer",
+                "parser",
+                "sql"
+            ],
+            "time": "2016-11-30 10:49:56"
         },
         {
             "name": "rmrevin/yii2-fontawesome",

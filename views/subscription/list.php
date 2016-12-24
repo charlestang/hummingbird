@@ -30,10 +30,8 @@ $this->title = '我的收藏';
                     'tableOptions' => ['class' => 'table table-hover table-striped table-bordered m-b-0'],
                     'columns'      => [
                         ['class' => 'yii\grid\SerialColumn'],
-                        'id',
-                        'user_id',
-                        'report_id',
-                        'deleted',
+                        'report.name',
+                        'report.user.username:text:创建人',
                         'created_at',
                         ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {delete}'],
                     ],

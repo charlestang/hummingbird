@@ -104,6 +104,14 @@ class Subscription extends ActiveRecord
     }
 
     /**
+     * @return ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+
+    /**
      * @inheritdoc
      * @return SubscriptionQuery the active query used by this AR class.
      */

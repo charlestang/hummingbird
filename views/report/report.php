@@ -15,7 +15,7 @@ $this->title = '报表: ' . yii\helpers\Html::encode($report->name);
                 <div class="box-comment">
                     <div class="comment-text">
                         <span class="username">
-                            作者: <?= yii\helpers\Html::encode($report->user_id)?>
+                            作者: <?= yii\helpers\Html::encode($report->user->username)?>
                             <span class="text-muted pull-right">创建时间: <?= yii\helpers\Html::encode($report->created_at)?></span>
                         </span><!-- /.username -->
                         <?= yii\helpers\Html::encode($report->description)?>

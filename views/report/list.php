@@ -32,7 +32,6 @@ $this->title = '报表一览';
                     'tableOptions' => ['class' => 'table table-hover table-striped table-bordered m-b-0'],
                     'columns'      => [
                         ['class' => 'yii\grid\SerialColumn'],
-                        'id',
                         'user_id',
                         'name',
                         'description',

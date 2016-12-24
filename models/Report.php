@@ -69,14 +69,14 @@ class Report extends ActiveRecord
     public function attributeLabels()
     {
         return [
-            'id'          => 'id',
-            'user_id'     => 'Creator',
-            'database_id' => 'Database',
-            'name'        => 'Name',
-            'sql'         => 'Sql',
-            'description' => 'Description',
-            'created_at'  => 'Created At',
-            'updated_at'  => 'Updated At',
+            'id'          => 'ID',
+            'user_id'     => '创建人',
+            'database_id' => '数据库',
+            'name'        => '报表名称',
+            'sql'         => '查询',
+            'description' => '报表描述',
+            'created_at'  => '创建时间',
+            'updated_at'  => '最后更新时间',
         ];
     }
 
@@ -89,6 +89,13 @@ class Report extends ActiveRecord
     }
 
     /**
+     * @return ActiveQuery
+     */
+    public function getUser()
+    {
+        return $this->hasOne(User::className(), ['id' => 'user_id']);
+    }
+    /**
      * @inheritdoc
      * @return ReportQuery the active query used by this AR class.
      */
@@ -100,8 +107,8 @@ class Report extends ActiveRecord
     /**
      * Create a report model object and set values to fields according to
      * $attributes, and load default values to others if $loadDefaultValues is
-     * true. 
-     * 
+     * true.
+     *
      * @param array   $attributes
      * @param boolean $loadDefaultValues
      * @return \self
@@ -110,12 +117,11 @@ class Report extends ActiveRecord
     {
         $report = new self();
         foreach ($attributes as $name => $value) {
-            $report->setAttribute($name , $value);
+            $report->setAttribute($name, $value);
         }
         if ($loadDefaultValues) {
             $report->loadDefaultValues();
         }
         return $report;
     }
-
 }

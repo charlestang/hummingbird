@@ -207,11 +207,11 @@ class ReportController extends Controller
         return $this->render(
             'report',
             [
-              'sqlForm' => $sqlForm,
-              'results' => $results,
+              'sqlForm'   => $sqlForm,
+              'results'   => $results,
               'exception' => $exception,
-              'report'  => $report,
-                             ]
+              'report'    => $report,
+            ]
         );
     }
 }

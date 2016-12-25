@@ -18,6 +18,19 @@ $this->title = "创建报表";
         ?>
 
         <?php if (!empty($results) || $exception) : ?>
+            <div class="box box-info">
+                <div class="box-header">
+                    <h3 class="box-title">
+                        <i class="fa fa-list-alt text-primary"></i> 查询格式化
+                    </h3>
+                </div>
+                <div class="box-body">
+                    <pre><?=$sqlForm->getBeautifiedVersion()?></pre>
+                </div>
+                <div class="box-footer">
+                    <p>执行时间: <?=$sqlForm->time_spent?> 秒</p>
+                </div>
+            </div>
             <div class="box box-primary">
                 <?php if (count($results) > 0) : ?>
                     <!-- .box-header -->
@@ -54,17 +67,6 @@ $this->title = "创建报表";
                     <?php endif ?>
                 </div>
                 <!-- /.box-footer -->
-            </div>
-            <div class="box box-info">
-                <div class="box-header">
-                    <h3 class="box-title">
-                        <i class="fa fa-list-alt text-primary"></i> 查询格式化
-                    </h3>
-                </div>
-                <div class="box-body">
-                    <pre><?=$sqlForm->getBeautifiedVersion()?></pre>
-                </div>
-                <div class="box-footer"></div>
             </div>
         <?php endif; ?>
     </div>

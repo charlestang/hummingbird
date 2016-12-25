@@ -20,6 +20,7 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/site.css',
         'css/spacing.css',
+        'css/sql-highlight.css',
     ];
     public $js = [
     ];

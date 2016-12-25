@@ -1,0 +1,20 @@
+.box-body pre {
+    background: #0C1021;
+    color: #F8F8F8;
+}
+
+pre .sql-reserved {
+    color: #FBDE2D;
+}
+
+pre .sql-string {
+    color: #61CE3C;
+}
+
+pre .sql-keyword {
+    color: #139ff7;
+}
+
+pre .sql-variable {
+    color: #E83737;
+}

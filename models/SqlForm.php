@@ -23,6 +23,7 @@ class SqlForm extends Model
 
     public $sql = '';
     public $database_id;
+    public $time_spent = 0;
 
     public function rules()
     {
@@ -68,8 +69,8 @@ class SqlForm extends Model
             $errno = $ex->getCode();
             throw $ex;
         } finally {
-            $time_spent = microtime(true) - $start_time;
-            Log::log(Yii::$app->user->id, $this->database_id, $this->sql, $time_spent, $errno);
+            $this->time_spent = microtime(true) - $start_time;
+            Log::log(Yii::$app->user->id, $this->database_id, $this->sql, $this->time_spent, $errno);
         }
 
         return $results;

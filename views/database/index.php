@@ -26,25 +26,19 @@ $this->title = '数据库连接管理';
             </div>
             <!-- /.box-header -->
             <div class="box-body table-responsive no-padding">
-
-<?= GridView::widget([
-    'dataProvider' => $dataProvider,
-    'columns' => [
-        ['class' => 'yii\grid\SerialColumn'],
-
-        'id',
-        'alias',
-        'host',
-        'database',
-        'username',
-        // 'password',
-        'charset',
-        'created_at',
-        'updated_at',
-
-        ['class' => 'yii\grid\ActionColumn'],
-    ],
-]); ?>
+            <?= GridView::widget([
+                'dataProvider' => $dataProvider,
+                'columns' => [
+                    ['class' => 'yii\grid\SerialColumn'],
+                    'alias',
+                    'host',
+                    'database',
+                    'username',
+                    'charset',
+                    'created_at',
+                    ['class' => 'yii\grid\ActionColumn'],
+                ],
+            ]); ?>
             </div>
             <!-- /.box-body -->
         </div>

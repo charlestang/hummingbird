@@ -64,14 +64,14 @@ class Database extends ActiveRecord
     {
         return [
             'id'         => 'ID',
-            'alias'      => 'Alias',
-            'host'       => 'Host',
-            'database'   => 'DB Name',
-            'username'   => 'Username',
-            'password'   => 'Password',
-            'charset'    => 'Charset',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'alias'      => '别名',
+            'host'       => '主机',
+            'database'   => '数据库名',
+            'username'   => '用户名',
+            'password'   => '密码',
+            'charset'    => '连接字符集',
+            'created_at' => '添加时间',
+            'updated_at' => '更新时间',
         ];
     }
 

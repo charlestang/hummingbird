@@ -15,12 +15,11 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
-    public $basePath = '@webroot';
-    public $baseUrl = '@web';
+    public $sourcePath = '@app/web/css';
     public $css = [
-        'css/site.css',
-        'css/spacing.css',
-        'css/sql-highlight.css',
+        'site.css',
+        'spacing.css',
+        'sql-highlight.css',
     ];
     public $js = [
     ];

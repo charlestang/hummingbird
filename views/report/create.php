@@ -25,7 +25,7 @@ $this->title = "创建报表";
                     </h3>
                 </div>
                 <div class="box-body">
-                    <pre><?=$sqlForm->getBeautifiedVersion()?></pre>
+                    <pre class="sql-syntax-anlyze"><?=$sqlForm->getBeautifiedVersion()?></pre>
                 </div>
                 <div class="box-footer">
                     <p>执行时间: <?=$sqlForm->time_spent?> 秒</p>

@@ -22,7 +22,7 @@ $this->title = '报表: ' . yii\helpers\Html::encode($report->name);
                         <p>最后更新时间: <?=yii\helpers\Html::encode($report->updated_at)?></p>
                     </div><!-- /.comment-text -->
                 </div>
-                <pre><?=$sqlForm->getBeautifiedVersion()?></pre>
+                <pre class="sql-syntax-anlyze"><?=$sqlForm->getBeautifiedVersion()?></pre>
             </div>
             <div class="box-footer"></div>
         </div>

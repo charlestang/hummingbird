@@ -1,6 +1,6 @@
-.box-body pre {
+pre.sql-syntax-anlyze {
     background: #0C1021;
-    color: #F8F8F8;
+    color: #F8F8F8; 
 }
 
 pre .sql-reserved {
@@ -17,4 +17,8 @@ pre .sql-keyword {
 
 pre .sql-variable {
     color: #E83737;
+}
+
+pre .sql-number {
+    color: #00FF00;
 }

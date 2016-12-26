@@ -37,9 +37,13 @@ $this->title = '报表: ' . yii\helpers\Html::encode($report->name);
                         </h3>
                         <?php if (!$exception): ?>
                             <div class="box-tools pull-right">
-                                <a href="javascript:;" target="_blank" class="btn btn-default">
+                                <a class="btn btn-default" href="javascript:;" target="_blank">
                                     <i class="fa fa-download text-danger"></i>
                                     导出
+                                </a>
+                                <a class="btn btn-default" href="<?= yii\helpers\Url::toRoute(['/report/update', 'id' => $report->id])?>">
+                                    <i class="fa fa-edit text-danger"></i>
+                                    编辑
                                 </a>
                             </div>
                         <?php endif; ?>

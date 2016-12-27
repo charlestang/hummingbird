@@ -65,29 +65,35 @@ class Subscription extends ActiveRecord
     {
         return [
             'id'         => 'ID',
-            'user_id'    => 'user id',
-            'report_id'  => 'report id',
-            'deleted'    => 'Deleted',
-            'created_at' => 'Created At',
-            'updated_at' => 'Updated At',
+            'user_id'    => '用户',
+            'report_id'  => '报表',
+            'deleted'    => '逻辑删除',
+            'created_at' => '创建时间',
+            'updated_at' => '更新时间',
         ];
     }
 
     public static function subscribe($user_id, $report_id)
     {
-        $subscription = new self();
-        $subscription->loadDefaultValues();
-        $subscription->user_id = $user_id;
-        $subscription->report_id = $report_id;
-        $subscription->save();
+        $subscription = self::findOne([
+              'user_id'   => $user_id,
+              'report_id' => $report_id,
+        ]);
+        if (!$subscription) {
+            $subscription            = new self();
+            $subscription->loadDefaultValues();
+            $subscription->user_id   = $user_id;
+            $subscription->report_id = $report_id;
+            $subscription->save();
+        }
         return $subscription;
     }
 
     public static function unsubscribe($user_id, $report_id)
     {
         $subscription = self::findOne([
-            'user_id'   => $user_id,
-            'report_id' => $report_id,
+              'user_id'   => $user_id,
+              'report_id' => $report_id,
         ]);
         if ($subscription) {
             $subscription->delete();

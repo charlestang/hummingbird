@@ -1,8 +1,9 @@
 <?php
 
+use app\components\FavMenuHelper;
+use app\components\MenuHelper as MyMenuHelper;
 use dmstr\widgets\Menu;
 use mdm\admin\components\MenuHelper;
-use app\components\MenuHelper as MyMenuHelper;
 ?>
 <aside class="main-sidebar">
 
@@ -22,11 +23,18 @@ use app\components\MenuHelper as MyMenuHelper;
         <?=
         Menu::widget([
             'options' => ['class' => 'sidebar-menu'],
-            'items' => MenuHelper::getAssignedMenu(Yii::$app->user->id, null, MyMenuHelper::getMenuItemParser()),
+            'items' => MenuHelper::getAssignedMenu(\Yii::$app->user->id, null, MyMenuHelper::getMenuItemParser()),
+        ])
+        ?>
+        <?=
+        Menu::widget([
+            'options' => ['class' => 'sidebar-menu'],
+            'items' => FavMenuHelper::getFavMenuItems(),
         ])
         ?>
 
         <?=
+        \YII_DEBUG ?
         Menu::widget(
             [
                 'options' => ['class' => 'sidebar-menu'],
@@ -34,7 +42,7 @@ use app\components\MenuHelper as MyMenuHelper;
                     ['label' => 'Menu Yii2', 'options' => ['class' => 'header']],
                     ['label' => 'Gii', 'icon' => 'fa fa-file-code-o', 'url' => ['/gii']],
                     ['label' => 'Debug', 'icon' => 'fa fa-dashboard', 'url' => ['/debug']],
-                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
+                    ['label' => 'Login', 'url' => ['site/login'], 'visible' => \Yii::$app->user->isGuest],
                     [
                         'label' => 'Same tools',
                         'icon'  => 'fa fa-share',
@@ -63,7 +71,7 @@ use app\components\MenuHelper as MyMenuHelper;
                     ],
                 ],
             ]
-        )
+        ):''
         ?>
 
     </section>

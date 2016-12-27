@@ -18,6 +18,17 @@ use yii\helpers\Url;
                 </a>
             </li>
             <li>
+                <a href='<?= Url::to('/subscription/list') ?>'>
+                    <i class="menu-icon fa fa-star bg-green"></i>
+
+                    <div class="menu-info">
+                        <h4 class="control-sidebar-subheading">管理我的收藏</h4>
+
+                        <p>管理我的收藏夹</p>
+                    </div>
+                </a>
+            </li>
+            <li>
                 <a href='<?=Url::to('/user/index')?>'>
                     <i class="menu-icon fa fa-user bg-yellow"></i>
 

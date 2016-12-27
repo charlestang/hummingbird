@@ -26,7 +26,7 @@ $this->title = '我的收藏';
                 <?=
                 GridView::widget([
                     'dataProvider' => $dataProvider,
-                    'summary' => '',
+                    'summary'      => '',
                     'tableOptions' => ['class' => 'table table-hover table-striped table-bordered m-b-0'],
                     'columns'      => [
                         ['class' => 'yii\grid\SerialColumn'],

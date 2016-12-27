@@ -28,6 +28,8 @@ $this->title = '数据库连接管理';
             <div class="box-body table-responsive no-padding">
             <?= GridView::widget([
                 'dataProvider' => $dataProvider,
+                'summary' => '',
+                'tableOptions' => ['class' => 'table table-hover table-striped table-bordered m-b-0'],
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
                     'alias',

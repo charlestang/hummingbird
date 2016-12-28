@@ -89,6 +89,20 @@ class Subscription extends ActiveRecord
         return $subscription;
     }
 
+    /**
+     * Check if a user has already subscribed a report
+     * @param integer $user_id
+     * @param integer $report_id
+     * @return boolean
+     */
+    public static function isSubscribed($user_id, $report_id) 
+    {
+        return self::find([
+            'user_id' => $user_id,
+            'report_id' => $report_id,
+        ])->exists();
+    }
+
     public static function unsubscribe($user_id, $report_id)
     {
         $subscription = self::findOne([

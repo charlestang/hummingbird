@@ -47,8 +47,13 @@ $this->title = '报表一览';
                                         'aria-label' => \Yii::t('yii', 'Favorite'),
                                         'data-pjax' => '0',
                                     ];
-                                    $url = Url::toRoute(['/subscription/add', 'report_id' => (string) $key]);
-                                    return Html::a('<span class="glyphicon glyphicon-star-empty"></span>', $url, $options); 
+                                    $url = Url::toRoute(['/subscription/toggle', 'report_id' => (string) $key]);
+                                    if (\app\models\Subscription::isSubscribed(Yii::$app->user->id, $key)) {
+                                        $class = 'glyphicon-star';
+                                    } else {
+                                        $class = 'glyphicon-star-empty';
+                                    }
+                                    return Html::a("<span class=\"glyphicon $class\"></span>", $url, $options); 
                                 }
                             ],
                         ],

@@ -1,5 +1,8 @@
 <?php
-$this->title = '报表: ' . yii\helpers\Html::encode($report->name);
+
+use yii\helpers\Html;
+use yii\helpers\Url;
+$this->title = '报表: ' . Html::encode($report->name);
 ?>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -15,11 +18,11 @@ $this->title = '报表: ' . yii\helpers\Html::encode($report->name);
                 <div class="box-comment">
                     <div class="comment-text">
                         <span class="username">
-                            作者: <?= yii\helpers\Html::encode($report->user->username)?>
-                            <span class="text-muted pull-right">创建时间: <?= yii\helpers\Html::encode($report->created_at)?></span>
+                            作者: <?= Html::encode($report->user->username)?>
+                            <span class="text-muted pull-right">创建时间: <?= Html::encode($report->created_at)?></span>
                         </span><!-- /.username -->
-                        <?= yii\helpers\Html::encode($report->description)?>
-                        <p>最后更新时间: <?=yii\helpers\Html::encode($report->updated_at)?></p>
+                        <?= Html::encode($report->description)?>
+                        <p>最后更新时间: <?=Html::encode($report->updated_at)?></p>
                     </div><!-- /.comment-text -->
                 </div>
                 <pre class="sql-syntax-anlyze"><?=$sqlForm->getBeautifiedVersion()?></pre>
@@ -37,11 +40,11 @@ $this->title = '报表: ' . yii\helpers\Html::encode($report->name);
                         </h3>
                         <?php if (!$exception): ?>
                             <div class="box-tools pull-right">
-                                <a class="btn btn-default" href="javascript:;" target="_blank">
+                                <a class="btn btn-default btn-export" href="<?= Url::to(['/report/export-by-id', 'id' => $report->id])?>" target="_blank">
                                     <i class="fa fa-download text-danger"></i>
                                     导出
                                 </a>
-                                <a class="btn btn-default" href="<?= yii\helpers\Url::toRoute(['/report/update', 'id' => $report->id])?>">
+                                <a class="btn btn-default" href="<?= Url::toRoute(['/report/update', 'id' => $report->id])?>">
                                     <i class="fa fa-edit text-danger"></i>
                                     编辑
                                 </a>
@@ -68,3 +71,35 @@ $this->title = '报表: ' . yii\helpers\Html::encode($report->name);
         <?php endif; ?>
     </div>
 </div>
+<?php
+$csrf              = \Yii::$app->request->getCsrfToken();
+$nonAjaxRequestFav = <<<JS
+var submit = function (action, method, values) {
+    var form = $('<form/>', {
+        action: action,
+        method: method
+    });
+    $.each(values, function() {
+        form.append($('<input/>', {
+            type: 'hidden',
+            name: this.name,
+            value: this.value
+        }));
+    });
+    form.appendTo('body').submit();
+};
+
+/**
+ * 报表导出
+ */
+$('.box-tools a.btn-export').click(function() {
+    var href = $(this).attr('href');
+    var data = [
+        {name: '_csrf',       value: "$csrf"}
+    ];
+    submit(href, 'POST', data);
+    return false;
+});
+JS;
+
+$this->registerJs($nonAjaxRequestFav);

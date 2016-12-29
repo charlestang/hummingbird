@@ -171,6 +171,16 @@ class ReportController extends Controller
         return;
     }
 
+    public function actionExportById($id)
+    {
+        $report = Report::findOne($id);
+        $sqlForm = new SqlForm();
+        $sqlForm->sql = $report->sql;
+        $sqlForm->database_id = $report->database_id;
+        CsvHelper::exportDataAsCsv($sqlForm->execute(), $report->name . '-' . date('YmdHis') . '.csv');
+        return;
+    }
+
     /**
      * 导出保存完毕的报表
      */

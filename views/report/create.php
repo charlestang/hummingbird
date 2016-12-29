@@ -121,7 +121,7 @@ $('.box-tools a.btn-export').click(function() {
     var data = [
         {name: 'sql',         value: editor_sqleditor.getDoc().getValue()}, 
         {name: 'database_id', value: $("ul.connector-dropdown > li.active > a").data('value')},
-        {name: '_csrf', value: "$csrf"}
+        {name: '_csrf',       value: "$csrf"}
     ];
     submit(href, 'POST', data);
     return false;

@@ -1,6 +1,8 @@
 <?php
 
 use yii\grid\GridView;
+use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this->title = '我的收藏';
 ?>
@@ -27,13 +29,29 @@ $this->title = '我的收藏';
                 GridView::widget([
                     'dataProvider' => $dataProvider,
                     'summary'      => '',
-                    'tableOptions' => ['class' => 'table table-hover table-striped table-bordered m-b-0'],
-                    'columns'      => [
+                    'tableOptions' => [
+                        'class' => 'table table-hover table-striped table-bordered m-b-0'
+                    ],
+                    'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
                         'report.name',
                         'report.user.username:text:创建人',
                         'created_at',
-                        ['class' => 'yii\grid\ActionColumn', 'template' => '{view} {delete}'],
+                        [
+                            'class'    => 'yii\grid\ActionColumn',
+                            'template' => '{view} {delete}',
+                            'buttons'  => [
+                                'view' => function ($url, $model, $key) {
+                                    $options = [
+                                        'title' => Yii::t('yii', 'View'),
+                                        'aria-label' => Yii::t('yii', 'View'),
+                                        'data-pjax' => '0',
+                                    ];
+                                    $url = Url::to(['report/view', 'id' => $model->report_id]);
+                                    return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', $url, $options);
+                                }
+                            ],
+                        ],
                     ],
                 ]);
                 ?>

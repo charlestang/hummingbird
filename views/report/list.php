@@ -35,7 +35,6 @@ $this->title = '报表一览';
                         'user.username:text:创建人',
                         'name',
                         'description',
-                        'sql',
                         'created_at',
                         [
                             'class' => 'yii\grid\ActionColumn',

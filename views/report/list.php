@@ -1,5 +1,6 @@
 <?php
 
+use app\models\Subscription;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -42,12 +43,12 @@ $this->title = '报表一览';
                             'buttons' => [
                                 'favorite' => function ($url, $model, $key) {
                                     $options = [
-                                        'title' => \Yii::t('yii', 'Favorite'),
-                                        'aria-label' => \Yii::t('yii', 'Favorite'),
+                                        'title' => Yii::t('yii', 'Favorite'),
+                                        'aria-label' => Yii::t('yii', 'Favorite'),
                                         'data-pjax' => '0',
                                     ];
                                     $url = Url::toRoute(['/subscription/toggle', 'report_id' => (string) $key]);
-                                    if (\app\models\Subscription::isSubscribed(Yii::$app->user->id, $key)) {
+                                    if (Subscription::isSubscribed(Yii::$app->user->id, $key)) {
                                         $class = 'glyphicon-star';
                                     } else {
                                         $class = 'glyphicon-star-empty';

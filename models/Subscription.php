@@ -95,12 +95,12 @@ class Subscription extends ActiveRecord
      * @param integer $report_id
      * @return boolean
      */
-    public static function isSubscribed($user_id, $report_id) 
+    public static function isSubscribed($user_id, $report_id)
     {
-        return self::find([
-            'user_id' => $user_id,
-            'report_id' => $report_id,
-        ])->exists();
+        return self::find()->where([
+                    'user_id' => $user_id,
+                    'report_id' => $report_id,
+                ])->exists();
     }
 
     public static function unsubscribe($user_id, $report_id)

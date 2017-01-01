@@ -25,7 +25,7 @@ $this->title = '报表: ' . Html::encode($report->name);
                         <p>最后更新时间: <?=Html::encode($report->updated_at)?></p>
                     </div><!-- /.comment-text -->
                 </div>
-                <pre class="sql-syntax-anlyze"><?=$sqlForm->getBeautifiedVersion()?></pre>
+                <pre class="sql-syntax-analyze"><?=$sqlForm->getBeautifiedVersion()?></pre>
             </div>
             <div class="box-footer"></div>
         </div>

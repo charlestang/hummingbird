@@ -1,6 +1,7 @@
 <?php
 
 use app\models\Subscription;
+use yii\bootstrap\Modal;
 use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
@@ -39,7 +40,7 @@ $this->title = '报表一览';
                         'created_at',
                         [
                             'class' => 'yii\grid\ActionColumn',
-                            'template'=> '{view} {update} {delete} {favorite}',
+                            'template'=> '{detail} {view} {update} {delete} {favorite}',
                             'buttons' => [
                                 'favorite' => function ($url, $model, $key) {
                                     $options = [
@@ -54,7 +55,24 @@ $this->title = '报表一览';
                                         $class = 'glyphicon-star-empty';
                                     }
                                     return Html::a("<span class=\"glyphicon $class\"></span>", $url, $options); 
-                                }
+                                },
+                                'detail' => function ($url, $model, $key) {
+                                    $options = [
+                                        'title' => Yii::t('yii', 'Detail'),
+                                        'aria-label' => Yii::t('yii', 'Detail'),
+                                        'data-toggle' => 'modal',
+                                        'data-target' => '#reportSql',
+                                        'data-report' => $key,
+                                    ];
+                                    $url = 'javascript:;';
+                                    $sql = new \app\models\SqlForm();
+                                    $sql->sql = $model->sql;
+                                    echo Html::tag('div', Html::tag('pre', $sql->getBeautifiedVersion()), [
+                                        'class' => 'hide',
+                                        'id' => 'report-id-' . $key,
+                                    ]);
+                                    return Html::a('<span class="glyphicon glyphicon-info-sign"></span>', $url, $options); 
+                                },
                             ],
                         ],
                     ],
@@ -66,3 +84,29 @@ $this->title = '报表一览';
         <!-- /.box -->
     </div>
 </div>
+<?php
+/**
+ * 显示报表SQL内容的对话框
+ */
+Modal::begin([
+    'options'      => ['class' => 'modal', 'id' => 'reportSql'],
+    'header'       => '<h4 class="modal-title">查询明细</h4>',
+    'toggleButton' => false,
+    'footer'       => '<button type="button" class="btn " data-dismiss="modal">取消</button>',
+]);
+?>
+<pre class="sql-syntax-analyze"></pre>
+<?php
+Modal::end();
+
+$reportSqlContent = <<<JS
+$('#reportSql').on('show.bs.modal', function (event) {
+  var button = $(event.relatedTarget) // Button that triggered the modal
+  var reportId = button.data('report');
+  var content = $('div#report-id-'+reportId+' pre').html();
+  var modal = $(this);
+  modal.find('.sql-syntax-analyze').html(content);
+})
+JS;
+
+$this->registerJs($reportSqlContent);

@@ -1,5 +1,6 @@
 <?php
 
+use app\models\SqlForm;
 use app\models\Subscription;
 use yii\bootstrap\Modal;
 use yii\grid\GridView;
@@ -65,7 +66,7 @@ $this->title = '报表一览';
                                         'data-report' => $key,
                                     ];
                                     $url = 'javascript:;';
-                                    $sql = new \app\models\SqlForm();
+                                    $sql = new SqlForm();
                                     $sql->sql = $model->sql;
                                     echo Html::tag('div', Html::tag('pre', $sql->getBeautifiedVersion()), [
                                         'class' => 'hide',

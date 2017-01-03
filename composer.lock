@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "35a3ebd39dc79bbdc3e1876ab7e94a9b",
-    "content-hash": "191d2b4945ad5fc4aa00409dfe5982d1",
+    "hash": "8a7d6af84d4b5980c66dafb75a04c7d4",
+    "content-hash": "6ed2b88b86a4ae886d266155b5cbd7de",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -622,6 +622,66 @@
             "time": "2016-05-20 23:38:13"
         },
         {
+            "name": "npm-asset/list.js",
+            "version": "1.3.0",
+            "dist": {
+                "type": "tar",
+                "url": "https://registry.npmjs.org/list.js/-/list.js-1.3.0.tgz",
+                "reference": null,
+                "shasum": "6c9f9c106a6a9e2681bf41823ee4fc1067a1645c"
+            },
+            "require-dev": {
+                "npm-asset/browserify": ">=13.0.0,<14.0.0",
+                "npm-asset/expect.js": ">=0.3.1,<0.4.0",
+                "npm-asset/grunt": ">=0.4.5,<0.5.0",
+                "npm-asset/grunt-cli": ">=0.1.13,<0.2.0",
+                "npm-asset/grunt-contrib-jshint": ">=0.12.0,<0.13.0",
+                "npm-asset/grunt-contrib-uglify": ">=0.11.0,<0.12.0",
+                "npm-asset/grunt-contrib-watch": ">=0.6.1,<0.7.0",
+                "npm-asset/grunt-file-append": "0.0.6",
+                "npm-asset/grunt-mocha": "1.0.1",
+                "npm-asset/grunt-shell": ">=1.1.2,<2.0.0",
+                "npm-asset/jquery": ">=1.12.0,<2.0.0"
+            },
+            "type": "npm-asset-library",
+            "extra": {
+                "npm-asset-bugs": {
+                    "url": "https://github.com/javve/list.js/issues"
+                },
+                "npm-asset-main": "index",
+                "npm-asset-directories": [],
+                "npm-asset-repository": {
+                    "type": "git",
+                    "url": "git://github.com/javve/list.js.git"
+                },
+                "npm-asset-scripts": [],
+                "npm-asset-engines": {
+                    "node": ">= 0.10.21"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonny Strömberg",
+                    "email": "jonny.stromberg@gmail.com",
+                    "url": "http://javve.com"
+                }
+            ],
+            "description": "The perfect library for lists. Supports search, sort, filters and flexibility. Built to be invisible and work on existing HTML",
+            "homepage": "http://www.listjs.com",
+            "keywords": [
+                "dom",
+                "html",
+                "list",
+                "search",
+                "sort",
+                "table",
+                "ui"
+            ]
+        },
+        {
             "name": "phpmyadmin/sql-parser",
             "version": "v3.4.14",
             "source": {
@@ -1062,7 +1122,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/fzaninotto/Faker/zipball/44f9a286a04b80c76a4e5fb7aad8bb539b920123",
+                "url": "https://packagist.phpcomposer.com/files/fzaninotto/Faker/44f9a286a04b80c76a4e5fb7aad8bb539b920123.zip",
                 "reference": "44f9a286a04b80c76a4e5fb7aad8bb539b920123",
                 "shasum": ""
             },
@@ -1110,7 +1170,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/phpspec/php-diff/zipball/0464787bfa7cd13576c5a1e318709768798bec6a",
+                "url": "https://packagist.phpcomposer.com/files/phpspec/php-diff/0464787bfa7cd13576c5a1e318709768798bec6a.zip",
                 "reference": "0464787bfa7cd13576c5a1e318709768798bec6a",
                 "shasum": ""
             },
@@ -1148,7 +1208,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-debug/zipball/a74a2433ad1dfda30a253a92f6db52c131807432",
+                "url": "https://packagist.phpcomposer.com/files/yiisoft/yii2-debug/a74a2433ad1dfda30a253a92f6db52c131807432.zip",
                 "reference": "a74a2433ad1dfda30a253a92f6db52c131807432",
                 "shasum": ""
             },
@@ -1195,7 +1255,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-faker/zipball/b88ca69ee226a3610b2c26c026c3203d7ac50f6c",
+                "url": "https://packagist.phpcomposer.com/files/yiisoft/yii2-faker/b88ca69ee226a3610b2c26c026c3203d7ac50f6c.zip",
                 "reference": "b88ca69ee226a3610b2c26c026c3203d7ac50f6c",
                 "shasum": ""
             },
@@ -1242,7 +1302,7 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-gii/zipball/1bd6df6804ca077ec022587905a0d43eb286f507",
+                "url": "https://packagist.phpcomposer.com/files/yiisoft/yii2-gii/1bd6df6804ca077ec022587905a0d43eb286f507.zip",
                 "reference": "1bd6df6804ca077ec022587905a0d43eb286f507",
                 "shasum": ""
             },

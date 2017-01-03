@@ -21,7 +21,8 @@
         "mdmsoft/yii2-admin": "~2.7",
         "bower-asset/codemirror": "~5.21",
         "league/csv": "~8.1.2",
-        "phpmyadmin/sql-parser": "~3.4.14"
+        "phpmyadmin/sql-parser": "~3.4.14",
+        "npm-asset/list.js": "^1.3"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.7",

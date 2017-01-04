@@ -65,14 +65,14 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             'id'                   => 'ID',
-            'username'             => 'Username',
+            'username'             => '用户名',
             'auth_key'             => 'Auth Key',
             'password_hash'        => 'Password Hash',
             'password_reset_token' => 'Password Reset Token',
-            'email'                => 'Email',
-            'status'               => 'Status',
-            'created_at'           => 'Created At',
-            'updated_at'           => 'Updated At',
+            'email'                => '邮箱',
+            'status'               => '状态',
+            'created_at'           => '创建时间',
+            'updated_at'           => '更新时间',
         ];
     }
 

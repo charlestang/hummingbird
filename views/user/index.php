@@ -16,7 +16,7 @@ $this->title = '用户管理';
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title"></h3>
-                <?= Html::a('Create User', ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a('创建用户', ['create'], ['class' => 'btn btn-success']) ?>
                 <div class="box-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
                         <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
@@ -35,7 +35,6 @@ $this->title = '用户管理';
                     'summary'      => '',
                     'tableOptions' => ['class' => 'table table-hover table-striped table-bordered m-b-0'],
                     'columns'      => [
-                        ['class' => 'yii\grid\SerialColumn'],
                         'id',
                         'username',
                         'email:email',

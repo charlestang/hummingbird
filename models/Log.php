@@ -72,11 +72,11 @@ class Log extends ActiveRecord
     {
         return [
             'id'          => 'ID',
-            'user_id'     => 'user who executed this sql',
-            'database_id' => 'Database ID',
-            'sql'         => 'Sql',
-            'time_spent'  => 'Time Spent',
-            'error_code'  => 'Error Code',
+            'user_id'     => '执行者',
+            'database_id' => '数据库',
+            'sql'         => 'SQL',
+            'time_spent'  => '耗时',
+            'error_code'  => '错误码',
             'created_at'  => 'Created At',
             'updated_at'  => 'Updated At',
         ];

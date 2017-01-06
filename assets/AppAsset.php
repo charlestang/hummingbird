@@ -9,13 +9,15 @@ use yii\web\AssetBundle;
  */
 class AppAsset extends AssetBundle
 {
-    public $sourcePath = '@app/web/css';
+
+    public $sourcePath = '@app/web/src';
     public $css = [
-        'site.css',
-        'spacing.css',
-        'sql-highlight.css',
+        'css/site.css',
+        'css/spacing.css',
+        'css/sql-highlight.css',
     ];
     public $js = [
+        'js/non-ajax-submit.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

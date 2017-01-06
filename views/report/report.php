@@ -74,20 +74,6 @@ $this->title = '报表: ' . Html::encode($report->name);
 <?php
 $csrf              = \Yii::$app->request->getCsrfToken();
 $nonAjaxRequestFav = <<<JS
-var submit = function (action, method, values) {
-    var form = $('<form/>', {
-        action: action,
-        method: method
-    });
-    $.each(values, function() {
-        form.append($('<input/>', {
-            type: 'hidden',
-            name: this.name,
-            value: this.value
-        }));
-    });
-    form.appendTo('body').submit();
-};
 
 /**
  * 报表导出

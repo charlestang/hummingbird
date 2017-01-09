@@ -1,19 +1,21 @@
 <?php
 
-use yii\helpers\Html;
+use yii\data\ActiveDataProvider;
 use yii\grid\GridView;
+use yii\helpers\Html;
+use yii\web\View;
 
-/* @var $this yii\web\View */
-/* @var $dataProvider yii\data\ActiveDataProvider */
+/* @var $this View */
+/* @var $dataProvider ActiveDataProvider */
 
-$this->title = '数据库连接管理';
+$this->title = Yii::t('app', 'Database Management');
 ?>
 <div class="row">
     <div class="col-xs-12">
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title"></h3>
-                <?= Html::a('Create Database', ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a(Yii::t('app', 'Create Database'), ['create'], ['class' => 'btn btn-success']) ?>
                 <div class="box-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
                         <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">

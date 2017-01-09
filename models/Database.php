@@ -2,6 +2,7 @@
 
 namespace app\models;
 
+use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveQuery;
 use yii\db\ActiveRecord;
@@ -64,14 +65,14 @@ class Database extends ActiveRecord
     {
         return [
             'id'         => 'ID',
-            'alias'      => '别名',
-            'host'       => '主机',
-            'database'   => '数据库名',
-            'username'   => '用户名',
-            'password'   => '密码',
-            'charset'    => '连接字符集',
-            'created_at' => '添加时间',
-            'updated_at' => '更新时间',
+            'alias'      => Yii::t('app', 'Database Alias'),
+            'host'       => Yii::t('app', 'Host'),
+            'database'   => Yii::t('app', 'Database Name'),
+            'username'   => Yii::t('app', 'User Name'),
+            'password'   => Yii::t('app', 'Password'),
+            'charset'    => Yii::t('app', 'Connection Charset'),
+            'created_at' => Yii::t('app', 'Created Time'),
+            'updated_at' => Yii::t('app', 'Last Updated Time'),
         ];
     }
 
@@ -101,4 +102,5 @@ class Database extends ActiveRecord
         $this->deleted = 1;
         return $this->update(false, ['deleted']);
     }
+
 }

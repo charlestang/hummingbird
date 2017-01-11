@@ -15,7 +15,7 @@ $this->title = Yii::t('app', 'Database Management');
         <div class="box">
             <div class="box-header">
                 <h3 class="box-title"></h3>
-                <?= Html::a(Yii::t('app', 'Create Database'), ['create'], ['class' => 'btn btn-success']) ?>
+                <?= Html::a(Yii::t('app', 'Add Database'), ['create'], ['class' => 'btn btn-success']) ?>
                 <div class="box-tools">
                     <div class="input-group input-group-sm" style="width: 150px;">
                         <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">

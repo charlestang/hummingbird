@@ -23,7 +23,7 @@ use mdm\admin\components\MenuHelper;
         <?=
         Menu::widget([
             'options' => ['class' => 'sidebar-menu'],
-            'items' => MenuHelper::getAssignedMenu(\Yii::$app->user->id, null, MyMenuHelper::getMenuItemParser()),
+            'items' => MenuHelper::getAssignedMenu(Yii::$app->user->id, null, MyMenuHelper::getMenuItemParser()),
         ])
         ?>
         <?=

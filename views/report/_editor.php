@@ -63,7 +63,7 @@ use yii\widgets\ActiveForm;
                 echo ButtonGroup::widget([
                     'buttons' => [
                         Button::widget([
-                            'label'   => '查询',
+                            'label'   => Yii::t('app', 'Query'),
                             'options' => [
                                 'class' => 'btn-success'
                             ]

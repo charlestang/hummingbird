@@ -21,7 +21,7 @@ $this->title = "创建报表";
             <div class="box box-info">
                 <div class="box-header">
                     <h3 class="box-title">
-                        <i class="fa fa-list-alt text-primary"></i> 查询格式化
+                        <i class="fa fa-list-alt text-primary"></i> <?= Yii::t('app', 'Formatted SQL')?> 
                     </h3>
                 </div>
                 <div class="box-body">
@@ -36,17 +36,17 @@ $this->title = "创建报表";
                     <!-- .box-header -->
                     <div class="box-header">
                         <h3 class="box-title">
-                            <i class="fa fa-list-alt text-primary"></i> 查询结果
+                            <i class="fa fa-list-alt text-primary"></i> <?= Yii::t('app', 'Query Result')?>
                         </h3>
                         <?php if (!$exception): ?>
                             <div class="box-tools pull-right">
                                 <a class="btn btn-default btn-export" href="<?=Url::toRoute(['/report/export-query'])?>">
                                     <i class="fa fa-download text-danger"></i>
-                                    导出
+                                    <?= Yii::t('app', 'Export')?>
                                 </a>
                                 <a class="btn btn-default" data-toggle="modal" data-target="#reportSave">
                                     <i class="fa fa-edit text-danger"></i>
-                                    保存成报表 
+                                    <?= Yii::t('app', 'Save Report')?>
                                 </a>
                             </div>
                         <?php endif; ?>

@@ -1,5 +1,4 @@
 <?php
-
 /* @var $this yii\web\View */
 
 $this->title = false;
@@ -7,11 +6,11 @@ $this->title = false;
 <div class="site-index">
 
     <div class="jumbotron">
-        <h1>Congratulations!</h1>
+        <h1><?= Yii::t('app', 'Congratulations!') ?></h1>
 
-        <p class="lead">欢迎使用 Hummingbird 微报表系统</p>
+        <p class="lead"><?= Yii::t('app', 'Welcome to Hummingbird reporting system!') ?></p>
 
-        <p><a class="btn btn-lg btn-success" href="<?= yii\helpers\Url::toRoute(['/report/create'])?>">创建报表</a></p>
+        <p><a class="btn btn-lg btn-success" href="<?= yii\helpers\Url::toRoute(['/report/create']) ?>"><?= Yii::t('app', 'Create Report') ?></a></p>
     </div>
 
     <div class="body-content">

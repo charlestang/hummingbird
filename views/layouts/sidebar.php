@@ -1,19 +1,20 @@
 <?php
+
 use yii\helpers\Url;
 ?>
 <!-- Control Sidebar -->
 <aside class="control-sidebar control-sidebar-dark">
     <div class="tab-content">
-        <h3 class="control-sidebar-heading">系统管理</h3>
+        <h3 class="control-sidebar-heading"><?= Yii::t('app', 'System Management') ?></h3>
         <ul class='control-sidebar-menu'>
             <li>
                 <a href='<?= Url::to('/database/index') ?>'>
                     <i class="menu-icon fa fa-database bg-red"></i>
 
                     <div class="menu-info">
-                        <h4 class="control-sidebar-subheading">数据库配置</h4>
+                        <h4 class="control-sidebar-subheading"><?= Yii::t('app', 'Database Management') ?></h4>
 
-                        <p>哪些数据库连接可供查询</p>
+                        <p><?= Yii::t('app', 'Databases can be query') ?></p>
                     </div>
                 </a>
             </li>
@@ -22,20 +23,20 @@ use yii\helpers\Url;
                     <i class="menu-icon fa fa-star bg-green"></i>
 
                     <div class="menu-info">
-                        <h4 class="control-sidebar-subheading">管理我的收藏</h4>
+                        <h4 class="control-sidebar-subheading"><?= Yii::t('app', 'Favorite Management') ?></h4>
 
-                        <p>管理我的收藏夹</p>
+                        <p><?= Yii::t('app', 'Manage your favorite list') ?></p>
                     </div>
                 </a>
             </li>
             <li>
-                <a href='<?=Url::to('/user/index')?>'>
+                <a href='<?= Url::to('/user/index') ?>'>
                     <i class="menu-icon fa fa-user bg-yellow"></i>
 
                     <div class="menu-info">
-                        <h4 class="control-sidebar-subheading">用户管理</h4>
+                        <h4 class="control-sidebar-subheading"><?= Yii::t('app', 'User Management') ?></h4>
 
-                        <p>用户管理系统</p>
+                        <p><?= Yii::t('app', 'Add or remove users') ?></p>
                     </div>
                 </a>
             </li>
@@ -44,9 +45,9 @@ use yii\helpers\Url;
                     <i class="menu-icon fa fa-key bg-blue"></i>
 
                     <div class="menu-info">
-                        <h4 class="control-sidebar-subheading">权限管理</h4>
+                        <h4 class="control-sidebar-subheading"><?= Yii::t('app', 'Authorization') ?></h4>
 
-                        <p>基于角色的访问控制</p>
+                        <p><?= Yii::t('app', 'Role based authorization control') ?></p>
                     </div>
                 </a>
             </li>

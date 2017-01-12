@@ -63,7 +63,6 @@ class m161214_142902_rbac_menu_v1 extends Migration
             [
             [1, '创建报表', null, '/report/create', 1, '{"icon": "fa fa-edit"}'],
             [2, '报表一览', null, '/report/list', 2, '{"icon": "fa fa-list"}'],
-            [3, '我的收藏', null, '/subscription/list', 3, '{"icon": "fa fa-star"}'],
             ]
         );
     }

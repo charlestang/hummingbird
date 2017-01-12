@@ -10,7 +10,6 @@ class m161210_114704_hummingbird_v1 extends Migration
 
         $tableOptions = null;
         if ($this->db->driverName === 'mysql') {
-            // http://stackoverflow.com/questions/766809/whats-the-difference-between-utf8-general-ci-and-utf8-unicode-ci
             $tableOptions = 'CHARACTER SET utf8 COLLATE utf8_unicode_ci ENGINE=InnoDB';
         }
 
@@ -54,6 +53,7 @@ class m161210_114704_hummingbird_v1 extends Migration
             'database_id' => $this->integer()->notNull()->comment('database config id'),
             'name'        => $this->string(32)->notNull()->comment('report name'),
             'sql'         => $this->text()->notNull()->comment('report sql statement'),
+            'deleted'     => $this->boolean()->notNull()->defaultValue(0)->comment('report is deleted'),
             'description' => $this->text()->comment('short description'),
             'created_at'  => $this->dateTime()->defaultValue('1000-01-01 00:00:00')->comment('create time'),
             'updated_at'  => $this->timestamp()->defaultExpression('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'),
@@ -61,6 +61,7 @@ class m161210_114704_hummingbird_v1 extends Migration
             (' ON DELETE NO ACTION ON UPDATE NO ACTION'),
           ], $tableOptions
         );
+
         $this->createIndex('key_name', '{{%report}}', 'name');
 
         $this->createTable(

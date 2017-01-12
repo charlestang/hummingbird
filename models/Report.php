@@ -15,6 +15,7 @@ use yii\db\Expression;
  * @property integer $database_id
  * @property string  $name
  * @property string  $sql
+ * @property string  $deleted
  * @property string  $description
  * @property string  $created_at
  * @property string  $updated_at
@@ -41,6 +42,7 @@ class Report extends ActiveRecord
             [['user_id', 'database_id', 'name', 'sql'], 'required'],
             [['user_id', 'database_id'], 'integer'],
             [['sql', 'description'], 'string'],
+            [['deleted'], 'boolean'],
             [['created_at', 'updated_at'], 'safe'],
             [['name'], 'string', 'max' => 32],
             [
@@ -70,13 +72,14 @@ class Report extends ActiveRecord
     {
         return [
             'id'          => 'ID',
-            'user_id'     => '创建人',
-            'database_id' => '数据库',
-            'name'        => '报表名称',
-            'sql'         => '查询',
-            'description' => '报表描述',
-            'created_at'  => '创建时间',
-            'updated_at'  => '最后更新时间',
+            'user_id'     => Yii::t('app', 'Creator'),
+            'database_id' => Yii::t('app', 'Database ID'),
+            'name'        => Yii::t('app', 'Report Name'),
+            'sql'         => Yii::t('app', 'Query'),
+            'deleted'     => Yii::t('app', 'Deleted'),
+            'description' => Yii::t('app', 'Description'),
+            'created_at'  => Yii::t('app', 'Created Time'),
+            'updated_at'  => Yii::t('app', 'Last Updated Time'),
         ];
     }
 
@@ -95,6 +98,7 @@ class Report extends ActiveRecord
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
     }
+
     /**
      * @inheritdoc
      * @return ReportQuery the active query used by this AR class.

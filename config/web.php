@@ -2,6 +2,7 @@
 
 $params = require(__DIR__ . '/params.php');
 $commonComponents = require(__DIR__ . '/components.php');
+$i18n = require(__DIR__ . '/i18n.php');
 
 $config = [
     'id' => 'basic',
@@ -36,19 +37,7 @@ $config = [
             'rules' => [
             ],
         ],
-        'i18n' => [
-            'translations' => [
-                'app*' => [
-                    'class' => 'yii\i18n\PhpMessageSource',
-                    'basePath' => '@app/messages',
-                    'sourceLanguage' => 'en-US',
-                    'fileMap' => [
-                        'app' => 'app.php',
-                        'app/error' => 'error.php',
-                    ],
-                ],
-            ],
-        ],
+        'i18n' => $i18n,
     ],
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',

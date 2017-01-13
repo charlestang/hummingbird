@@ -1,6 +1,7 @@
 <?php
 
 $params = require(__DIR__ . '/params.php');
+$i18n = require(__DIR__ . '/i18n.php');
 
 $config = [
     'id' => 'basic-console',
@@ -9,13 +10,9 @@ $config = [
     'controllerNamespace' => 'app\commands',
     'modules' => require(__DIR__ . '/modules.php'),
     'params' => $params,
-    /*
-    'controllerMap' => [
-        'fixture' => [ // Fixture generation command line.
-            'class' => 'yii\faker\FixtureController',
-        ],
+    'components' => [
+        'i18n' => $i18n,
     ],
-    */
 ];
 
 

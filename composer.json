@@ -19,7 +19,7 @@
         "yiisoft/yii2-swiftmailer": "~2.0.6",
         "dmstr/yii2-adminlte-asset": "~2.3.4",
         "mdmsoft/yii2-admin": "~2.7",
-        "bower-asset/codemirror": "~5.21",
+        "bower-asset/codemirror": "~5.22",
         "league/csv": "~8.1.2",
         "phpmyadmin/sql-parser": "~3.4.14",
         "npm-asset/list.js": "^1.3"

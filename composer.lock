@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
-            "version": "v2.3.8",
+            "version": "v2.3.11",
             "source": {
                 "type": "git",
                 "url": "https://github.com/almasaeed2010/AdminLTE.git",
-                "reference": "ced14b133daed8c163863a497c43dcf69eea4340"
+                "reference": "2be703222af2edcb87e562d3da2299e4352bff8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/ced14b133daed8c163863a497c43dcf69eea4340",
-                "reference": "ced14b133daed8c163863a497c43dcf69eea4340",
+                "url": "https://api.github.com/repos/almasaeed2010/AdminLTE/zipball/2be703222af2edcb87e562d3da2299e4352bff8a",
+                "reference": "2be703222af2edcb87e562d3da2299e4352bff8a",
                 "shasum": ""
             },
             "type": "library",
@@ -44,7 +44,7 @@
                 "theme",
                 "web"
             ],
-            "time": "2016-11-04T14:42:55+00:00"
+            "time": "2017-01-08T21:03:57+00:00"
         },
         {
             "name": "bower-asset/bootstrap",
@@ -97,16 +97,16 @@
         },
         {
             "name": "bower-asset/codemirror",
-            "version": "5.22.0",
+            "version": "5.22.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/components/codemirror.git",
-                "reference": "4f16a7c614fe173092be007c89e5bc89c5f7f49d"
+                "reference": "ad4301a2bb988a974eb4ae710edbb8f7d1ea30b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/components/codemirror/zipball/4f16a7c614fe173092be007c89e5bc89c5f7f49d",
-                "reference": "4f16a7c614fe173092be007c89e5bc89c5f7f49d",
+                "url": "https://api.github.com/repos/components/codemirror/zipball/ad4301a2bb988a974eb4ae710edbb8f7d1ea30b0",
+                "reference": "ad4301a2bb988a974eb4ae710edbb8f7d1ea30b0",
                 "shasum": ""
             },
             "type": "bower-asset-library",
@@ -754,21 +754,21 @@
         },
         {
             "name": "rmrevin/yii2-fontawesome",
-            "version": "2.17.0",
+            "version": "2.17.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/rmrevin/yii2-fontawesome.git",
-                "reference": "470202eace1868f1f627bf8c4ce21a17b0548c4a"
+                "reference": "65ce306da864f4d558348aeba040ed7876878090"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/rmrevin/yii2-fontawesome/zipball/470202eace1868f1f627bf8c4ce21a17b0548c4a",
-                "reference": "470202eace1868f1f627bf8c4ce21a17b0548c4a",
+                "url": "https://api.github.com/repos/rmrevin/yii2-fontawesome/zipball/65ce306da864f4d558348aeba040ed7876878090",
+                "reference": "65ce306da864f4d558348aeba040ed7876878090",
                 "shasum": ""
             },
             "require": {
                 "fortawesome/font-awesome": "~4.7",
-                "php": ">=5.5.0",
+                "php": ">=5.4.0",
                 "yiisoft/yii2": "2.0.*"
             },
             "type": "yii2-extension",
@@ -802,7 +802,7 @@
                 "font",
                 "yii"
             ],
-            "time": "2016-10-25T15:14:55+00:00"
+            "time": "2017-01-11T14:05:47+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

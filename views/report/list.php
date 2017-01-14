@@ -7,7 +7,7 @@ use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title = '报表一览';
+$this->title = Yii::t('app', 'Report List');
 ?>
 <div class="row">
     <div class="col-xs-12">
@@ -35,7 +35,7 @@ $this->title = '报表一览';
                     'tableOptions' => ['class' => 'table table-hover table-striped table-bordered m-b-0'],
                     'columns'      => [
                         ['class' => 'yii\grid\SerialColumn'],
-                        'user.username:text:创建人',
+                        'user.username:text:' . Yii::t('app', 'Creator'),
                         'name',
                         'description',
                         'created_at',
@@ -91,9 +91,9 @@ $this->title = '报表一览';
  */
 Modal::begin([
     'options'      => ['class' => 'modal', 'id' => 'reportSql'],
-    'header'       => '<h4 class="modal-title">查询明细</h4>',
+    'header'       => '<h4 class="modal-title">' . Yii::t('app', 'Detail') . '</h4>',
     'toggleButton' => false,
-    'footer'       => '<button type="button" class="btn " data-dismiss="modal">取消</button>',
+    'footer'       => '<button type="button" class="btn " data-dismiss="modal">' . Yii::t('app', 'Cancel') . '</button>',
 ]);
 ?>
 <pre class="sql-syntax-analyze"></pre>

@@ -4,7 +4,7 @@ use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title = "创建报表";
+$this->title = Yii::t('app', 'Create Report');
 ?>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -28,7 +28,9 @@ $this->title = "创建报表";
                     <pre class="sql-syntax-analyze"><?=$sqlForm->getBeautifiedVersion()?></pre>
                 </div>
                 <div class="box-footer">
-                    <p>执行时间: <?=$sqlForm->time_spent?> 秒</p>
+                    <p><?= Yii::t('app', 'Time spent: {time_spent, plural, <=1{ second.} other{ seconds.}}', [
+                        'time_spent' => $sqlForm->time_spent
+                    ])?></p>
                 </div>
             </div>
             <div class="box box-primary">
@@ -77,19 +79,21 @@ $this->title = "创建报表";
  */
 Modal::begin([
     'options'      => ['class' => 'modal', 'id' => 'reportSave'],
-    'header'       => '<h4 class="modal-title">保存报表</h4>',
+    'header'       => '<h4 class="modal-title">' . Yii::t('app', 'Save Report') . '</h4>',
     'toggleButton' => false,
-    'footer'       => '<button type="button" class="btn pull-left" data-dismiss="modal">取消</button>
-                <button type="button" class="btn btn-success report-save">确认保存</button>',
+    'footer'       => '<button type="button" class="btn pull-left" data-dismiss="modal">'
+        . Yii::t('app', 'Cancel') . '</button>
+                <button type="button" class="btn btn-success report-save">'
+        . Yii::t('app', 'Confirm') . '</button>',
 ]);
 ?>
 <form action="<?= Url::to('/report/save') ?>">
     <div class="form-group">
-        <label for="report-name" class="control-label">报表名称: </label>
+        <label for="report-name" class="control-label"><?= Yii::t('app', 'Report name: ')?></label>
         <input type="text" class="form-control" id="reportName">
     </div>
     <div class="form-group">
-        <label for="report-description" class="control-label">内容描述: </label>
+        <label for="report-description" class="control-label"><?= Yii::t('app', 'Description: ')?></label>
         <textarea class="form-control" id="reportDescription"></textarea>
     </div>
 </form>
@@ -100,7 +104,7 @@ $csrf              = \Yii::$app->request->getCsrfToken();
 $nonAjaxRequestFav = <<<JS
 
 /**
- * 报表导出
+ * Report export
  */
 $('.box-tools a.btn-export').click(function() {
     var href = $(this).attr('href');

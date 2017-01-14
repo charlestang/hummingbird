@@ -6,7 +6,6 @@ use Yii;
 use yii\base\NotSupportedException;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
-use yii\db\Expression;
 use yii\web\IdentityInterface;
 
 /**
@@ -65,14 +64,14 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             'id'                   => 'ID',
-            'username'             => '用户名',
-            'auth_key'             => 'Auth Key',
-            'password_hash'        => 'Password Hash',
-            'password_reset_token' => 'Password Reset Token',
-            'email'                => '邮箱',
-            'status'               => '状态',
-            'created_at'           => '创建时间',
-            'updated_at'           => '更新时间',
+            'username'             => Yii::t('app', 'Account Name'),
+            'auth_key'             => Yii::t('app', 'Auth Key'),
+            'password_hash'        => Yii::t('app', 'Password Hash'),
+            'password_reset_token' => Yii::t('app', 'Password Reset Token'),
+            'email'                => Yii::t('app', 'Email'),
+            'status'               => Yii::t('app', 'Account Status'),
+            'created_at'           => Yii::t('app', 'Created At'),
+            'updated_at'           => Yii::t('app', 'Updated At'),
         ];
     }
 

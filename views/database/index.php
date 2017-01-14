@@ -40,7 +40,10 @@ $this->title = Yii::t('app', 'Database Management');
                     'username',
                     'charset',
                     'created_at',
-                    ['class' => 'yii\grid\ActionColumn'],
+                    [
+                        'class' => 'yii\grid\ActionColumn',
+                        'template' => '{update} {delete}'
+                    ],
                 ],
             ]); ?>
             </div>

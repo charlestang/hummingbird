@@ -4,7 +4,7 @@ use yii\grid\GridView;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title = '我的收藏';
+$this->title = Yii::t('app', 'My Favorites');
 ?>
 <div class="row">
     <div class="col-xs-12">
@@ -35,7 +35,7 @@ $this->title = '我的收藏';
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
                         'report.name',
-                        'report.user.username:text:创建人',
+                        'report.user.username:text:' . Yii::t('app', 'Creator'),
                         'created_at',
                         [
                             'class'    => 'yii\grid\ActionColumn',

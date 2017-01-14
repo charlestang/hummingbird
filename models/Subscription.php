@@ -65,11 +65,11 @@ class Subscription extends ActiveRecord
     {
         return [
             'id'         => 'ID',
-            'user_id'    => '用户',
-            'report_id'  => '报表',
-            'deleted'    => '逻辑删除',
-            'created_at' => '创建时间',
-            'updated_at' => '更新时间',
+            'user_id'    => Yii::t('app', 'User'),
+            'report_id'  => Yii::t('app', 'Report'),
+            'deleted'    => Yii::t('app', 'Deleted'),
+            'created_at' => Yii::t('app', 'Creted At'),
+            'updated_at' => Yii::t('app', 'Updated'),
         ];
     }
 

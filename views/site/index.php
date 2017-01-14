@@ -1,5 +1,8 @@
 <?php
-/* @var $this yii\web\View */
+
+use yii\helpers\Url;
+use yii\web\View;
+/* @var $this View */
 
 $this->title = false;
 ?>
@@ -10,7 +13,7 @@ $this->title = false;
 
         <p class="lead"><?= Yii::t('app', 'Welcome to Hummingbird reporting system!') ?></p>
 
-        <p><a class="btn btn-lg btn-success" href="<?= yii\helpers\Url::toRoute(['/report/create']) ?>"><?= Yii::t('app', 'Create Report') ?></a></p>
+        <p><a class="btn btn-lg btn-success" href="<?= Url::toRoute(['/report/create']) ?>"><?= Yii::t('app', 'Create Report') ?></a></p>
     </div>
 
     <div class="body-content">

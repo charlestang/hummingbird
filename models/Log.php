@@ -72,13 +72,13 @@ class Log extends ActiveRecord
     {
         return [
             'id'          => 'ID',
-            'user_id'     => '执行者',
-            'database_id' => '数据库',
-            'sql'         => 'SQL',
-            'time_spent'  => '耗时',
-            'error_code'  => '错误码',
-            'created_at'  => 'Created At',
-            'updated_at'  => 'Updated At',
+            'user_id'     => Yii::t('app', 'User'),
+            'database_id' => Yii::t('app', 'Database'),
+            'sql'         => Yii::t('app', 'Query'),
+            'time_spent'  => Yii::t('app', 'Time Spent'),
+            'error_code'  => Yii::t('app', 'Error Code'),
+            'created_at'  => Yii::t('app', 'Created At'),
+            'updated_at'  => Yii::t('app', 'Updated At'),
         ];
     }
 
@@ -111,4 +111,5 @@ class Log extends ActiveRecord
 
         return $log;
     }
+
 }

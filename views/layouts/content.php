@@ -1,7 +1,9 @@
 <?php
 
-use yii\widgets\Breadcrumbs;
 use dmstr\widgets\Alert;
+use yii\helpers\Html;
+use yii\helpers\Inflector;
+use yii\widgets\Breadcrumbs;
 ?>
 <div class="content-wrapper">
     <section class="content-header">
@@ -11,12 +13,12 @@ use dmstr\widgets\Alert;
             <h1>
                 <?php
                 if ($this->title !== null) {
-                    echo \yii\helpers\Html::encode($this->title);
+                    echo Html::encode($this->title);
                 } else {
-                    echo \yii\helpers\Inflector::camel2words(
-                        \yii\helpers\Inflector::id2camel($this->context->module->id)
+                    echo Inflector::camel2words(
+                        Inflector::id2camel($this->context->module->id)
                     );
-                    echo ($this->context->module->id !== \Yii::$app->id) ? '<small>Module</small>' : '';
+                    echo ($this->context->module->id !== Yii::$app->id) ? '<small>Module</small>' : '';
                 }
                 ?>
             </h1>

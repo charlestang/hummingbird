@@ -4,7 +4,7 @@ use yii\bootstrap\Button;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title      = "报表编辑";
+$this->title      = Yii::t('app', 'Edit Report');
 ?>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -19,11 +19,11 @@ $this->title      = "报表编辑";
             <div class="box-body">
                 <form role="form" class="report-update-form" action="<?= Url::toRoute(['report/save', 'id' => $report->id])?>">
                     <div class="form-group">
-                        <label>报表标题: </label>
+                        <label><?= Yii::t('app', 'Report name: ')?></label>
                         <input type="text" class="form-control report-name" value="<?=Html::encode($report->name)?>" />
                     </div> 
                     <div class="form-group">
-                        <label>报表描述: </label>
+                        <label><?= Yii::t('app', 'Description: ')?></label>
                         <textarea class="form-control report-description"><?=Html::encode($report->description)?></textarea>
                     </div> 
                 </form>
@@ -31,7 +31,7 @@ $this->title      = "报表编辑";
             <div class="box-footer">
                 <?=
                 Button::widget([
-                    'label' => '保存更新', 
+                    'label' => Yii::t('app', 'Save'),
                     'options' =>[
                         'class' => 'btn-success report-save',
                     ]
@@ -46,13 +46,13 @@ $this->title      = "报表编辑";
                     <!-- .box-header -->
                     <div class="box-header">
                         <h3 class="box-title">
-                            <i class="fa fa-list-alt text-info"></i> 查询结果
+                            <i class="fa fa-list-alt text-info"></i><?= Yii::t('app', 'Query results: ')?>
                         </h3>
                         <?php if (!$exception): ?>
                             <div class="box-tools pull-right">
                                 <a href="javascript:;" target="_blank" class="btn btn-default">
                                     <i class="fa fa-download text-danger"></i>
-                                    导出
+                                    <?= Yii::t('app', 'Export')?>
                                 </a>
                             </div>
                         <?php endif; ?>

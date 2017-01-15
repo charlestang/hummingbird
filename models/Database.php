@@ -13,7 +13,9 @@ use yii\db\Expression;
  *
  * @property integer $id
  * @property string  $alias
+ * @property string  $type
  * @property string  $host
+ * @property integer $port
  * @property string  $database
  * @property string  $username
  * @property string  $password
@@ -41,7 +43,7 @@ class Database extends ActiveRecord
     public function rules()
     {
         return [
-            [['alias', 'host', 'database'], 'required'],
+            [['alias', 'type', 'host', 'port', 'database'], 'required'],
             [['id', 'deleted', 'created_at', 'updated_at'], 'safe'],
             [['host', 'database', 'username', 'password'], 'string', 'max' => 64],
             [['alias', 'charset'], 'string', 'max' => 32],
@@ -66,7 +68,9 @@ class Database extends ActiveRecord
         return [
             'id'         => 'ID',
             'alias'      => Yii::t('app', 'Database Alias'),
+            'type'       => Yii::t('app', 'Database Type'),
             'host'       => Yii::t('app', 'Host'),
+            'port'       => Yii::t('app', 'Port'),
             'database'   => Yii::t('app', 'Database Name'),
             'username'   => Yii::t('app', 'User Name'),
             'password'   => Yii::t('app', 'Password'),
@@ -102,5 +106,4 @@ class Database extends ActiveRecord
         $this->deleted = 1;
         return $this->update(false, ['deleted']);
     }
-
 }

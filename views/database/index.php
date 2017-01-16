@@ -35,9 +35,12 @@ $this->title = Yii::t('app', 'Database Management');
                 'columns' => [
                     ['class' => 'yii\grid\SerialColumn'],
                     'alias',
-                    'host',
                     'database',
-                    'username',
+                    [
+                        'attribute' => 'dsn',
+                        'format' => 'text',
+                        'label' => 'DSN',
+                    ],
                     'charset',
                     'created_at',
                     [

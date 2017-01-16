@@ -106,4 +106,18 @@ class Database extends ActiveRecord
         $this->deleted = 1;
         return $this->update(false, ['deleted']);
     }
+
+    public function getDsn()
+    {
+        $dsnTemplate = '%s:host=%s;port=%d;dbname=%s;user=%s;password=%s';
+        return sprintf(
+            $dsnTemplate,
+            $this->type,
+            $this->host,
+            $this->port,
+            $this->database,
+            $this->username,
+            '******'
+        );
+    }
 }

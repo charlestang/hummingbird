@@ -12,11 +12,11 @@ use yii\web\IdentityInterface;
  * This is the model class for table "user".
  *
  * @property integer $id
- * @property string $username
- * @property string $auth_key
- * @property string $password_hash
- * @property string $password_reset_token
- * @property string $email
+ * @property string  $username
+ * @property string  $auth_key
+ * @property string  $password_hash
+ * @property string  $password_reset_token
+ * @property string  $email
  * @property integer $status
  * @property integer $created_at
  * @property integer $updated_at
@@ -26,6 +26,9 @@ class User extends ActiveRecord implements IdentityInterface
 
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE  = 10;
+
+    public $password;
+    public $password_repeat;
 
     /**
      * @inheritdoc
@@ -41,10 +44,34 @@ class User extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'auth_key', 'password_hash', 'email', 'created_at', 'updated_at'], 'required'],
+            [
+                [
+                    'nickname',
+                    'username',
+                    'auth_key',
+                    'password_hash',
+                    'email',
+                    'created_at',
+                    'updated_at'
+                ], 'required'],
+            [
+                ['username'], 'unique'
+            ],
+            [
+                ['password'], 
+                'compare',
+                'compareAttribute'=>'password_repeat',
+                'skipOnEmpty' => false,
+                'message'=> Yii::t('app', 'Passwords don\'t match.'),
+            ],
             [['status', 'created_at', 'updated_at'], 'integer'],
             [['username', 'auth_key'], 'string', 'max' => 32],
-            [['password_hash', 'password_reset_token', 'email'], 'string', 'max' => 255],
+            [
+                [
+                    'password_hash',
+                    'password_reset_token',
+                    'email'
+                ], 'string', 'max' => 255],
         ];
     }
 
@@ -52,7 +79,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             [
-                'class'              => TimestampBehavior::className(),
+                'class' => TimestampBehavior::className(),
             ],
         ];
     }
@@ -64,6 +91,7 @@ class User extends ActiveRecord implements IdentityInterface
     {
         return [
             'id'                   => 'ID',
+            'nickname'             => Yii::t('app', 'Nick Name'),
             'username'             => Yii::t('app', 'Account Name'),
             'auth_key'             => Yii::t('app', 'Auth Key'),
             'password_hash'        => Yii::t('app', 'Password Hash'),

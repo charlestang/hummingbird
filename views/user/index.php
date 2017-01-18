@@ -35,13 +35,17 @@ $this->title = '用户管理';
                     'summary'      => '',
                     'tableOptions' => ['class' => 'table table-hover table-striped table-bordered m-b-0'],
                     'columns'      => [
-                        'id',
+                        ['class' => 'yii\grid\SerialColumn'],
+                        'nickname',
                         'username',
                         'email:email',
                         'status',
                         'created_at:date',
                         'updated_at:date',
-                        ['class' => 'yii\grid\ActionColumn'],
+                        [
+                            'class' => 'yii\grid\ActionColumn',
+                            'template' => '{update} {delete}'
+                        ],
                     ],
                 ]);
                 ?>

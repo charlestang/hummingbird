@@ -24,7 +24,7 @@ use yii\helpers\Html;
                 <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                         <img src="<?= $directoryAsset ?>/img/user2-160x160.jpg" class="user-image" alt="User Image"/>
-                        <span class="hidden-xs"><?=Yii::$app->user->isGuest ? 'Guest' : Yii::$app->user->identity->username?></span>
+                        <span class="hidden-xs"><?=Yii::$app->user->isGuest ? 'Guest' : Yii::$app->user->identity->nickname?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
@@ -33,8 +33,11 @@ use yii\helpers\Html;
                                  alt="User Image"/>
 
                             <p>
-                                Alexander Pierce - Web Developer
-                                <small>Member since Nov. 2012</small>
+                                <?=Yii::$app->user->isGuest ? 'Guest' : Yii::$app->user->identity->nickname?>
+                                - <?= array_reduce(Yii::$app->authManager->getRolesByUser(Yii::$app->user->id), function($carry, $item){
+                                    return $carry . (empty($carry) ? '' :', ') . $item->name;
+                                })?>
+                                 <small><?= Yii::t('app', 'Since {0,date,medium}', Yii::$app->user->identity->created_at)?></small>
                             </p>
                         </li>
                         <li class="user-footer">

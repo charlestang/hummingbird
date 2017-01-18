@@ -27,8 +27,15 @@ class User extends ActiveRecord implements IdentityInterface
     const STATUS_DELETED = 0;
     const STATUS_ACTIVE  = 10;
 
-    public $password;
-    public $password_repeat;
+    public $password_plain  = '';
+    public $password_repeat = '';
+
+    public function init()
+    {
+        parent::init();
+        $this->on(self::EVENT_BEFORE_INSERT, [$this, 'changeAuthKey']);
+        $this->on(self::EVENT_BEFORE_UPDATE, [$this, 'changeAuthKey']);
+    }
 
     /**
      * @inheritdoc
@@ -48,21 +55,27 @@ class User extends ActiveRecord implements IdentityInterface
                 [
                     'nickname',
                     'username',
-                    'auth_key',
+                    'password',
+                    'password_repeat',
                     'password_hash',
                     'email',
-                    'created_at',
-                    'updated_at'
-                ], 'required'],
+                ],
+                'required',
+                'on' => ['default']
+            ],
+            [
+                ['password', 'password_repeat'],
+                'safe',
+                'on' => ['update']
+            ],
             [
                 ['username'], 'unique'
             ],
             [
-                ['password'], 
+                ['password_plain'],
                 'compare',
-                'compareAttribute'=>'password_repeat',
-                'skipOnEmpty' => false,
-                'message'=> Yii::t('app', 'Passwords don\'t match.'),
+                'compareAttribute' => 'password_repeat',
+                'message'          => Yii::t('app', 'Passwords don\'t match.'),
             ],
             [['status', 'created_at', 'updated_at'], 'integer'],
             [['username', 'auth_key'], 'string', 'max' => 32],
@@ -71,7 +84,10 @@ class User extends ActiveRecord implements IdentityInterface
                     'password_hash',
                     'password_reset_token',
                     'email'
-                ], 'string', 'max' => 255],
+                ],
+                'string',
+                'max' => 255
+            ],
         ];
     }
 
@@ -94,6 +110,8 @@ class User extends ActiveRecord implements IdentityInterface
             'nickname'             => Yii::t('app', 'Nick Name'),
             'username'             => Yii::t('app', 'Account Name'),
             'auth_key'             => Yii::t('app', 'Auth Key'),
+            'password'             => Yii::t('app', 'Password'),
+            'password_repeat'      => Yii::t('app', 'Repeat Your Password'),
             'password_hash'        => Yii::t('app', 'Password Hash'),
             'password_reset_token' => Yii::t('app', 'Password Reset Token'),
             'email'                => Yii::t('app', 'Email'),
@@ -132,7 +150,16 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public function setPassword($password)
     {
-        $this->password_hash = Yii::$app->security->generatePasswordHash($password);
+        if (empty(trim($password))) {
+            return;
+        }
+        $this->password_plain = $password;
+        $this->password_hash  = Yii::$app->security->generatePasswordHash($password);
+    }
+
+    public function getPassword()
+    {
+        return $this->password_plain;
     }
 
     /**
@@ -149,6 +176,14 @@ class User extends ActiveRecord implements IdentityInterface
     public function generateAuthKey()
     {
         $this->auth_key = Yii::$app->security->generateRandomString();
+    }
+
+    public function changeAuthKey()
+    {
+        if (in_array('password_hash', array_keys($this->dirtyAttributes))) {
+            $this->generateAuthKey();
+        }
+        return true;
     }
 
     /**

@@ -32,15 +32,12 @@ use yii\widgets\ActiveForm;
     <?= $form->field($model, 'password_repeat')->textInput(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
+        <?= Html::submitButton($model->isNewRecord ? Yii::t('app', 'Create') : Yii::t('app', 'Update'), ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
     </div>
     <!-- /.box-body -->
-    <div class="box-footer">
-        Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and information about
-        the plugin.
-    </div>
+    <div class="box-footer"></div>
 </div>
 

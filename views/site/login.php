@@ -28,7 +28,7 @@ $fieldOptions2 = [
     <div class="login-box-body">
         <p class="login-box-msg"><?= Yii::t('app', 'Enter your username and password to login:') ?></p>
 
-        <?php $form          = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
+        <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
 
         <?=
                 $form
@@ -46,17 +46,19 @@ $fieldOptions2 = [
 
         <div class="row">
             <div class="col-xs-8">
-<?= $form->field($model, 'rememberMe')->checkbox() ?>
+            <?= $form->field($model, 'rememberMe')->label(Yii::t('app', 'Remember Me'))->checkbox() ?>
             </div>
             <!-- /.col -->
             <div class="col-xs-4">
-        <?= Html::submitButton(Yii::t('app', 'Login'), ['class' => 'btn btn-primary btn-block btn-flat', 'name' => 'login-button']) ?>
+            <?= Html::submitButton(Yii::t('app', 'Login'), [
+                'class' => 'btn btn-primary btn-block btn-flat',
+                'name' => 'login-button']) ?>
             </div>
             <!-- /.col -->
         </div>
 
 
-<?php ActiveForm::end(); ?>
+        <?php ActiveForm::end(); ?>
 
         <a href="#"><?= Yii::t('app', 'Forget password') ?></a><br>
         <a href="register.html" class="text-center"><?= Yii::t('app', 'Not registerd? Sign up now.') ?></a>

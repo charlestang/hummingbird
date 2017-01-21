@@ -79,6 +79,7 @@ return [
     'Query Result' => '查询结果',
     'Query results' => '查询结果',
     'Query results: ' => '查询结果：',
+    'Remember Me' => '记住我的登录',
     'Repeat Your Password' => '重复密码',
     'Report' => '报表',
     'Report List' => '报表一览',

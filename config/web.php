@@ -45,6 +45,7 @@ $config = [
             'site/logout',
             'site/login',
             'site/about',
+            'site/reset-password',
             'admin/*',
         ],
     ],

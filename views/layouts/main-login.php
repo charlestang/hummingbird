@@ -17,15 +17,14 @@ AdminLteAsset::register($this);
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?></title>
-<?php $this->head() ?>
+        <?php $this->head() ?>
     </head>
     <body class="login-page">
 
         <?php $this->beginBody() ?>
-
         <?= $content ?>
+        <?php $this->endBody() ?>
 
-<?php $this->endBody() ?>
     </body>
 </html>
 <?php $this->endPage() ?>

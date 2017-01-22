@@ -79,7 +79,7 @@ class SiteController extends Controller
             return $this->goBack();
         }
         return $this->render('login', [
-                'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -95,4 +95,8 @@ class SiteController extends Controller
         return $this->goHome();
     }
 
+    public function actionResetPassword()
+    {
+        return $this->render('password-reset');
+    }
 }

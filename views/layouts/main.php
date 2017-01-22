@@ -8,8 +8,7 @@ use yii\web\View;
 /* @var $this View */
 /* @var $content string */
 
-
-if (Yii::$app->controller->action->id === 'login') {
+if (in_array(Yii::$app->controller->action->id, ['login', 'reset-password'])) {
     /**
      * Do not use this code in your template. Remove it. 
      * Instead, use the code  $this->layout = '//main-login'; in your controller.

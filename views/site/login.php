@@ -1,10 +1,12 @@
 <?php
 
-use yii\helpers\Html;
 use yii\bootstrap\ActiveForm;
+use yii\helpers\Html;
+use yii\helpers\Url;
+use yii\web\View;
 
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
+/* @var $this View */
+/* @var $form ActiveForm */
 /* @var $model \common\models\LoginForm */
 
 $this->title = 'Sign In';
@@ -60,7 +62,7 @@ $fieldOptions2 = [
 
         <?php ActiveForm::end(); ?>
 
-        <a href="#"><?= Yii::t('app', 'Forget password') ?></a><br>
+        <a href="<?= Url::to('reset-password')?>"><?= Yii::t('app', 'Forget password') ?></a><br>
         <a href="register.html" class="text-center"><?= Yii::t('app', 'Not registerd? Sign up now.') ?></a>
 
     </div>

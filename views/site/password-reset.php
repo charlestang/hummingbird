@@ -1,9 +1,8 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 
-/* @var $this yii\web\View */
-/* @var $form yii\bootstrap\ActiveForm */
 /* @var $model \common\models\LoginForm */
 
 $this->title = Yii::t('app', 'Password Reset');
@@ -40,6 +39,7 @@ $this->title = Yii::t('app', 'Password Reset');
             </div>
         </form>
 
+        <a href="<?= Url::to('login')?>"><?= Yii::t('app', '&larr; Return login') ?></a><br>
         <a href="register.html" class="text-center"><?= Yii::t('app', 'Not registerd? Sign up now.') ?></a>
 
     </div>

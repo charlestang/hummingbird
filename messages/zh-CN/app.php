@@ -17,9 +17,7 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Enter your register email:' => '输入您的注册邮箱：',
-    'Find Password' => '找回密码',
-    'Password Reset' => '密码重置',
+    '&larr; Return login' => '&larr; 返回登录',
     'Account Name' => '账户名',
     'Account Status' => '账户状态',
     'Add Database' => '添加数据库',
@@ -56,10 +54,12 @@ return [
     'Edit' => '编辑',
     'Edit Report' => '编辑报表',
     'Email' => '电子邮箱',
+    'Enter your register email:' => '输入您的注册邮箱：',
     'Enter your username and password to login:' => '输入用户名和密码登录：',
     'Error Code' => '错误码',
     'Export' => '导出',
     'Favorite Management' => '收藏夹管理',
+    'Find Password' => '找回密码',
     'Forget password' => '忘记密码',
     'Formatted SQL' => '查询格式化',
     'Host' => '主机',
@@ -72,6 +72,7 @@ return [
     'Not registerd? Sign up now.' => '还没注册？点此注册',
     'Password' => '密码',
     'Password Hash' => '密码哈希',
+    'Password Reset' => '密码重置',
     'Password Reset Token' => '密码重置令牌',
     'Passwords don\'t match.' => '两次密码不一致',
     'Port' => '端口号',

@@ -38,7 +38,7 @@ $this->title = Yii::t('app', 'Report List');
                         'user.username:text:' . Yii::t('app', 'Creator'),
                         'name',
                         'description',
-                        'created_at',
+                        'created_at:datetime',
                         [
                             'class' => 'yii\grid\ActionColumn',
                             'template'=> '{detail} {view} {update} {delete} {favorite}',

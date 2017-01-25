@@ -42,7 +42,7 @@ $this->title = Yii::t('app', 'Database Management');
                         'label' => 'DSN',
                     ],
                     'charset',
-                    'created_at',
+                    'created_at:datetime',
                     [
                         'class' => 'yii\grid\ActionColumn',
                         'template' => '{update} {delete}'

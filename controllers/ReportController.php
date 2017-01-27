@@ -17,7 +17,7 @@ use yii\web\NotFoundHttpException;
 /**
  * Description of ReportController
  *
- * @author charles
+ * @author charles <charlestang@foxmail.com>
  */
 class ReportController extends Controller
 {
@@ -42,14 +42,12 @@ class ReportController extends Controller
     }
 
     /**
-     * 新创建报表
+     * Create a new report
      */
     public function actionCreate()
     {
-        //可供选择的数据库连接配置
         $dbDropdownOptions = Database::find()->dropdownOptions()->asArray()->column();
 
-        //查询
         $sqlForm   = new SqlForm();
         $results   = [];
         $exception = null;
@@ -65,7 +63,6 @@ class ReportController extends Controller
             $sqlForm->database_id = key($dbDropdownOptions);
         }
 
-
         return $this->render(
             'create',
             [
@@ -78,7 +75,7 @@ class ReportController extends Controller
     }
 
     /**
-     * 保存报表
+     * Save report
      */
     public function actionSave($id = null)
     {
@@ -108,7 +105,7 @@ class ReportController extends Controller
     }
 
     /**
-     * 列出所有的报表
+     * List all saved reports
      */
     public function actionList()
     {
@@ -130,7 +127,7 @@ class ReportController extends Controller
         $sqlForm              = new SqlForm();
         $sqlForm->sql         = $report->sql;
         $sqlForm->database_id = $report->database_id;
-        //可供选择的数据库连接配置
+        
         $dbDropdownOptions    = Database::find()->dropdownOptions()->asArray()->column();
 
         $results   = [];
@@ -161,7 +158,7 @@ class ReportController extends Controller
     }
 
     /**
-     * 数据导出
+     * Report export
      */
     public function actionExportQuery()
     {
@@ -182,7 +179,7 @@ class ReportController extends Controller
     }
 
     /**
-     * 导出保存完毕的报表
+     * Export report by report id
      */
     public function actionExportByReportId()
     {

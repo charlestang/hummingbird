@@ -14,14 +14,20 @@ use yii\base\UserException;
 use yii\db\Connection;
 
 /**
- * Description of SqlForm
+ * SqlForm is designed for SQL execution.
+ * 
+ * Every SQL will be processed after following steps:
+ * - pre-process  replace variables by default value or given value
+ * - validate     check if the SQL is read only
+ * - run          send the SQL to server and retrieve the results
+ * - post-process format the result
  *
  * @author charles
  */
 class SqlForm extends Model
 {
 
-    public $sql = '';
+    public $sql        = '';
     public $database_id;
     public $time_spent = 0;
 
@@ -48,11 +54,8 @@ class SqlForm extends Model
         return $parser;
     }
 
-    public function execute($limit = false)
+    protected function run($limit = false)
     {
-        if (!$this->validate()) {
-            throw new UserException('错误:' . var_export($this->getErrors(), true), 400);
-        }
         $start_time = microtime(true);
         $connection = static::createDbConnection($this->database_id);
 
@@ -76,16 +79,44 @@ class SqlForm extends Model
         return $results;
     }
 
+    /**
+     * Pre-process the SQL
+     * @return boolean
+     * @throws UserException
+     */
+    protected function preProcess()
+    {
+        return true;
+    }
+
+    public function execute($limit = false)
+    {
+        $this->preProcess();
+
+        if (!$this->validate()) {
+            throw new UserException('错误:' . var_export($this->getErrors(), true), 400);
+        }
+
+        $results = $this->run($limit);
+
+        return $this->filter($results);
+    }
+
+    protected function filter($results)
+    {
+        return $results;
+    }
+
     public static function createDbConnection($database_id)
     {
         $database   = Database::findOne($database_id);
         /* @var $connection Connection */
         $connection = Yii::createObject([
-              'class'    => 'yii\db\Connection',
-              'dsn'      => 'mysql:host=' . $database->host . ';dbname=' . $database->database,
-              'username' => $database->username,
-              'password' => $database->password,
-              'charset'  => $database->charset,
+                    'class'    => 'yii\db\Connection',
+                    'dsn'      => 'mysql:host=' . $database->host . ';dbname=' . $database->database,
+                    'username' => $database->username,
+                    'password' => $database->password,
+                    'charset'  => $database->charset,
         ]);
 
         return $connection;

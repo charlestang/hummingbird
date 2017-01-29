@@ -28,7 +28,7 @@ $this->title = Yii::t('app', 'Create Report');
                     <pre class="sql-syntax-analyze"><?=$sqlForm->getBeautifiedVersion()?></pre>
                 </div>
                 <div class="box-footer">
-                    <p><?= Yii::t('app', 'Time spent: {time_spent, plural, <=1{ second.} other{ seconds.}}', [
+                    <p><?= Yii::t('app', 'Time spent: {time_spent,plural,=1{ # second.} other{ # seconds.}}', [
                         'time_spent' => $sqlForm->time_spent
                     ])?></p>
                 </div>

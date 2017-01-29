@@ -95,7 +95,7 @@ return [
     'Since {0,date,medium}' => '开始于 {0,date,medium}',
     'System Management' => '系统管理',
     'Time Spent' => '用时',
-    'Time spent: {time_spent, plural, <=1{ second.} other{ seconds.}}' => '话费时间：{time_spent, plural, <=1{ 秒。} other{ 秒。}}',
+    'Time spent: {time_spent,plural,<=1{ second.} other{ seconds.}}' => '',
     'Toggle navigation' => '折叠导航',
     'Update' => '更新',
     'Update user' => '更新用户',

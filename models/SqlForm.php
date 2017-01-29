@@ -4,9 +4,9 @@ namespace app\models;
 
 use app\models\Database;
 use app\models\Log;
-use SqlParser\Components\Limit;
-use SqlParser\Parser;
-use SqlParser\Utils\Formatter;
+use PhpMyAdmin\SqlParser\Components\Limit;
+use PhpMyAdmin\SqlParser\Parser;
+use PhpMyAdmin\SqlParser\Utils\Formatter;
 use UnexpectedValueException;
 use Yii;
 use yii\base\Model;
@@ -134,8 +134,8 @@ class SqlForm extends Model
 
         $type    = get_class($parser->statements[0]);
         $allowed = [
-            'SqlParser\Statements\SelectStatement',
-            'SqlParser\Statements\ExplainStatement',
+            'PhpMyAdmin\SqlParser\Statements\SelectStatement',
+            'PhpMyAdmin\SqlParser\Statements\ExplainStatement',
         ];
         if (!in_array($type, $allowed)) {
             throw new UnexpectedValueException("You cannot execute this query");

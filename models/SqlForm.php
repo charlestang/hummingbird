@@ -31,6 +31,8 @@ class SqlForm extends Model
     public $database_id;
     public $time_spent = 0;
 
+    protected $compiled_sql = '';
+
     public function rules()
     {
         return [
@@ -50,7 +52,7 @@ class SqlForm extends Model
         }
 
         $parser = new Parser($sql);
-        Yii::$app->cache->set($cacheKey, $parser);
+        Yii::$app->cache->set($cacheKey, $parser, 300);
         return $parser;
     }
 
@@ -60,7 +62,7 @@ class SqlForm extends Model
         $connection = static::createDbConnection($this->database_id);
 
         $errno        = 0;
-        $parser       = $this->parse($this->sql);
+        $parser       = $this->parse($this->compiled_sql);
         $sqlStatement = $parser->statements[0];
         try {
             if ($limit) {
@@ -86,7 +88,29 @@ class SqlForm extends Model
      */
     protected function preProcess()
     {
+        $this->compiled_sql = $this->sql;
+        $ret = preg_match('#/\*.*\*/#ms', $this->compiled_sql, $matches);
+        if ($ret) {
+            $lines     = array_map('trim', explode("\n", $matches[0]));
+            list($names, $defaults) = $this->parseParameters($lines);
+            $this->compiled_sql = str_replace($matches[0], '', $this->compiled_sql);
+            $this->compiled_sql = str_replace($names, $defaults, $this->compiled_sql);
+        }
         return true;
+    }
+
+    protected function parseParameters($lines)
+    {
+        $names    = [];
+        $defaults = [];
+        foreach ($lines as $line) {
+            if (strpos($line, '@var') === 0) {
+                $parts      = array_map('trim', explode(' ', $line, 4));
+                $names[]    = $parts[2];
+                $defaults[] = $parts[3];
+            }
+        }
+        return [$names, $defaults];
     }
 
     public function execute($limit = false)

@@ -32,6 +32,8 @@ class SqlForm extends Model
     public $time_spent = 0;
 
     protected $compiled_sql = '';
+    protected $parameters = [];
+    protected $values = [];
 
     public function rules()
     {
@@ -45,14 +47,7 @@ class SqlForm extends Model
 
     public function parse($sql)
     {
-        $cacheKey = md5($sql);
-        $parser   = Yii::$app->cache->get($cacheKey);
-        if (false !== $parser) {
-            return $parser;
-        }
-
         $parser = new Parser($sql);
-        Yii::$app->cache->set($cacheKey, $parser, 300);
         return $parser;
     }
 

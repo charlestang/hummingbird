@@ -17,6 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Time spent: {time_spent,plural,=1{ # second.} other{ # seconds.}}' => '',
+    'Time spent: {time_spent,plural,<=1{ second.} other{ seconds.}}' => '@@@@',
     '&larr; Return login' => '&larr; 返回登录',
     'Account Name' => '账户名',
     'Account Status' => '账户状态',
@@ -95,7 +97,6 @@ return [
     'Since {0,date,medium}' => '开始于 {0,date,medium}',
     'System Management' => '系统管理',
     'Time Spent' => '用时',
-    'Time spent: {time_spent,plural,<=1{ second.} other{ seconds.}}' => '',
     'Toggle navigation' => '折叠导航',
     'Update' => '更新',
     'Update user' => '更新用户',

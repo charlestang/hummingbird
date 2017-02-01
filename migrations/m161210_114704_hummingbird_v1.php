@@ -94,10 +94,15 @@ class m161210_114704_hummingbird_v1 extends Migration
           ], $tableOptions
         );
 
-        $this->insert('{{%user}}',
-                      [
+
+        $this->addColumn('{{%user}}', 'nickname', $this->string(64)->comment('user display name'));
+
+        $this->insert(
+          '{{%user}}', 
+          [
             'id'                   => 1,
             'username'             => 'admin',
+            'nickname'             => Yii::t('app', 'Administrator'),
             'auth_key'             => 'Ijzc9POowAtBKcLv-EynDfTwiiFFK2ol',
             'password_hash'        => '$2y$13$y37fpqs292nJmyKp4sreA.rlImubnmK2I2t77SmGOol480LA2HbhS', //123456
             'password_reset_token' => 'IBjV_0m-Mq7OFOicyYOjhJoEYPBOrBQZ_' . time(),

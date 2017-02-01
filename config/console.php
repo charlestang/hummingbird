@@ -5,6 +5,7 @@ $i18n = require(__DIR__ . '/i18n.php');
 
 $config = [
     'id' => 'basic-console',
+    'language' => 'zh-CN',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\commands',

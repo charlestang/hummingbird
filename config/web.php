@@ -46,7 +46,6 @@ $config = [
             'site/login',
             'site/about',
             'site/reset-password',
-            'admin/*',
         ],
     ],
     'modules' => require(__DIR__ . '/modules.php'),

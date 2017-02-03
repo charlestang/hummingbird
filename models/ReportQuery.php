@@ -9,10 +9,6 @@ namespace app\models;
  */
 class ReportQuery extends \yii\db\ActiveQuery
 {
-    /*public function active()
-    {
-        return $this->andWhere('[[status]]=1');
-    }*/
 
     /**
      * @inheritdoc
@@ -30,5 +26,10 @@ class ReportQuery extends \yii\db\ActiveQuery
     public function one($db = null)
     {
         return parent::one($db);
+    }
+
+    public function valid()
+    {
+        return $this->andWhere('deleted=0');
     }
 }

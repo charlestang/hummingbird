@@ -2,16 +2,16 @@
 
 namespace app\controllers;
 
+use Yii;
 use app\components\CsvHelper;
 use app\models\Database;
 use app\models\Report;
 use app\models\SqlForm;
-use Yii;
 use yii\base\UserException;
 use yii\data\ActiveDataProvider;
-use yii\db\Exception;
 use yii\filters\VerbFilter;
 use yii\web\Controller;
+use yii\web\HttpException;
 use yii\web\NotFoundHttpException;
 
 /**
@@ -32,6 +32,7 @@ class ReportController extends Controller
                 'class'   => VerbFilter::className(),
                 'actions' => [
                     'save'                => ['post'],
+                    'delete'              => ['post'],
                     'create'              => ['get', 'post'],
                     'edit'                => ['get', 'post'],
                     'export-query'        => ['post'],
@@ -110,7 +111,7 @@ class ReportController extends Controller
     public function actionList()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Report::find(),
+            'query' => Report::find()->valid(),
         ]);
 
         return $this->render(
@@ -220,5 +221,18 @@ class ReportController extends Controller
               'report'    => $report,
             ]
         );
+    }
+
+    public function actionDelete($id)
+    {
+        $report = Report::findOne($id);
+        if (empty($report)) {
+            throw new NotFoundHttpException(Yii::t('app', 'Report not found.'));
+        }
+        $report->deleted = true;
+        if (!$report->save()) {
+            throw new HttpException(500, Yii::t('app', 'Ooops, when delete report error occoured.'));
+        }
+        return $this->redirect('list');
     }
 }

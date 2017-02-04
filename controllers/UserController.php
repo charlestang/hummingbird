@@ -5,9 +5,9 @@ namespace app\controllers;
 use Yii;
 use app\models\User;
 use yii\data\ActiveDataProvider;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * UserController implements the CRUD actions for User model.
@@ -25,6 +25,7 @@ class UserController extends Controller
                 'class'   => VerbFilter::className(),
                 'actions' => [
                     'delete' => ['POST'],
+                    'ban'    => ['POST'],
                 ],
             ],
         ];
@@ -95,15 +96,9 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Deletes an existing User model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
-     * @return mixed
-     */
-    public function actionDelete($id)
+    public function actionBan($id) 
     {
-        $this->findModel($id)->delete();
+        $this->findModel($id)->ban();
 
         return $this->redirect(['index']);
     }

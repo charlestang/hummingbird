@@ -3,6 +3,7 @@
 use yii\data\ActiveDataProvider;
 use yii\grid\GridView;
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\web\View;
 
 /* @var $this View */
@@ -44,7 +45,18 @@ $this->title = '用户管理';
                         'updated_at:date',
                         [
                             'class' => 'yii\grid\ActionColumn',
-                            'template' => '{update} {delete}'
+                            'template' => '{update} {ban}',
+                            'buttons' => [
+                                'ban' => function ($url, $model, $key) {
+                                    $options = [
+                                        'title' => Yii::t('yii', 'Ban'),
+                                        'aria-label' => Yii::t('yii', 'Ban'),
+                                        'data-pjax' => '0',
+                                    ];
+                                    $url = Url::toRoute(['/user/ban', 'id' => (string) $key]);
+                                    return Html::a("<span class=\"fa fa-ban\"></span>", $url, $options); 
+                                },
+                            ],
                         ],
                     ],
                 ]);

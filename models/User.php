@@ -217,4 +217,10 @@ class User extends ActiveRecord implements IdentityInterface
     {
         throw new NotSupportedException('"findIdentityByAccessToken" is not implemented.');
     }
+
+    public function ban()
+    {
+        $this->status = self::STATUS_DELETED;
+        $this->save();
+    }
 }

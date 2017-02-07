@@ -35,7 +35,9 @@ $this->title = Yii::t('app', 'My Favorites');
                     'columns' => [
                         ['class' => 'yii\grid\SerialColumn'],
                         'report.name',
+                        'report.description',
                         'report.user.username:text:' . Yii::t('app', 'Creator'),
+                        'report.created_at:datetime',
                         'created_at:datetime',
                         [
                             'class'    => 'yii\grid\ActionColumn',

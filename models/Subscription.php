@@ -69,7 +69,7 @@ class Subscription extends ActiveRecord
             'user_id'    => Yii::t('app', 'User'),
             'report_id'  => Yii::t('app', 'Report'),
             'deleted'    => Yii::t('app', 'Deleted'),
-            'created_at' => Yii::t('app', 'Created At'),
+            'created_at' => Yii::t('app', 'Subscribed At'),
             'updated_at' => Yii::t('app', 'Updated'),
         ];
     }

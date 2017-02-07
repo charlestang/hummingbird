@@ -17,6 +17,8 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
+    'Ban' => '禁用',
+    'Favorite' => '收藏',
     'Time spent: {time_spent,plural,=1{ # second.} other{ # seconds.}}' => '',
     'Time spent: {time_spent,plural,<=1{ second.} other{ seconds.}}' => '@@@@',
     '&larr; Return login' => '&larr; 返回登录',
@@ -72,6 +74,7 @@ return [
     'My Favorites' => '我的收藏',
     'Nick Name' => '昵称或显示名称',
     'Not registerd? Sign up now.' => '还没注册？点此注册',
+    'Ooops, when delete report error occoured.' => '噢！删除报表时，发生了错误。',
     'Password' => '密码',
     'Password Hash' => '密码哈希',
     'Password Reset' => '密码重置',
@@ -89,12 +92,14 @@ return [
     'Report List' => '报表一览',
     'Report Name' => '报表名',
     'Report name: ' => '报表名称：',
+    'Report not found.' => '没有找到相应的报表。',
     'Report: ' => '报表：',
     'Role based authorization control' => '基于角色的访问控制',
     'Save' => '保存',
     'Save Report' => '保存报表',
     'Sign out' => '登出',
     'Since {0,date,medium}' => '开始于 {0,date,medium}',
+    'Subscribed At' => '收藏于',
     'System Management' => '系统管理',
     'Time Spent' => '用时',
     'Toggle navigation' => '折叠导航',

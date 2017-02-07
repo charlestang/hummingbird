@@ -49,8 +49,8 @@ $this->title = '用户管理';
                             'buttons' => [
                                 'ban' => function ($url, $model, $key) {
                                     $options = [
-                                        'title' => Yii::t('yii', 'Ban'),
-                                        'aria-label' => Yii::t('yii', 'Ban'),
+                                        'title' => Yii::t('app', 'Ban'),
+                                        'aria-label' => Yii::t('app', 'Ban'),
                                         'data-pjax' => '0',
                                     ];
                                     $url = Url::toRoute(['/user/ban', 'id' => (string) $key]);

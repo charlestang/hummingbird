@@ -45,8 +45,8 @@ $this->title = Yii::t('app', 'Report List');
                             'buttons' => [
                                 'favorite' => function ($url, $model, $key) {
                                     $options = [
-                                        'title' => Yii::t('yii', 'Favorite'),
-                                        'aria-label' => Yii::t('yii', 'Favorite'),
+                                        'title' => Yii::t('app', 'Favorite'),
+                                        'aria-label' => Yii::t('app', 'Favorite'),
                                         'data-pjax' => '0',
                                     ];
                                     $url = Url::toRoute(['/subscription/toggle', 'report_id' => (string) $key]);
@@ -59,8 +59,8 @@ $this->title = Yii::t('app', 'Report List');
                                 },
                                 'detail' => function ($url, $model, $key) {
                                     $options = [
-                                        'title' => Yii::t('yii', 'Detail'),
-                                        'aria-label' => Yii::t('yii', 'Detail'),
+                                        'title' => Yii::t('app', 'Detail'),
+                                        'aria-label' => Yii::t('app', 'Detail'),
                                         'data-toggle' => 'modal',
                                         'data-target' => '#reportSql',
                                         'data-report' => $key,

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "95c1d853dc79a18aa3a97418ac63e6f4",
+    "content-hash": "f40060cf986ae99222126a492e8dd1c6",
     "packages": [
         {
             "name": "almasaeed2010/adminlte",
@@ -641,28 +641,22 @@
         },
         {
             "name": "npm-asset/list.js",
-            "version": "1.4.1",
+            "version": "1.5.0",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/list.js/-/list.js-1.4.1.tgz",
+                "url": "https://registry.npmjs.org/list.js/-/list.js-1.5.0.tgz",
                 "reference": null,
-                "shasum": "e3d20b09f728067dad59139b8dbbf0010402ac2a"
+                "shasum": "a4cbfc8281ddefc02fdb2d30c8748bfae25fbcda"
             },
             "require": {
                 "npm-asset/string-natural-compare": ">=2.0.2,<3.0.0"
             },
             "require-dev": {
-                "npm-asset/browserify": ">=13.0.0,<14.0.0",
-                "npm-asset/expect.js": ">=0.3.1,<0.4.0",
-                "npm-asset/grunt": ">=0.4.5,<0.5.0",
-                "npm-asset/grunt-cli": ">=0.1.13,<0.2.0",
-                "npm-asset/grunt-contrib-jshint": ">=0.12.0,<0.13.0",
-                "npm-asset/grunt-contrib-uglify": ">=0.11.0,<0.12.0",
-                "npm-asset/grunt-contrib-watch": ">=0.6.1,<0.7.0",
-                "npm-asset/grunt-file-append": "0.0.6",
-                "npm-asset/grunt-mocha": "1.0.1",
-                "npm-asset/grunt-shell": ">=1.1.2,<2.0.0",
-                "npm-asset/jquery": ">=1.12.0,<2.0.0"
+                "npm-asset/jest": ">=18.1.0,<19.0.0",
+                "npm-asset/jquery": ">=1.12.0,<2.0.0",
+                "npm-asset/jshint": ">=2.9.4,<3.0.0",
+                "npm-asset/jshint-loader": ">=0.8.3,<0.9.0",
+                "npm-asset/webpack": ">=2.2.0,<3.0.0"
             },
             "type": "npm-asset-library",
             "extra": {
@@ -675,7 +669,9 @@
                     "type": "git",
                     "url": "git://github.com/javve/list.js.git"
                 },
-                "npm-asset-scripts": [],
+                "npm-asset-scripts": {
+                    "test": "jest"
+                },
                 "npm-asset-engines": {
                     "node": ">= 0.10.21"
                 }
@@ -691,7 +687,7 @@
                 }
             ],
             "description": "The perfect library for lists. Supports search, sort, filters and flexibility. Built to be invisible and work on existing HTML",
-            "homepage": "http://www.listjs.com",
+            "homepage": "http://listjs.com",
             "keywords": [
                 "dom",
                 "html",

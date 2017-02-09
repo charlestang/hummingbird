@@ -41,6 +41,7 @@ $this->title = Yii::t('app', 'My Favorites');
                         'created_at:datetime',
                         [
                             'class'    => 'yii\grid\ActionColumn',
+                            'header'   => Yii::t('app', 'Action'),
                             'template' => '{view} {delete}',
                             'buttons'  => [
                                 'view' => function ($url, $model, $key) {

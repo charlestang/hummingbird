@@ -24,6 +24,7 @@ return [
     '&larr; Return login' => '&larr; 返回登录',
     'Account Name' => '账户名',
     'Account Status' => '账户状态',
+    'Action' => '操作',
     'Add Database' => '添加数据库',
     'Add new user:' => '添加新用户',
     'Add or remove users' => '添加或者删除用户',

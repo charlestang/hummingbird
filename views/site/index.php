@@ -10,7 +10,7 @@ $this->title = false;
 
     <div class="jumbotron">
         <h1><?= Yii::t('app', 'Congratulations!') ?></h1>
-
+        <img src="/src/img/Hummingbird.png" width="128"/>
         <p class="lead"><?= Yii::t('app', 'Welcome to Hummingbird reporting system!') ?></p>
 
         <p><a class="btn btn-lg btn-success" href="<?= Url::toRoute(['/report/create']) ?>"><?= Yii::t('app', 'Create Report') ?></a></p>

@@ -32,7 +32,7 @@ return [
     'Authorization' => '授权管理',
     'Cancel' => '取消',
     'Confirm' => '确认',
-    'Congratulations!' => '恭喜你',
+    'Congratulations!' => '恭喜你!',
     'Connection Charset' => '连接字符集',
     'Create' => '创建',
     'Create Report' => '创建报表',

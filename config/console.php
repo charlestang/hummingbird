@@ -1,7 +1,6 @@
 <?php
 
 $params = require(__DIR__ . '/params.php');
-$i18n = require(__DIR__ . '/i18n.php');
 
 $config = [
     'id' => 'basic-console',
@@ -11,9 +10,6 @@ $config = [
     'controllerNamespace' => 'app\commands',
     'modules' => require(__DIR__ . '/modules.php'),
     'params' => $params,
-    'components' => [
-        'i18n' => $i18n,
-    ],
 ];
 
 

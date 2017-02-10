@@ -87,7 +87,7 @@ $editorBehaviour = <<<JS
         var connector = $(this).data('value');
         $('input[name=database_id]', form).val(connector);
         //todo: I add this tricky code because I used Yii ActiveForm
-        //      but in an improper why, which cause the form cannot be submitted. 
+        //      but in an improper way, which cause the form cannot be submitted.
         form.unbind("submit").submit();
         return false;
     });

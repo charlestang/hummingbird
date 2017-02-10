@@ -3,6 +3,7 @@
 namespace app\widgets\codemirror;
 
 use yii\base\Widget;
+use yii\helpers\Html;
 
 /**
  * Description of CodeMirror
@@ -23,7 +24,7 @@ class CodeMirror extends Widget
     public $editorId = null;
 
     /**
-     * @var string 编辑器的 name 属性 
+     * @var string 编辑器的 name 属性
      */
     public $editorName = 'code';
 
@@ -39,6 +40,9 @@ class CodeMirror extends Widget
         $view = $this->getView();
         EditorAsset::register($view);
         $view->registerJs('var editor_' . ($this->editorId?$this->editorId:'') . '=editorInit("' . $this->editorId . '");');
-        return $this->render('editor');
+        return Html::textarea($this->editorName, $this->defaultContent, [
+            'style' => 'display: none;',
+            'id' => $this->editorId,
+        ]);
     }
 }

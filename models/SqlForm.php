@@ -27,13 +27,46 @@ use yii\db\Connection;
 class SqlForm extends Model
 {
 
-    public $sql        = '';
-    public $database_id;
-    public $time_spent = 0;
+    /**
+     * SQL statement
+     * @var string
+     */
+    public $sql = '';
 
-    protected $compiled_sql = '';
+    /**
+     * Database connection configuration ID
+     * @var int
+     */
+    public $database_id;
+
+    /**
+     * Parameters name and value array.
+     * @var array
+     */
     protected $parameters = [];
-    protected $values = [];
+
+    /**
+     * Parameters defaults
+     * @var array
+     */
+    protected $defaults = [];
+
+    /**
+     * @var float
+     */
+    protected $time_spent = 0;
+
+    /**
+     * SQL statement without comments
+     * @var string
+     */
+    protected $sanitized_sql = '';
+
+    /**
+     * If the SQL statement is parameterized or not.
+     * @var boolean
+     */
+    protected $parameterized = false;
 
     public function rules()
     {
@@ -57,14 +90,14 @@ class SqlForm extends Model
         $connection = static::createDbConnection($this->database_id);
 
         $errno        = 0;
-        $parser       = $this->parse($this->compiled_sql);
+        $parser       = $this->parse($this->sanitized_sql);
         $sqlStatement = $parser->statements[0];
         try {
             if ($limit) {
                 $sqlStatement->limit = new Limit($limit);
             }
             $sql     = $sqlStatement->build();
-            $results = $connection->createCommand($sql)->queryAll();
+            $results = $connection->createCommand($sql, $this->parameters)->queryAll();
         } catch (\Exception $ex) {
             $errno = $ex->getCode();
             throw $ex;
@@ -83,29 +116,60 @@ class SqlForm extends Model
      */
     protected function preProcess()
     {
-        $this->compiled_sql = $this->sql;
-        $ret = preg_match('#/\*.*\*/#ms', $this->compiled_sql, $matches);
-        if ($ret) {
-            $lines     = array_map('trim', explode("\n", $matches[0]));
-            list($names, $defaults) = $this->parseParameters($lines);
-            $this->compiled_sql = str_replace($matches[0], '', $this->compiled_sql);
-            $this->compiled_sql = str_replace($names, $defaults, $this->compiled_sql);
+        $this->sanitized_sql = $this->sql;
+        $comments = $this->extractAllComments($this->sql);
+        $this->sanitized_sql = str_replace($comments, '', $this->sanitized_sql);
+
+        $parameter_keys = $this->parseParameters($comments);
+        $this->parameterized = !empty($parameter_keys);
+
+        if ($this->parameterized) {
+            $this->parameters = $this->defaults;
         }
+
         return true;
     }
 
-    protected function parseParameters($lines)
+    protected function extractAllComments($sql)
     {
-        $names    = [];
-        $defaults = [];
+        $matches = [];
+        $multi_line_comments = [];
+        $hash_leading_comments = [];
+        $dash_leading_comments = [];
+        if (preg_match_all('#/\*.*\*/#Ums', $sql, $matches)) {
+            $multi_line_comments = $matches[0];
+            $sql = str_replace($multi_line_comments, '', $sql);
+        }
+        if (preg_match_all('/#.*$/m', $sql, $matches)) {
+            $hash_leading_comments = $matches[0];
+            $sql = str_replace($hash_leading_comments, '', $sql);
+        }
+        if (preg_match_all('/--\s?.*$/m', $sql, $matches)) {
+            $dash_leading_comments = $matches[0];
+        }
+        return array_merge($multi_line_comments, $hash_leading_comments, $dash_leading_comments);
+    }
+
+    /**
+     * Parse the parameters from comments
+     * @param array $comments
+     * @return array the parameters' key array
+     */
+    protected function parseParameters($comments)
+    {
+        //break lines
+        $lines = [];
+        while($comment = array_shift($comments)) {
+            $without_leading= preg_replace('/^(#\s*)|(--\s*)/', '', $comment);
+            $lines = array_merge($lines, array_map('trim', explode("\n", $without_leading)));
+        }
         foreach ($lines as $line) {
             if (strpos($line, '@var') === 0) {
                 $parts      = array_map('trim', explode(' ', $line, 4));
-                $names[]    = $parts[2];
-                $defaults[] = $parts[3];
+                $this->defaults[$parts[2]] = trim($parts[3], '\'"');
             }
         }
-        return [$names, $defaults];
+        return array_keys($this->defaults);
     }
 
     public function execute($limit = false)
@@ -131,11 +195,11 @@ class SqlForm extends Model
         $database   = Database::findOne($database_id);
         /* @var $connection Connection */
         $connection = Yii::createObject([
-                    'class'    => 'yii\db\Connection',
-                    'dsn'      => 'mysql:host=' . $database->host . ';dbname=' . $database->database,
-                    'username' => $database->username,
-                    'password' => $database->password,
-                    'charset'  => $database->charset,
+              'class'    => 'yii\db\Connection',
+              'dsn'      => 'mysql:host=' . $database->host . ';dbname=' . $database->database,
+              'username' => $database->username,
+              'password' => $database->password,
+              'charset'  => $database->charset,
         ]);
 
         return $connection;
@@ -164,5 +228,10 @@ class SqlForm extends Model
     public function getBeautifiedVersion()
     {
         return Formatter::format($this->sql, ['type' => 'html']);
+    }
+
+    public function getTimeSpent()
+    {
+        return $this->time_spent;
     }
 }

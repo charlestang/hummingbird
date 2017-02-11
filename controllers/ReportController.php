@@ -31,12 +31,12 @@ class ReportController extends Controller
             'verbs' => [
                 'class'   => VerbFilter::className(),
                 'actions' => [
-                    'save'                => ['post'],
-                    'delete'              => ['post'],
                     'create'              => ['get', 'post'],
+                    'delete'              => ['post'],
                     'edit'                => ['get', 'post'],
                     'export-query'        => ['post'],
                     'export-by-report-id' => ['post'],
+                    'save'                => ['post'],
                 ],
             ],
         ];

@@ -17,60 +17,65 @@ $this->title = Yii::t('app', 'Create Report');
         ])
         ?>
 
-        <?php if (!empty($results) || $exception) : ?>
-            <div class="box box-info">
-                <div class="box-header">
-                    <h3 class="box-title">
-                        <i class="fa fa-list-alt text-primary"></i> <?= Yii::t('app', 'Formatted SQL')?> 
-                    </h3>
-                </div>
-                <div class="box-body">
-                    <pre class="sql-syntax-analyze"><?=$sqlForm->getBeautifiedVersion()?></pre>
-                </div>
-                <div class="box-footer">
-                    <p><?= Yii::t('app', 'Time spent: {time_spent,plural,=1{ # second.} other{ # seconds.}}', [
-                        'time_spent' => $sqlForm->time_spent
-                    ])?></p>
-                </div>
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">
+                    <i class="fa fa-list-alt text-primary"></i> <?= Yii::t('app', 'Formatted SQL')?> 
+                </h3>
             </div>
-            <div class="box box-primary">
-                <?php if (count($results) > 0) : ?>
-                    <!-- .box-header -->
-                    <div class="box-header">
-                        <h3 class="box-title">
-                            <i class="fa fa-list-alt text-primary"></i> <?= Yii::t('app', 'Query Result')?>
-                        </h3>
-                        <?php if (!$exception): ?>
-                            <div class="box-tools pull-right">
-                                <a class="btn btn-default btn-export" href="<?=Url::toRoute(['/report/export-query'])?>">
-                                    <i class="fa fa-download text-danger"></i>
-                                    <?= Yii::t('app', 'Export')?>
-                                </a>
-                                <a class="btn btn-default" data-toggle="modal" data-target="#reportSave">
-                                    <i class="fa fa-edit text-danger"></i>
-                                    <?= Yii::t('app', 'Save Report')?>
-                                </a>
-                            </div>
-                        <?php endif; ?>
+            <div class="box-body">
+                <pre class="sql-syntax-analyze"><?=$sqlForm->getBeautifiedVersion()?></pre>
+            </div>
+            <div class="box-footer">
+                <p><?= Yii::t('app', 'Time spent: {time_spent,plural,=1{ # second.} other{ # seconds.}}', [
+                    'time_spent' => $sqlForm->getTimeSpent()
+                ])?></p>
+            </div>
+        </div>
+
+        <div class="box box-primary">
+            <!-- .box-header -->
+            <div class="box-header">
+                <h3 class="box-title">
+                    <i class="fa fa-list-alt text-primary"></i> <?= Yii::t('app', 'Query Result')?>
+                </h3>
+                <?php if (!$exception): ?>
+                    <div class="box-tools pull-right">
+                        <a class="btn btn-default btn-export" href="<?=Url::toRoute(['/report/export-query'])?>">
+                            <i class="fa fa-download text-danger"></i>
+                            <?= Yii::t('app', 'Export')?>
+                        </a>
+                        <a class="btn btn-default" data-toggle="modal" data-target="#reportSave">
+                            <i class="fa fa-edit text-danger"></i>
+                            <?= Yii::t('app', 'Save Report')?>
+                        </a>
                     </div>
-                    <!-- /.box-header -->
-                    <!-- .box-body -->
-                    <div class="box-body p-b-0 p-t-0">
-                        <?= $this->render('_results', [ 'results' => $results]) ?>
-                    </div>
-                    <!-- /.box-body -->
                 <?php endif; ?>
-                <!-- .box-footer -->
-                <div class="box-footer">
-                    <?php if ($exception): ?>
-                        <div class="grid full">
-                            <pre class="text-danger"><?= Html::encode($exception) ?></pre>
-                        </div>
-                    <?php endif ?>
-                </div>
-                <!-- /.box-footer -->
             </div>
-        <?php endif; ?>
+            <!-- /.box-header -->
+            <!-- .box-body -->
+            <div class="box-body p-b-0 p-t-0">
+                <?php
+                if (count($results) > 0) :
+                    echo $this->render('_results', [ 'results' => $results]);
+                else:
+                    echo '<p>' . Yii::t('app', 'Empty set.') . '</p>';
+                endif;
+                ?>
+            </div>
+            <!-- /.box-body -->
+
+            <?php if ($exception) : ?>
+            <!-- .box-footer -->
+            <div class="box-footer">
+                <div class="grid full">
+                    <pre class="text-danger"><?= Html::encode($exception) ?></pre>
+                </div>
+            </div>
+            <!-- /.box-footer -->
+            <?php endif; ?>
+        </div>
+
     </div>
 </div>
 <?php

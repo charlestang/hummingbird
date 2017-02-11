@@ -20,7 +20,6 @@ return [
     'Ban' => '禁用',
     'Favorite' => '收藏',
     'Time spent: {time_spent,plural,=1{ # second.} other{ # seconds.}}' => '',
-    'Time spent: {time_spent,plural,<=1{ second.} other{ seconds.}}' => '@@@@',
     '&larr; Return login' => '&larr; 返回登录',
     'Account Name' => '账户名',
     'Account Status' => '账户状态',

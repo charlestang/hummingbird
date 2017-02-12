@@ -20,7 +20,7 @@ $this->title = Yii::t('app', 'Create Report');
         <div class="box box-info">
             <div class="box-header">
                 <h3 class="box-title">
-                    <i class="fa fa-list-alt text-primary"></i> <?= Yii::t('app', 'Formatted SQL')?> 
+                    <i class="fa fa-list-alt text-primary"></i> <?= Yii::t('app', 'Formatted SQL')?>
                 </h3>
             </div>
             <div class="box-body">
@@ -31,6 +31,64 @@ $this->title = Yii::t('app', 'Create Report');
                     'time_spent' => $sqlForm->getTimeSpent()
                 ])?></p>
             </div>
+        </div>
+
+        <div class="box box-info">
+            <div class="box-header">
+                <h3 class="box-title">
+                    <i class="fa fa-list-alt text-primary"></i> <?= Yii::t('app', 'Parameters')?>
+                </h3>
+            </div>
+            <div class="box-body">
+                <?php
+                $parameters = $sqlForm->getParameters();
+                foreach ($parameters as $key => $p) {
+                    switch ($p['type']) {
+                        case 'datetime':
+                            ?>
+                            <div class="form-group">
+                                <label><?= $key?></label>
+
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" class="form-control pull-right" id="datepicker">
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                            <?php
+                            break;
+                        case 'date':
+                            ?>
+                            <div class="form-group">
+                                <label><?= $key?></label>
+
+                                <div class="input-group date">
+                                    <div class="input-group-addon">
+                                        <i class="fa fa-calendar"></i>
+                                    </div>
+                                    <input type="text" class="form-control pull-right" id="datepicker">
+                                </div>
+                                <!-- /.input group -->
+                            </div>
+                            <?php
+                            break;
+                        case 'string':
+                            ?>
+                            <div class="form-group">
+                                <label><?= $key?></label>
+                                <input type="text" class="form-control" value="<?= $p['default']?>">
+                            </div>
+                            <?php
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                ?>
+            </div>
+            <div class="box-footer"></div>
         </div>
 
         <div class="box box-primary">

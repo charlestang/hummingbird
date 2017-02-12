@@ -15,7 +15,7 @@ use yii\db\Connection;
 
 /**
  * SqlForm is designed for SQL execution.
- * 
+ *
  * Every SQL will be processed after following steps:
  * - pre-process  replace variables by default value or given value
  * - validate     check if the SQL is read only
@@ -44,12 +44,6 @@ class SqlForm extends Model
      * @var array
      */
     protected $parameters = [];
-
-    /**
-     * Parameters defaults
-     * @var array
-     */
-    protected $defaults = [];
 
     /**
      * @var float
@@ -97,7 +91,9 @@ class SqlForm extends Model
                 $sqlStatement->limit = new Limit($limit);
             }
             $sql     = $sqlStatement->build();
-            $results = $connection->createCommand($sql, $this->parameters)->queryAll();
+            $results = $connection->createCommand($sql, array_map(function ($item) {
+                return $item['default'];
+            }, $this->parameters))->queryAll();
         } catch (\Exception $ex) {
             $errno = $ex->getCode();
             throw $ex;
@@ -124,7 +120,6 @@ class SqlForm extends Model
         $this->parameterized = !empty($parameter_keys);
 
         if ($this->parameterized) {
-            $this->parameters = $this->defaults;
         }
 
         return true;
@@ -158,18 +153,21 @@ class SqlForm extends Model
     protected function parseParameters($comments)
     {
         //break lines
-        $lines = [];
-        while($comment = array_shift($comments)) {
-            $without_leading= preg_replace('/^(#\s*)|(--\s*)/', '', $comment);
-            $lines = array_merge($lines, array_map('trim', explode("\n", $without_leading)));
+        $lines   = [];
+        while ($comment = array_shift($comments)) {
+            $without_leading = preg_replace('/^(#\s*)|(--\s*)/', '', $comment);
+            $lines           = array_merge($lines, array_map('trim', explode("\n", $without_leading)));
         }
         foreach ($lines as $line) {
             if (strpos($line, '@var') === 0) {
-                $parts      = array_map('trim', explode(' ', $line, 4));
-                $this->defaults[$parts[2]] = trim($parts[3], '\'"');
+                $parts = array_map('trim', preg_split('/\s+/', $line, 4));
+                $this->parameters[$parts[2]] = [
+                    'type'    => trim($parts[1]),
+                    'default' => trim($parts[3], '\'"'),
+                ];
             }
         }
-        return array_keys($this->defaults);
+        return array_keys($this->parameters);
     }
 
     public function execute($limit = false)
@@ -233,5 +231,10 @@ class SqlForm extends Model
     public function getTimeSpent()
     {
         return $this->time_spent;
+    }
+
+    public function getParameters()
+    {
+        return $this->parameters;
     }
 }

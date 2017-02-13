@@ -1,10 +1,11 @@
 <?php
 
+use yii\bootstrap\Button;
 use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title = Yii::t('app', 'Create Report');
+$this->title = \Yii::t('app', 'Create Report');
 ?>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
@@ -86,6 +87,12 @@ $this->title = Yii::t('app', 'Create Report');
                             break;
                     }
                 }
+                echo Button::widget([
+                            'label'   => \Yii::t('app', 'Query'),
+                            'options' => [
+                                'class' => 'btn-success'
+                            ]
+                ]);
                 ?>
             </div>
             <div class="box-footer"></div>

@@ -45,8 +45,8 @@ $this->title = \Yii::t('app', 'Create Report');
                 $parameters = $sqlForm->getParameters();
                 foreach ($parameters as $key => $p) {
                     switch ($p['type']) {
-                        case 'datetime':
-                            ?>
+                        case 'date':
+                            /*?>
                             <div class="form-group">
                                 <label><?= $key?></label>
 
@@ -59,8 +59,14 @@ $this->title = \Yii::t('app', 'Create Report');
                                 <!-- /.input group -->
                             </div>
                             <?php
+                             */
+                            echo \app\widgets\adminlte\DatePicker::widget([
+                                'name' => $key,
+                                'label' => $key,
+                                'value' => $p['default'],
+                            ]);
                             break;
-                        case 'date':
+                        case 'datetime':
                             ?>
                             <div class="form-group">
                                 <label><?= $key?></label>
@@ -88,10 +94,10 @@ $this->title = \Yii::t('app', 'Create Report');
                     }
                 }
                 echo Button::widget([
-                            'label'   => \Yii::t('app', 'Query'),
-                            'options' => [
-                                'class' => 'btn-success'
-                            ]
+                    'label'   => Yii::t('app', 'Query'),
+                    'options' => [
+                        'class' => 'btn-success'
+                    ]
                 ]);
                 ?>
             </div>

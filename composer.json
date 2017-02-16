@@ -23,7 +23,8 @@
         "league/csv": "~8.1.2",
         "phpmyadmin/sql-parser": "~4.0",
         "npm-asset/list.js": "^1.5",
-        "kartik-v/yii2-widget-datepicker": "^1.4"
+        "kartik-v/yii2-widget-datepicker": "^1.4",
+        "bower-asset/eonasdan-bootstrap-datetimepicker": "^4.17"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.7",

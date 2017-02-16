@@ -1,5 +1,6 @@
 <?php
 
+use app\widgets\datetimepicker\DateTimePicker;
 use kartik\date\DatePicker;
 use yii\bootstrap\Button;
 use yii\bootstrap\Modal;
@@ -63,19 +64,11 @@ $this->title = \Yii::t('app', 'Create Report');
                             echo '</div>';
                             break;
                         case 'datetime':
-                            ?>
-                            <div class="form-group">
-                                <label><?= $key?></label>
-
-                                <div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                    <input type="text" class="form-control pull-right" id="datepicker">
-                                </div>
-                                <!-- /.input group -->
-                            </div>
-                            <?php
+                            echo DateTimePicker::widget([
+                                'name' => $key,
+                                'value' => $p['default'],
+                                'label' => $key,
+                            ]);
                             break;
                         case 'string':
                             ?>

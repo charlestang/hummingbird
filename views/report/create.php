@@ -1,5 +1,6 @@
 <?php
 
+use kartik\date\DatePicker;
 use yii\bootstrap\Button;
 use yii\bootstrap\Modal;
 use yii\helpers\Html;
@@ -21,14 +22,14 @@ $this->title = \Yii::t('app', 'Create Report');
         <div class="box box-info">
             <div class="box-header">
                 <h3 class="box-title">
-                    <i class="fa fa-list-alt text-primary"></i> <?= Yii::t('app', 'Formatted SQL')?>
+                    <i class="fa fa-list-alt text-primary"></i> <?= \Yii::t('app', 'Formatted SQL')?>
                 </h3>
             </div>
             <div class="box-body">
                 <pre class="sql-syntax-analyze"><?=$sqlForm->getBeautifiedVersion()?></pre>
             </div>
             <div class="box-footer">
-                <p><?= Yii::t('app', 'Time spent: {time_spent,plural,=1{ # second.} other{ # seconds.}}', [
+                <p><?= \Yii::t('app', 'Time spent: {time_spent,plural,=1{ # second.} other{ # seconds.}}', [
                     'time_spent' => $sqlForm->getTimeSpent()
                 ])?></p>
             </div>
@@ -37,7 +38,7 @@ $this->title = \Yii::t('app', 'Create Report');
         <div class="box box-info">
             <div class="box-header">
                 <h3 class="box-title">
-                    <i class="fa fa-list-alt text-primary"></i> <?= Yii::t('app', 'Parameters')?>
+                    <i class="fa fa-list-alt text-primary"></i> <?= \Yii::t('app', 'Parameters')?>
                 </h3>
             </div>
             <div class="box-body">
@@ -46,25 +47,20 @@ $this->title = \Yii::t('app', 'Create Report');
                 foreach ($parameters as $key => $p) {
                     switch ($p['type']) {
                         case 'date':
-                            /*?>
-                            <div class="form-group">
-                                <label><?= $key?></label>
-
-                                <div class="input-group date">
-                                    <div class="input-group-addon">
-                                        <i class="fa fa-calendar"></i>
-                                    </div>
-                                    <input type="text" class="form-control pull-right" id="datepicker">
-                                </div>
-                                <!-- /.input group -->
-                            </div>
-                            <?php
-                             */
-                            echo \app\widgets\adminlte\DatePicker::widget([
+                            echo '<div class="form-group">';
+                            echo '<label for="',$key,'">', $key, '</label>';
+                            echo DatePicker::widget([
                                 'name' => $key,
-                                'label' => $key,
+                                'pickerButton' => '<div class="input-group-addon kv-date-calendar"><i class="fa fa-calendar"></i></div>',
+                                'layout' => '{picker}{input}',
+                                'type' => DatePicker::TYPE_COMPONENT_PREPEND,
                                 'value' => $p['default'],
+                                'pluginOptions' => [
+                                    'autoclose'=>true,
+                                    'format' => 'yyyy-mm-dd'
+                                ]
                             ]);
+                            echo '</div>';
                             break;
                         case 'datetime':
                             ?>
@@ -94,7 +90,7 @@ $this->title = \Yii::t('app', 'Create Report');
                     }
                 }
                 echo Button::widget([
-                    'label'   => Yii::t('app', 'Query'),
+                    'label'   => \Yii::t('app', 'Query'),
                     'options' => [
                         'class' => 'btn-success'
                     ]
@@ -108,17 +104,17 @@ $this->title = \Yii::t('app', 'Create Report');
             <!-- .box-header -->
             <div class="box-header">
                 <h3 class="box-title">
-                    <i class="fa fa-list-alt text-primary"></i> <?= Yii::t('app', 'Query Result')?>
+                    <i class="fa fa-list-alt text-primary"></i> <?= \Yii::t('app', 'Query Result')?>
                 </h3>
                 <?php if (!$exception): ?>
                     <div class="box-tools pull-right">
                         <a class="btn btn-default btn-export" href="<?=Url::toRoute(['/report/export-query'])?>">
                             <i class="fa fa-download text-danger"></i>
-                            <?= Yii::t('app', 'Export')?>
+                            <?= \Yii::t('app', 'Export')?>
                         </a>
                         <a class="btn btn-default" data-toggle="modal" data-target="#reportSave">
                             <i class="fa fa-edit text-danger"></i>
-                            <?= Yii::t('app', 'Save Report')?>
+                            <?= \Yii::t('app', 'Save Report')?>
                         </a>
                     </div>
                 <?php endif; ?>
@@ -130,7 +126,7 @@ $this->title = \Yii::t('app', 'Create Report');
                 if (count($results) > 0) :
                     echo $this->render('_results', [ 'results' => $results]);
                 else:
-                    echo '<p>' . Yii::t('app', 'Empty set.') . '</p>';
+                    echo '<p>' . \Yii::t('app', 'Empty set.') . '</p>';
                 endif;
                 ?>
             </div>
@@ -155,21 +151,21 @@ $this->title = \Yii::t('app', 'Create Report');
  */
 Modal::begin([
     'options'      => ['class' => 'modal', 'id' => 'reportSave'],
-    'header'       => '<h4 class="modal-title">' . Yii::t('app', 'Save Report') . '</h4>',
+    'header'       => '<h4 class="modal-title">' . \Yii::t('app', 'Save Report') . '</h4>',
     'toggleButton' => false,
     'footer'       => '<button type="button" class="btn pull-left" data-dismiss="modal">'
-        . Yii::t('app', 'Cancel') . '</button>
+        . \Yii::t('app', 'Cancel') . '</button>
                 <button type="button" class="btn btn-success report-save">'
-        . Yii::t('app', 'Confirm') . '</button>',
+        . \Yii::t('app', 'Confirm') . '</button>',
 ]);
 ?>
 <form action="<?= Url::to('/report/save') ?>">
     <div class="form-group">
-        <label for="report-name" class="control-label"><?= Yii::t('app', 'Report name: ')?></label>
+        <label for="report-name" class="control-label"><?= \Yii::t('app', 'Report name: ')?></label>
         <input type="text" class="form-control" id="reportName">
     </div>
     <div class="form-group">
-        <label for="report-description" class="control-label"><?= Yii::t('app', 'Description: ')?></label>
+        <label for="report-description" class="control-label"><?= \Yii::t('app', 'Description: ')?></label>
         <textarea class="form-control" id="reportDescription"></textarea>
     </div>
 </form>

@@ -67,6 +67,11 @@ class ServiceProviderHandler
     {
     }
 
+    /**
+     * This treat WeWork api
+     * @link https://work.weixin.qq.com/api/doc
+     * @return array
+     */
     protected function handleWeWork()
     {
         $attributes = [];

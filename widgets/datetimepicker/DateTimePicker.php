@@ -7,6 +7,7 @@ use yii\base\Widget;
 /**
  * Description of DateTimePicker
  *
+ * @link http://eonasdan.github.io/bootstrap-datetimepicker/ The official site of bootstrap-datetimepicker
  * @author charles
  */
 class DateTimePicker extends Widget

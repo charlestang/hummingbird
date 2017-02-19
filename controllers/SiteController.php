@@ -2,11 +2,12 @@
 
 namespace app\controllers;
 
+use app\components\ServiceProviderHandler;
+use app\models\LoginForm;
 use Yii;
 use yii\filters\AccessControl;
-use yii\web\Controller;
 use yii\filters\VerbFilter;
-use app\models\LoginForm;
+use yii\web\Controller;
 
 class SiteController extends Controller
 {
@@ -92,7 +93,7 @@ class SiteController extends Controller
 
     public function onAuthSuccess($client)
     {
-        $attributes = $client->getUserAttributes();
+        $attributes = (new ServiceProviderHandler($client))->handle();
         //todo: get username, nickname, email from attributes
         //      and check if username and email already exists,
         //      if not, register user, if so, login the user.

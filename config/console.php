@@ -8,7 +8,6 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'controllerNamespace' => 'app\commands',
-    'modules' => require(__DIR__ . '/modules.php'),
     'params' => $params,
 ];
 

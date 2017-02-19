@@ -48,11 +48,13 @@ class ReportController extends Controller
     public function actionCreate()
     {
         $dbDropdownOptions = Database::find()->dropdownOptions()->asArray()->column();
+        $viewName = 'create';
 
         $sqlForm   = new SqlForm();
         $results   = [];
         $exception = null;
         if (Yii::$app->request->getIsPost()) {
+            $viewName = 'query';
             $sqlForm->attributes = Yii::$app->request->post();
             try {
                 $results = $sqlForm->execute(30);
@@ -65,7 +67,7 @@ class ReportController extends Controller
         }
 
         return $this->render(
-            'create',
+            $viewName,
             [
               'sqlForm'           => $sqlForm,
               'dbDropdownOptions' => $dbDropdownOptions,

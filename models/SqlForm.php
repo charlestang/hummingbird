@@ -60,7 +60,7 @@ class SqlForm extends Model
      * If the SQL statement is parameterized or not.
      * @var boolean
      */
-    protected $parameterized = false;
+    public $parameterized = false;
 
     public function rules()
     {

@@ -34,8 +34,13 @@ class ServiceProviderHandler
         switch ($type) {
             case 'yii\authclient\clients\Google':
                 $result = $this->handleGoogle();
+                break;
             case 'app\components\Coding':
                 $result = $this->handleCoding();
+                break;
+            case 'app\components\WeWork':
+                $result = $this->handleWeWork();
+                break;
             default:
                 break;
         }
@@ -60,5 +65,15 @@ class ServiceProviderHandler
 
     protected function handleCoding()
     {
+    }
+
+    protected function handleWeWork()
+    {
+        $attributes = [];
+        $data = $this->client->getUserAttributes();
+        $attributes['email'] = $data['email'];
+        $attributes['username'] = $data['userid'];
+        $attributes['nickname'] = $data['name'];
+        return $attributes;
     }
 }

@@ -25,5 +25,4 @@ class MenuHelper
             'items' => $menu['children'],
         ];
     }
-
 }

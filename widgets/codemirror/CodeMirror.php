@@ -6,7 +6,7 @@ use yii\base\Widget;
 use yii\helpers\Html;
 
 /**
- * Description of CodeMirror
+ * This widget will show a code editor on the web page.
  *
  * @author charles
  */
@@ -14,20 +14,23 @@ class CodeMirror extends Widget
 {
 
     /**
-     * @var string 编辑器缺省加载的内容
+     * @var string the content editor will load default
      */
     public $defaultContent = '';
 
     /**
-     * @var string 编辑器的ID
+     * @var string the container id of the editor
      */
     public $editorId = null;
 
     /**
-     * @var string 编辑器的 name 属性
+     * @var string the form field name of the editor
      */
     public $editorName = 'code';
 
+    /**
+     * @inheritdoc
+     */
     public function init()
     {
         if ($this->editorId === null) {
@@ -35,6 +38,9 @@ class CodeMirror extends Widget
         }
     }
 
+    /**
+     * @inheritdoc
+     */
     public function run()
     {
         $view = $this->getView();

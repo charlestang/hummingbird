@@ -51,12 +51,6 @@
 * [LogQuery](#logquery)
     * [all](#all-1)
     * [one](#one-1)
-* [m161210_114704_hummingbird_v1](#m161210_114704_hummingbird_v1)
-    * [up](#up)
-    * [down](#down)
-* [m161214_142902_rbac_menu_v1](#m161214_142902_rbac_menu_v1)
-    * [up](#up-1)
-    * [down](#down-1)
 * [MenuHelper](#menuhelper)
     * [getMenuItemParser](#getmenuitemparser)
     * [menuItemParser](#menuitemparser)
@@ -157,7 +151,7 @@
 
 ## CodeMirror
 
-Description of CodeMirror
+This widget will show a code editor on the web page.
 
 
 
@@ -917,90 +911,6 @@ LogQuery::one(  $db = null ): \app\models\Log|array|null
 | Parameter | Type | Description |
 |-----------|------|-------------|
 | `$db` | **** |  |
-
-
-
-
----
-
-## m161210_114704_hummingbird_v1
-
-
-
-
-
-* Full name: \m161210_114704_hummingbird_v1
-* Parent class: 
-
-
-### up
-
-
-
-```php
-m161210_114704_hummingbird_v1::up(  )
-```
-
-
-
-
-
-
-
----
-
-### down
-
-
-
-```php
-m161210_114704_hummingbird_v1::down(  )
-```
-
-
-
-
-
-
-
----
-
-## m161214_142902_rbac_menu_v1
-
-
-
-
-
-* Full name: \m161214_142902_rbac_menu_v1
-* Parent class: 
-
-
-### up
-
-
-
-```php
-m161214_142902_rbac_menu_v1::up(  )
-```
-
-
-
-
-
-
-
----
-
-### down
-
-
-
-```php
-m161214_142902_rbac_menu_v1::down(  )
-```
-
-
-
 
 
 

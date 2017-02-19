@@ -9,6 +9,9 @@ $config = [
     'sourceLanguage' => 'en-US',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    //NOTE: components in this section are all used by web application
+    //      components used by both web and console application should be 
+    //      put in components.php
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) -
@@ -21,13 +24,6 @@ $config = [
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
-        ],
-        'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => true,
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
@@ -56,12 +52,31 @@ $config = [
                 ],
             ],
         ],
+        'authClientCollection' => [
+            'class' => 'yii\authclient\Collection',
+            'clients' => [
+                'google' => [
+                    'class' => 'yii\authclient\clients\Google',
+                    'clientId' => 'google_client_id',
+                    'clientSecret' => 'google_client_secret',
+                ],
+                /*
+                'facebook' => [
+                    'class' => 'yii\authclient\clients\Facebook',
+                    'clientId' => 'facebook_client_id',
+                    'clientSecret' => 'facebook_client_secret',
+                ],
+                // etc.
+                 */
+            ],
+        ],
     ],
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
             'site/logout',
             'site/login',
+            'site/auth',
             'site/about',
             'site/reset-password',
         ],
@@ -110,6 +125,7 @@ if (YII_ENV_DEV) {
     ];
 
     $config['as access']['allowActions'][] = 'gii/*';
+    $config['components']['authClientCollection']['clients'] = require(__DIR__ . '/oauth_clients.php');
 }
 
 return $config;

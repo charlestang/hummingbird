@@ -50,6 +50,10 @@ class SiteController extends Controller
                 'class'           => 'yii\captcha\CaptchaAction',
                 'fixedVerifyCode' => YII_ENV_TEST ? 'testme' : null,
             ],
+            'auth' => [
+                'class' => 'yii\authclient\AuthAction',
+                'successCallback' => [$this, 'onAuthSuccess'],
+            ],
         ];
     }
 
@@ -78,11 +82,21 @@ class SiteController extends Controller
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
             return $this->goBack();
         }
+
+        $thirdParties = Yii::$app->authClientCollection->clients;
         return $this->render('login', [
-                    'model' => $model,
+              'model' => $model,
+              'clients' => $thirdParties,
         ]);
     }
 
+    public function onAuthSuccess($client)
+    {
+        $attributes = $client->getUserAttributes();
+        //todo: get username, nickname, email from attributes
+        //      and check if username and email already exists,
+        //      if not, register user, if so, login the user.
+    }
     /**
      * Logout action.
      *

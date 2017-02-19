@@ -65,6 +65,11 @@ $fieldOptions2 = [
         <a href="<?= Url::to('reset-password')?>"><?= Yii::t('app', 'Forget password') ?></a><br>
         <a href="register.html" class="text-center"><?= Yii::t('app', 'Not registerd? Sign up now.') ?></a>
 
+        <ul>
+            <?php foreach ($clients as $key => $client) :?>
+            <li><a href="<?= Url::to(['auth', 'authclient'=>$key])?>"><?= Yii::t('app', 'Use {service_provider} accounts login', ['service_provider' => $client->title])?></a></li>
+            <?php endforeach; ?>
+        </ul>
     </div>
     <!-- /.login-box-body -->
 </div><!-- /.login-box -->

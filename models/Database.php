@@ -47,6 +47,7 @@ class Database extends ActiveRecord
             [['id', 'deleted', 'created_at', 'updated_at'], 'safe'],
             [['host', 'database', 'username', 'password'], 'string', 'max' => 64],
             [['alias', 'charset'], 'string', 'max' => 32],
+            [['type'], 'in', 'range' => ['mysql', 'pgsql'], 'strict' => true],
         ];
     }
 

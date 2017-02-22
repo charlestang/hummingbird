@@ -19,6 +19,8 @@ class m161210_114704_hummingbird_v1 extends Migration
             'id'         => $this->primaryKey()->comment('ID'),
             'alias'      => $this->string(32)->notNull()->unique()->comment('alias of this database'),
             'host'       => $this->string(64)->notNull()->comment('database host'),
+            'port'       => $this->integer()->notNull()->defaultValue(3306)->comment('the port of database server'),
+            'type'       => $this->string()->notNull()->defaultValue('mysql')->comment('the type of database'),
             'database'   => $this->string(64)->notNull()->comment('database name'),
             'username'   => $this->string(64)->comment('user name'),
             'password'   => $this->string(64)->comment('password'),

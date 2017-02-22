@@ -17,9 +17,10 @@
  * NOTE: this file must be saved in UTF-8 encoding.
  */
 return [
-    'Ban' => '禁用',
-    'Favorite' => '收藏',
-    'Time spent: {time_spent,plural,=1{ # second.} other{ # seconds.}}' => '',
+    'Empty set.' => '空集。',
+    'Parameters' => '参数',
+    'Time spent: {time_spent,plural,=1{ # second.} other{ # seconds.}}' => '耗时：{time_spent,plural,=1{ # 秒} other{ # 秒}}',
+    'Use {service_provider} accounts login' => '使用{service_provider} 帐号登录',
     '&larr; Return login' => '&larr; 返回登录',
     'Account Name' => '账户名',
     'Account Status' => '账户状态',
@@ -30,6 +31,7 @@ return [
     'Administrator' => '管理员',
     'Auth Key' => '认证密钥',
     'Authorization' => '授权管理',
+    'Ban' => '禁用',
     'Cancel' => '取消',
     'Confirm' => '确认',
     'Congratulations!' => '恭喜你!',
@@ -62,6 +64,7 @@ return [
     'Enter your username and password to login:' => '输入用户名和密码登录：',
     'Error Code' => '错误码',
     'Export' => '导出',
+    'Favorite' => '收藏',
     'Favorite Management' => '收藏夹管理',
     'Find Password' => '找回密码',
     'Forget password' => '忘记密码',

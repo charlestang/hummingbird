@@ -7,6 +7,7 @@
     * [init](#init)
     * [run](#run)
 * [CodeMirrorAsset](#codemirrorasset)
+* [Coding](#coding)
 * [CsvHelper](#csvhelper)
     * [exportDataAsCsv](#exportdataascsv)
 * [Database](#database)
@@ -79,11 +80,15 @@
     * [all](#all-2)
     * [one](#one-2)
     * [valid](#valid)
+* [ServiceProviderHandler](#serviceproviderhandler)
+    * [__construct](#__construct)
+    * [handle](#handle)
 * [SiteController](#sitecontroller)
     * [behaviors](#behaviors-5)
     * [actions](#actions)
     * [actionIndex](#actionindex-1)
     * [actionLogin](#actionlogin)
+    * [onAuthSuccess](#onauthsuccess)
     * [actionLogout](#actionlogout)
     * [actionResetPassword](#actionresetpassword)
 * [SqlForm](#sqlform)
@@ -138,6 +143,11 @@
     * [actionCreate](#actioncreate-2)
     * [actionUpdate](#actionupdate-2)
     * [actionBan](#actionban)
+* [WeWork](#wework)
+    * [buildAuthUrl](#buildauthurl)
+    * [fetchAccessToken](#fetchaccesstoken)
+    * [applyAccessTokenToRequest](#applyaccesstokentorequest)
+    * [refreshAccessToken](#refreshaccesstoken)
 
 ## AppAsset
 
@@ -198,6 +208,16 @@ CodeMirror::run(  )
 
 
 * Full name: \app\widgets\codemirror\CodeMirrorAsset
+* Parent class:
+
+
+## Coding
+
+Thisi is the auth client of Coding.net
+
+
+
+* Full name: \app\components\Coding
 * Parent class: 
 
 
@@ -563,6 +583,9 @@ Description of DateTimePicker
 * Full name: \app\widgets\datetimepicker\DateTimePicker
 * Parent class: 
 
+**See Also:**
+
+* http://eonasdan.github.io/bootstrap-datetimepicker/ - The official site of bootstrap-datetimepicker
 
 ### run
 
@@ -1398,6 +1421,53 @@ ReportQuery::valid(  )
 
 ---
 
+## ServiceProviderHandler
+
+Description of ServiceProviderHandler
+
+
+
+* Full name: \app\components\ServiceProviderHandler
+
+
+### __construct
+
+
+
+```php
+ServiceProviderHandler::__construct( \yii\authclient\BaseClient $client )
+```
+
+
+
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$client` | **\yii\authclient\BaseClient** |  |
+
+
+
+
+---
+
+### handle
+
+
+
+```php
+ServiceProviderHandler::handle(  )
+```
+
+
+
+
+
+
+
+---
+
 ## SiteController
 
 
@@ -1466,6 +1536,28 @@ SiteController::actionLogin(  ): string
 
 
 
+
+
+
+
+---
+
+### onAuthSuccess
+
+
+
+```php
+SiteController::onAuthSuccess(  $client )
+```
+
+
+
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$client` | **** |  |
 
 
 
@@ -2441,7 +2533,115 @@ UserController::actionBan(  $id )
 
 ---
 
+## WeWork
+
+Description of WeWork
+
+
+
+* Full name: \app\components\WeWork
+* Parent class: 
+
+
+### buildAuthUrl
+
+Composes user authorization URL.
+
+```php
+WeWork::buildAuthUrl( array $params = array() ): string
+```
+
+
+
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$params` | **array** | additional auth GET params. |
+
+
+**Return Value:**
+
+authorization URL.
+
+
+
+---
+
+### fetchAccessToken
+
+Fetches access token from authorization code.
+
+```php
+WeWork::fetchAccessToken( string $authCode, array $params = array() ): \yii\authclient\OAuthToken
+```
+
+
+
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$authCode` | **string** | authorization code, usually comes at $_GET['code']. |
+| `$params` | **array** | additional request params. |
+
+
+**Return Value:**
+
+access token.
+
+
+
+---
+
+### applyAccessTokenToRequest
+
+
+
+```php
+WeWork::applyAccessTokenToRequest(  $request,  $accessToken )
+```
+
+
+
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$request` | **** |  |
+| `$accessToken` | **** |  |
+
+
+
+
+---
+
+### refreshAccessToken
+
+
+
+```php
+WeWork::refreshAccessToken( \yii\authclient\OAuthToken $token )
+```
+
+
+
+
+**Parameters:**
+
+| Parameter | Type | Description |
+|-----------|------|-------------|
+| `$token` | **\yii\authclient\OAuthToken** |  |
+
+
+
+
+---
+
 
 
 --------
-> This document was automatically generated from source code comments on 2017-02-19 using [phpDocumentor](http://www.phpdoc.org/) and [cvuorinen/phpdoc-markdown-public](https://github.com/cvuorinen/phpdoc-markdown-public)
+> This document was automatically generated from source code comments on 2017-02-24 using [phpDocumentor](http://www.phpdoc.org/) and [cvuorinen/phpdoc-markdown-public](https://github.com/cvuorinen/phpdoc-markdown-public)

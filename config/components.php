@@ -24,6 +24,10 @@ return [
                 ],
             ],
         ],
+        // the authManager component will be used by migration script
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+        ],
         'db'     => require(__DIR__ . '/db.php'),
         'i18n'   => require(__DIR__ . '/i18n.php'),
     ],

@@ -19,7 +19,7 @@
 return [
     'Empty set.' => '空集。',
     'Parameters' => '参数',
-    'Time spent: {time_spent,plural,=1{ # second.} other{ # seconds.}}' => '耗时：{time_spent,plural,=1{ # 秒} other{ # 秒}}',
+    'Time spent: {time_spent,plural,=1{ # second.} other{ # seconds.}}' => '查询耗时：{time_spent,plural,=1{ # 秒} other{ # 秒}}',
     'Use {service_provider} accounts login' => '使用{service_provider} 帐号登录',
     '&larr; Return login' => '&larr; 返回登录',
     'Account Name' => '账户名',
@@ -68,7 +68,7 @@ return [
     'Favorite Management' => '收藏夹管理',
     'Find Password' => '找回密码',
     'Forget password' => '忘记密码',
-    'Formatted SQL' => '查询格式化',
+    'Formatted:' => '格式化：',
     'Host' => '主机',
     'Last Updated Time' => '最后更新时间',
     'Last updated at: ' => '最后更新于：',

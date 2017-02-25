@@ -15,11 +15,18 @@ $this->title = Yii::t('app', 'Create Report');
             'dbDropdownOptions' => $dbDropdownOptions,
             'scenario'          => 'create',
         ])?>
-        <div class="box box-info">
+        <div class="box box-info collapsed-box">
             <div class="box-header">
                 <h3 class="box-title">
-                    <i class="fa fa-list-alt text-primary"></i> <?= Yii::t('app', 'Formatted SQL')?>
+                    <i class="fa fa-list-alt text-primary"></i>
+                    <?= Yii::t('app', 'Time spent: {time_spent,plural,=1{ # second.} other{ # seconds.}}', [
+                    'time_spent' => $sqlForm->getTimeSpent()
+                    ])?> |
+                    <?= Yii::t('app', 'Formatted:')?>
                 </h3>
+                <div class="box-tools pull-right">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i></button>
+                </div>
             </div>
             <div class="box-body">
                 <pre class="sql-syntax-analyze"><?=$sqlForm->getBeautifiedVersion()?></pre>
@@ -79,7 +86,7 @@ $this->title = Yii::t('app', 'Create Report');
                     }
                 }
                 echo Button::widget([
-                    'label'   => \Yii::t('app', 'Query'),
+                    'label'   => Yii::t('app', 'Query'),
                     'options' => [
                         'class' => 'btn-success'
                     ]
@@ -94,17 +101,17 @@ $this->title = Yii::t('app', 'Create Report');
             <!-- .box-header -->
             <div class="box-header">
                 <h3 class="box-title">
-                    <i class="fa fa-list-alt text-primary"></i> <?= \Yii::t('app', 'Query Result')?>
+                    <i class="fa fa-list-alt text-primary"></i> <?= Yii::t('app', 'Query Result')?>
                 </h3>
                 <?php if (!$exception): ?>
                     <div class="box-tools pull-right">
                         <a class="btn btn-default btn-export" href="<?=Url::toRoute(['/report/export-query'])?>">
                             <i class="fa fa-download text-danger"></i>
-                            <?= \Yii::t('app', 'Export')?>
+                            <?= Yii::t('app', 'Export')?>
                         </a>
                         <a class="btn btn-default" data-toggle="modal" data-target="#reportSave">
                             <i class="fa fa-edit text-danger"></i>
-                            <?= \Yii::t('app', 'Save Report')?>
+                            <?= Yii::t('app', 'Save Report')?>
                         </a>
                     </div>
                 <?php endif; ?>
@@ -116,7 +123,7 @@ $this->title = Yii::t('app', 'Create Report');
                 if (count($results) > 0) :
                     echo $this->render('_results', [ 'results' => $results]);
                 else:
-                    echo '<p>' . \Yii::t('app', 'Empty set.') . '</p>';
+                    echo '<p>' . Yii::t('app', 'Empty set.') . '</p>';
                 endif;
                 ?>
             </div>
@@ -141,28 +148,28 @@ $this->title = Yii::t('app', 'Create Report');
  */
 Modal::begin([
     'options'      => ['class' => 'modal', 'id' => 'reportSave'],
-    'header'       => '<h4 class="modal-title">' . \Yii::t('app', 'Save Report') . '</h4>',
+    'header'       => '<h4 class="modal-title">' . Yii::t('app', 'Save Report') . '</h4>',
     'toggleButton' => false,
     'footer'       => '<button type="button" class="btn pull-left" data-dismiss="modal">'
-        . \Yii::t('app', 'Cancel') . '</button>
+        . Yii::t('app', 'Cancel') . '</button>
                 <button type="button" class="btn btn-success report-save">'
-        . \Yii::t('app', 'Confirm') . '</button>',
+        . Yii::t('app', 'Confirm') . '</button>',
 ]);
 ?>
 <form action="<?= Url::to('/report/save') ?>">
     <div class="form-group">
-        <label for="report-name" class="control-label"><?= \Yii::t('app', 'Report name: ')?></label>
+        <label for="report-name" class="control-label"><?= Yii::t('app', 'Report name: ')?></label>
         <input type="text" class="form-control" id="reportName">
     </div>
     <div class="form-group">
-        <label for="report-description" class="control-label"><?= \Yii::t('app', 'Description: ')?></label>
+        <label for="report-description" class="control-label"><?= Yii::t('app', 'Description: ')?></label>
         <textarea class="form-control" id="reportDescription"></textarea>
     </div>
 </form>
 <?php
 Modal::end();
 
-$csrf              = \Yii::$app->request->getCsrfToken();
+$csrf              = Yii::$app->request->getCsrfToken();
 $nonAjaxRequestFav = <<<JS
 
 /**

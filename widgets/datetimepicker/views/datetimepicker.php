@@ -8,8 +8,7 @@
         </div>
         <input type="text" class="form-control pull-right" 
                id="<?= $this->context->id?>" 
-               name="<?= $this->context->name?>" 
-               value="<?= $this->context->value?>">
+               name="<?= $this->context->name?>">
     </div>
     <!-- /.input group -->
 </div>

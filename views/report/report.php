@@ -72,9 +72,8 @@ $this->title = Yii::t('app', 'Report: ') . Html::encode($report->name);
     </div>
 </div>
 <?php
-$csrf              = Yii::$app->request->getCsrfToken();
+$csrf = Yii::$app->request->getCsrfToken();
 $nonAjaxRequestFav = <<<JS
-
 /**
  * Report data export
  */
@@ -87,5 +86,4 @@ $('.box-tools a.btn-export').click(function() {
     return false;
 });
 JS;
-
 $this->registerJs($nonAjaxRequestFav);

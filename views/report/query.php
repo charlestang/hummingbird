@@ -1,5 +1,4 @@
 <?php
-
 use app\widgets\datetimepicker\DateTimePicker;
 use kartik\date\DatePicker;
 use yii\bootstrap\Button;
@@ -7,30 +6,26 @@ use yii\bootstrap\Modal;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title = \Yii::t('app', 'Create Report');
+$this->title = Yii::t('app', 'Create Report');
 ?>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
-
-        <?=
-        $this->render('_editor', [
+        <?= $this->render('_editor', [
             'sqlForm'           => $sqlForm,
             'dbDropdownOptions' => $dbDropdownOptions,
             'scenario'          => 'create',
-        ])
-        ?>
-
+        ])?>
         <div class="box box-info">
             <div class="box-header">
                 <h3 class="box-title">
-                    <i class="fa fa-list-alt text-primary"></i> <?= \Yii::t('app', 'Formatted SQL')?>
+                    <i class="fa fa-list-alt text-primary"></i> <?= Yii::t('app', 'Formatted SQL')?>
                 </h3>
             </div>
             <div class="box-body">
                 <pre class="sql-syntax-analyze"><?=$sqlForm->getBeautifiedVersion()?></pre>
             </div>
             <div class="box-footer">
-                <p><?= \Yii::t('app', 'Time spent: {time_spent,plural,=1{ # second.} other{ # seconds.}}', [
+                <p><?= Yii::t('app', 'Time spent: {time_spent,plural,=1{ # second.} other{ # seconds.}}', [
                     'time_spent' => $sqlForm->getTimeSpent()
                 ])?></p>
             </div>
@@ -40,7 +35,7 @@ $this->title = \Yii::t('app', 'Create Report');
         <div class="box box-info">
             <div class="box-header">
                 <h3 class="box-title">
-                    <i class="fa fa-list-alt text-primary"></i> <?= \Yii::t('app', 'Parameters')?>
+                    <i class="fa fa-list-alt text-primary"></i> <?= Yii::t('app', 'Parameters')?>
                 </h3>
             </div>
             <div class="box-body">

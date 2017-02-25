@@ -208,7 +208,7 @@ CodeMirror::run(  )
 
 
 * Full name: \app\widgets\codemirror\CodeMirrorAsset
-* Parent class:
+* Parent class: 
 
 
 ## Coding
@@ -2644,4 +2644,4 @@ WeWork::refreshAccessToken( \yii\authclient\OAuthToken $token )
 
 
 --------
-> This document was automatically generated from source code comments on 2017-02-24 using [phpDocumentor](http://www.phpdoc.org/) and [cvuorinen/phpdoc-markdown-public](https://github.com/cvuorinen/phpdoc-markdown-public)
+> This document was automatically generated from source code comments on 2017-02-26 using [phpDocumentor](http://www.phpdoc.org/) and [cvuorinen/phpdoc-markdown-public](https://github.com/cvuorinen/phpdoc-markdown-public)

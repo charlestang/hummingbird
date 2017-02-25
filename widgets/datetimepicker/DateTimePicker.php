@@ -2,6 +2,7 @@
 
 namespace app\widgets\datetimepicker;
 
+use app\widgets\datetimepicker\DateTimePickerAsset;
 use yii\base\Widget;
 
 /**
@@ -20,8 +21,8 @@ class DateTimePicker extends Widget
     public function run()
     {
         $view = $this->getView();
-        \app\widgets\datetimepicker\DateTimePickerAsset::register($view);
-        $js   = "jQuery('#{$this->id}').datetimepicker();";
+        DateTimePickerAsset::register($view);
+        $js   = "jQuery('#{$this->id}').datetimepicker({defaultDate: moment(\"{$this->value}\")});";
         $view->registerJs($js);
         return $this->render('datetimepicker');
     }

@@ -16,73 +16,113 @@ $this->title = Yii::t('app', 'Create Report');
 ?>
 <div class="row">
     <div class="col-xs-12 col-sm-12 col-md-12">
-<div class="box">
-    <div class="box-body">
-        <?php
-        $form    = ActiveForm::begin([
-              'action'  => '',
-              'method'  => 'post',
-              'options' => [
-                  'id' => 'editorpanel'
-              ]
-          ])
-        ?>
-        <?=
-        CodeMirror::widget([
-            'editorId'       => 'sqleditor',
-            'editorName'     => 'sql',
-            'defaultContent' => $sqlForm->sql,
-        ])
-        ?>
-        <input type="hidden" name="database_id" value="<?= Html::encode($sqlForm->database_id) ?>"/>
-        <div class="row no-padding m-b-0 m-t-1">
-            <div class="col-lg-12 col-sm-12">
+        <div class="box">
+            <div class="box-body">
                 <?php
-                $options = [
-                    'split'    => false,
-                    'options'  => [
-                        'class' => 'btn-success',
-                    ],
-                    'dropdown' => [
-                        'options' => [
-                            'id'    => 'connector_list',
-                            'class' => 'connector-dropdown',
-                        ],
-                        'items'   => [],
-                    ],
-                ];
-                foreach ($dbDropdownOptions as $dbId => $dbAlias) {
-                    $options['dropdown']['items'][] = [
-                        'label'       => $dbAlias,
-                        'url'         => '#',
-                        'linkOptions' => [
-                            'data-value' => $dbId,
-                        ],
-                        'options'     => [
-                            'class' => $sqlForm->database_id == $dbId ? 'active' : '',
-                        ],
-                    ];
-                    if ($sqlForm->database_id == $dbId) {
-                        $options['label'] = $dbAlias;
-                    }
-                }
-                echo ButtonGroup::widget([
-                    'buttons' => [
-                        Button::widget([
-                            'label'   => Yii::t('app', 'Query'),
-                            'options' => [
-                                'class' => 'btn-success'
-                            ]
-                        ]),
-                        ButtonDropdown::widget($options),
-                    ]
-                ]);
+                $form    = ActiveForm::begin([
+                      'action'  => '',
+                      'method'  => 'post',
+                      'options' => [
+                          'id' => 'editorpanel'
+                      ]
+                  ])
                 ?>
+                <?=
+                CodeMirror::widget([
+                    'editorId'       => 'sqleditor',
+                    'editorName'     => 'sql',
+                    'defaultContent' => $sqlForm->sql,
+                ])
+                ?>
+                <input type="hidden" name="database_id" value="<?= Html::encode($sqlForm->database_id) ?>"/>
+                <div class="row no-padding m-b-0 m-t-1">
+                    <div class="col-lg-12 col-sm-12">
+                        <?php
+                        if ($sqlForm->parameterized):
+                            $parameters = $sqlForm->getParameters();
+                            foreach ($parameters as $key => $p) {
+                                switch ($p['type']) {
+                                    case 'date':
+                                        echo '<div class="form-group">';
+                                        echo '<label for="',$key,'">', $key, '</label>';
+                                        echo DatePicker::widget([
+                                            'name' => $key,
+                                            'pickerButton' => '<div class="input-group-addon kv-date-calendar"><i class="fa fa-calendar"></i></div>',
+                                            'layout' => '{picker}{input}',
+                                            'type' => DatePicker::TYPE_COMPONENT_PREPEND,
+                                            'value' => $p['default'],
+                                            'pluginOptions' => [
+                                                'autoclose'=>true,
+                                                'format' => 'yyyy-mm-dd'
+                                            ]
+                                        ]);
+                                        echo '</div>';
+                                        break;
+                                    case 'datetime':
+                                        echo DateTimePicker::widget([
+                                            'name' => $key,
+                                            'value' => $p['default'],
+                                            'label' => $key,
+                                        ]);
+                                        break;
+                                    case 'string':
+                                        ?>
+                                        <div class="form-group">
+                                            <label><?= $key?></label>
+                                            <input type="text" class="form-control" value="<?= $p['default']?>">
+                                        </div>
+                                        <?php
+                                        break;
+                                    default:
+                                        break;
+                                }
+                            }
+                        endif;
+                        $options = [
+                            'split'    => false,
+                            'options'  => [
+                                'class' => 'btn-success',
+                            ],
+                            'dropdown' => [
+                                'options' => [
+                                    'id'    => 'connector_list',
+                                    'class' => 'connector-dropdown',
+                                ],
+                                'items'   => [],
+                            ],
+                        ];
+                        foreach ($dbDropdownOptions as $dbId => $dbAlias) {
+                            $options['dropdown']['items'][] = [
+                                'label'       => $dbAlias,
+                                'url'         => '#',
+                                'linkOptions' => [
+                                    'data-value' => $dbId,
+                                ],
+                                'options'     => [
+                                    'class' => $sqlForm->database_id == $dbId ? 'active' : '',
+                                ],
+                            ];
+                            if ($sqlForm->database_id == $dbId) {
+                                $options['label'] = $dbAlias;
+                            }
+                        }
+                        echo ButtonGroup::widget([
+                            'buttons' => [
+                                Button::widget([
+                                    'label'   => Yii::t('app', 'Query'),
+                                    'options' => [
+                                        'class' => 'btn-success'
+                                    ]
+                                ]),
+                                ButtonDropdown::widget($options),
+                            ]
+                        ]);
+                        ?>
+                    </div>
+                </div>
+                <?php $form->end() ?>
             </div>
         </div>
-        <?php $form->end() ?>
-    </div>
-</div>
         <div class="box box-info collapsed-box">
             <div class="box-header">
                 <h3 class="box-title">
@@ -105,65 +145,6 @@ $this->title = Yii::t('app', 'Create Report');
                 ])?></p>
             </div>
         </div>
-
-        <?php if ($sqlForm->parameterized): ?>
-        <div class="box box-info">
-            <div class="box-header">
-                <h3 class="box-title">
-                    <i class="fa fa-list-alt text-primary"></i> <?= Yii::t('app', 'Parameters')?>
-                </h3>
-            </div>
-            <div class="box-body">
-                <?php
-                $parameters = $sqlForm->getParameters();
-                foreach ($parameters as $key => $p) {
-                    switch ($p['type']) {
-                        case 'date':
-                            echo '<div class="form-group">';
-                            echo '<label for="',$key,'">', $key, '</label>';
-                            echo DatePicker::widget([
-                                'name' => $key,
-                                'pickerButton' => '<div class="input-group-addon kv-date-calendar"><i class="fa fa-calendar"></i></div>',
-                                'layout' => '{picker}{input}',
-                                'type' => DatePicker::TYPE_COMPONENT_PREPEND,
-                                'value' => $p['default'],
-                                'pluginOptions' => [
-                                    'autoclose'=>true,
-                                    'format' => 'yyyy-mm-dd'
-                                ]
-                            ]);
-                            echo '</div>';
-                            break;
-                        case 'datetime':
-                            echo DateTimePicker::widget([
-                                'name' => $key,
-                                'value' => $p['default'],
-                                'label' => $key,
-                            ]);
-                            break;
-                        case 'string':
-                            ?>
-                            <div class="form-group">
-                                <label><?= $key?></label>
-                                <input type="text" class="form-control" value="<?= $p['default']?>">
-                            </div>
-                            <?php
-                            break;
-                        default:
-                            break;
-                    }
-                }
-                echo Button::widget([
-                    'label'   => Yii::t('app', 'Query'),
-                    'options' => [
-                        'class' => 'btn-success'
-                    ]
-                ]);
-                ?>
-            </div>
-            <div class="box-footer"></div>
-        </div>
-        <?php endif; ?>
 
         <div class="box box-primary">
             <!-- .box-header -->

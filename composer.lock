@@ -132,16 +132,16 @@
         },
         {
             "name": "bower-asset/eonasdan-bootstrap-datetimepicker",
-            "version": "v4.17.45",
+            "version": "4.17.47",
             "source": {
                 "type": "git",
                 "url": "https://github.com/Eonasdan/bootstrap-datetimepicker.git",
-                "reference": "bf88bcc394223787a3a874f572c2f231742e174e"
+                "reference": "25c11d79e614bc6463a87c3dd9cbf8280422e006"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Eonasdan/bootstrap-datetimepicker/zipball/bf88bcc394223787a3a874f572c2f231742e174e",
-                "reference": "bf88bcc394223787a3a874f572c2f231742e174e",
+                "url": "https://api.github.com/repos/Eonasdan/bootstrap-datetimepicker/zipball/25c11d79e614bc6463a87c3dd9cbf8280422e006",
+                "reference": "25c11d79e614bc6463a87c3dd9cbf8280422e006",
                 "shasum": ""
             },
             "require": {

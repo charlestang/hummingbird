@@ -20,9 +20,9 @@
         "yiisoft/yii2-authclient": "~2.1.2",
         "dmstr/yii2-adminlte-asset": "~2.3.4",
         "mdmsoft/yii2-admin": "~2.7",
-        "bower-asset/codemirror": "^5.22",
+        "bower-asset/codemirror": "^5.25",
         "league/csv": "~8.1.2",
-        "phpmyadmin/sql-parser": "~4.0",
+        "phpmyadmin/sql-parser": "~4.1",
         "npm-asset/list.js": "^1.5",
         "kartik-v/yii2-widget-datepicker": "^1.4",
         "bower-asset/eonasdan-bootstrap-datetimepicker": "^4.17"

@@ -14,11 +14,11 @@
     "prefer-stable": true,
     "require": {
         "php": ">=5.6.0",
-        "yiisoft/yii2": "~2.0.10",
-        "yiisoft/yii2-bootstrap": "~2.0.6",
-        "yiisoft/yii2-swiftmailer": "~2.0.6",
+        "yiisoft/yii2": "~2.0.42",
+        "yiisoft/yii2-bootstrap": "~2.0.10",
+        "yiisoft/yii2-swiftmailer": "~2.0.7",
         "yiisoft/yii2-authclient": "~2.1.2",
-        "dmstr/yii2-adminlte-asset": "~2.3.4",
+        "dmstr/yii2-adminlte-asset": "~2.6.2",
         "mdmsoft/yii2-admin": "~2.7",
         "bower-asset/codemirror": "^5.25",
         "league/csv": "~8.1.2",
@@ -40,6 +40,12 @@
             "yii\\composer\\Installer::postCreateProject"
         ]
     },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ],
     "extra": {
         "yii\\composer\\Installer::postCreateProject": {
             "setPermission": [

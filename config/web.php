@@ -102,6 +102,10 @@ $config = [
         ],
     ],
     'params' => $params,
+    'aliases' => [
+        '@bower' => '@vendor/bower-asset',
+        '@npm'   => '@vendor/npm-asset',
+    ],
 ];
 
 if (YII_ENV_DEV) {

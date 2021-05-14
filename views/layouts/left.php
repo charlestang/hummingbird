@@ -29,6 +29,9 @@ use mdm\admin\components\MenuHelper;
         <?=
         Menu::widget([
             'options' => ['class' => 'sidebar-menu'],
+            //submenuTemplate should add class "list", if not, list.js will cause error.
+            // see link:https://stackoverflow.com/questions/32532912/list-js-cannot-read-property-childnodes-of-undefined
+            'submenuTemplate' => "\n<ul class='treeview-menu list' {show}>\n{items}\n</ul>\n",
             'linkTemplate' => '<a class="report-name" href="{url}">{icon} {label}</a>',
             'items' => FavMenuHelper::getFavMenuItems(),
         ])

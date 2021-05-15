@@ -18,7 +18,7 @@ class FavMenuHelper
         $result = [
             [
                 'label' => '我的收藏',
-                'icon'  => 'fa fa-star',
+                'icon'  => 'star',
                 'url'   => ['/subscription/list'],
                 'items' => [],
             ],
@@ -28,7 +28,7 @@ class FavMenuHelper
         foreach ($subscriptions as $s) {
             $result[0]['items'][] = [
                 'label' => $s->report->name,
-                'icon'  => 'fa fa-circle',
+                'icon'  => 'circle',
                 'url'   => ['/report/view', 'id' => $s->report_id],
             ];
         }

@@ -25,7 +25,7 @@ FEATURES
 
 REQUIREMENTS
 ------------
-- PHP 5.6.0+
+- PHP 7.4.21
 - composer
 
 INSTALLATION

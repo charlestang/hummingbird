@@ -127,7 +127,6 @@ if (YII_ENV_DEV) {
     ];
 
     $config['as access']['allowActions'][] = 'gii/*';
-    $config['components']['authClientCollection']['clients'] = require(__DIR__ . '/oauth_clients.php');
 }
 
 return $config;

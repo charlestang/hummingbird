@@ -28,6 +28,20 @@ REQUIREMENTS
 - PHP 7.4.21
 - composer
 
+DOCKER(Recommended)
+------------
+### Clone source code
+
+~~~
+clone https://github.com/charlestang/hummingbird.git
+~~~
+
+### Docker command
+
+~~~
+docker composer up --build -d
+~~~
+
 INSTALLATION
 ------------
 ### Clone source code

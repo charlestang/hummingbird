@@ -10,27 +10,28 @@ services:
       MYSQL_PASSWORD: 123456
       MYSQL_RANDOM_ROOT_PASSWORD: '1'
     volumes:
-      - db:/var/lib/mysql
+      - dbdata:/var/lib/mysql
     networks:
       - brnet1
 
   hummingbird:
-    depends_on:
-      - db
-    image: php:7.4.33-apache
+    build: .
+    container_name: hummingbird
     volumes:
       - ./:/var/www/hummingbird:cached
     ports:
-      - 8081:8081
+      - 8081:80
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/hummingbird/web
     networks:
       - brnet1
     restart: unless-stopped
-    command: sh -c "/var/www/hummingbird/yii migrate --migrationPath=@yii/rbac/migrations && /var/www/hummingbird/yii migrate --migrationPath=@mdm/admin/migrations && /var/www/hummingbird/yii migrate/up"
+    command: /bin/sh -c "/var/www/hummingbird/docker-entrypoint.sh && apache2-foreground"
+    depends_on:
+      - db
 
 volumes:
-  db:
+  dbdata:
 
 networks:
   brnet1:

@@ -14,17 +14,15 @@
     "prefer-stable": true,
     "require": {
         "php": ">=7.4.21",
+        "yidas/yii2-bower-asset": "2.0.13.1",
         "yiisoft/yii2": "~2.0.45",
         "yiisoft/yii2-bootstrap": "~2.0.10",
         "yiisoft/yii2-authclient": "~2.1",
         "dmstr/yii2-adminlte-asset": "~2.6.2",
         "mdmsoft/yii2-admin": "~2.12",
-        "bower-asset/codemirror": "~5.61.0",
         "league/csv": "~9.8.0",
         "phpmyadmin/sql-parser": "~5.0",
-        "npm-asset/list.js": "^1.5",
         "kartik-v/yii2-widget-datepicker": "^1.4",
-        "bower-asset/eonasdan-bootstrap-datetimepicker": "^4.17",
         "rmrevin/yii2-fontawesome": "^2.17"
     },
     "require-dev": {
@@ -34,12 +32,10 @@
     },
     "config": {
         "allow-plugins": {
-            "yiisoft/yii2-composer": true
+            "yiisoft/yii2-composer": true,
+            "foxy/foxy": true
         },
-        "process-timeout": 1800,
-        "fxp-asset": {
-            "enabled": false
-        }
+        "process-timeout": 1800
     },
     "scripts": {
         "post-install-cmd": [
@@ -67,10 +63,6 @@
             "generateCookieValidationKey": [
                 "config/web.php"
             ]
-        },
-        "asset-installer-paths": {
-            "npm-asset-library": "vendor/npm",
-            "bower-asset-library": "vendor/bower"
         }
     }
 }

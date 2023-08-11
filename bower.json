@@ -1,0 +1,24 @@
+{
+  "name": "hummingbird",
+  "homepage": "https://github.com/charlestang/hummingbird",
+  "authors": [
+    "Charles <charlestang@foxmail.com>"
+  ],
+  "description": "CSS & JS dependencies.",
+  "main": "",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "vendor/bower",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "codemirror": "^6.65.7",
+    "eonasdan-bootstrap-datetimepicker": "^6.7.11",
+    "moment": "^2.29.4",
+    "list.js": "^2.3.1"
+  }
+}

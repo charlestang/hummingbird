@@ -9,7 +9,7 @@ namespace app\widgets\datetimepicker;
  */
 class DateTimePickerAsset extends \yii\web\AssetBundle
 {
-    public $sourcePath = '@bower/eonasdan-bootstrap-datetimepicker/build';
+    public $sourcePath = '@_bower/eonasdan-bootstrap-datetimepicker/build';
     public $css = [
         'css/bootstrap-datetimepicker.min.css',
     ];

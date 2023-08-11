@@ -10,7 +10,7 @@ use yii\web\AssetBundle;
  */
 class ListAsset extends AssetBundle
 {
-    public $sourcePath = '@npm/list.js';
+    public $sourcePath = '@_bower/list.js';
     public $js = [
         'dist/list.min.js',
     ];

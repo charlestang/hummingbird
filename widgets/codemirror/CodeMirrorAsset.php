@@ -12,7 +12,7 @@ use yii\web\AssetBundle;
 class CodeMirrorAsset extends AssetBundle
 {
 
-    public $sourcePath = '@bower/codemirror';
+    public $sourcePath = '@_bower/codemirror';
     public $css        = [
         'lib/codemirror.css',
         'addon/dialog/dialog.css',

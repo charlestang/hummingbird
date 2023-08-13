@@ -31,3 +31,4 @@ tests/_support/_generated
 
 generate_docs.sh
 config/oauth_clients.php
+.php-cs-fixer.cache

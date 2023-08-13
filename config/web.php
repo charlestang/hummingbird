@@ -1,16 +1,16 @@
 <?php
 
-$params = require(__DIR__ . '/params.php');
+$params = require __DIR__ . '/params.php';
 
 $config = [
-    'id' => 'basic',
-    'name' => 'Hummingbird',
-    'language' => 'zh-CN',
+    'id'             => 'basic',
+    'name'           => 'Hummingbird',
+    'language'       => 'zh-CN',
     'sourceLanguage' => 'en-US',
-    'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'basePath'       => dirname(__DIR__),
+    'bootstrap'      => ['log'],
     //NOTE: components in this section are all used by web application
-    //      components used by both web and console application should be 
+    //      components used by both web and console application should be
     //      put in components.php
     'components' => [
         'request' => [
@@ -19,7 +19,7 @@ $config = [
             'cookieValidationKey' => 'xNMSvlVtnsv5nSripgdIjbE1Uu3GkRGe',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass'   => 'app\models\User',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -27,34 +27,34 @@ $config = [
         ],
         'urlManager' => [
             'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
+            'showScriptName'  => false,
+            'rules'           => [
             ],
         ],
         'assetManager' => [
             'bundles' => [
                 'dmstr\web\AdminLteAsset' => [
                     'skin' => 'skin-blue',
-                    //'skin' => 'skin-blue-light',
-                    //'skin' => 'skin-yellow',
-                    //'skin' => 'skin-yellow-light',
-                    //'skin' => 'skin-green',
-                    //'skin' => 'skin-green-light',
-                    //'skin' => 'skin-purple',
-                    //'skin' => 'skin-purple-light',
-                    //'skin' => 'skin-red',
-                    //'skin' => 'skin-red-light',
-                    //'skin' => 'skin-black',
-                    //'skin' => 'skin-black-light',
+                    // 'skin' => 'skin-blue-light',
+                    // 'skin' => 'skin-yellow',
+                    // 'skin' => 'skin-yellow-light',
+                    // 'skin' => 'skin-green',
+                    // 'skin' => 'skin-green-light',
+                    // 'skin' => 'skin-purple',
+                    // 'skin' => 'skin-purple-light',
+                    // 'skin' => 'skin-red',
+                    // 'skin' => 'skin-red-light',
+                    // 'skin' => 'skin-black',
+                    // 'skin' => 'skin-black-light',
                 ],
             ],
         ],
         'authClientCollection' => [
-            'class' => 'yii\authclient\Collection',
+            'class'   => 'yii\authclient\Collection',
             'clients' => [
                 'google' => [
-                    'class' => 'yii\authclient\clients\Google',
-                    'clientId' => 'google_client_id',
+                    'class'        => 'yii\authclient\clients\Google',
+                    'clientId'     => 'google_client_id',
                     'clientSecret' => 'google_client_secret',
                 ],
                 /*
@@ -69,7 +69,7 @@ $config = [
         ],
     ],
     'as access' => [
-        'class' => 'mdm\admin\components\AccessControl',
+        'class'        => 'mdm\admin\components\AccessControl',
         'allowActions' => [
             'site/logout',
             'site/login',
@@ -87,24 +87,26 @@ $config = [
                 'assignment' => [
                     'class'        => 'mdm\admin\controllers\AssignmentController',
                     'extraColumns' => [[
-                          'class' => '\yii\grid\DataColumn',
-                          'label' => 'Roles',
-                          'value' => function($user) {
-                              $roles = Yii::$app->authManager->getRolesByUser($user->id);
-                              return empty($roles) ? '' : implode(',',
-                                                                  array_map(function($arrItem) {
-                                        return $arrItem->name;
-                                    }, $roles));
-                          }
-                        ]],
+                        'class' => '\yii\grid\DataColumn',
+                        'label' => 'Roles',
+                        'value' => function ($user) {
+                            $roles = Yii::$app->authManager->getRolesByUser($user->id);
+                            return empty($roles) ? '' : implode(
+                                ',',
+                                array_map(function ($arrItem) {
+                                    return $arrItem->name;
+                                }, $roles)
+                            );
+                        }
+                    ]],
                 ],
             ],
         ],
     ],
-    'params' => $params,
+    'params'  => $params,
     'aliases' => [
-        '@bower' => '@vendor/yidas/yii2-bower-asset/bower',
-        '@npm'   => '@vendor/npm-asset',
+        '@bower'  => '@vendor/yidas/yii2-bower-asset/bower',
+        '@npm'    => '@vendor/npm-asset',
         '@_bower' => '@vendor/bower',
     ],
 ];
@@ -114,16 +116,16 @@ if (YII_ENV_DEV) {
     $config['bootstrap'][] = 'debug';
     $config['modules']['debug'] = [
         'class' => 'yii\debug\Module',
-            // uncomment the following to add your IP if you are not connecting from localhost.
-            //'allowedIPs' => ['127.0.0.1', '::1'],
+        // uncomment the following to add your IP if you are not connecting from localhost.
+        //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
     $config['as access']['allowActions'][] = 'debug/*';
 
     $config['bootstrap'][] = 'gii';
     $config['modules']['gii'] = [
         'class' => 'yii\gii\Module',
-            // uncomment the following to add your IP if you are not connecting from localhost.
-            //'allowedIPs' => ['127.0.0.1', '::1'],
+        // uncomment the following to add your IP if you are not connecting from localhost.
+        //'allowedIPs' => ['127.0.0.1', '::1'],
     ];
 
     $config['as access']['allowActions'][] = 'gii/*';
